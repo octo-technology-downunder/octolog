@@ -9,6 +9,7 @@ The application is using [Serverless] and [DynamoDB](https://aws.amazon.com/dyna
 
  * [NodeJS](https://nodejs.org/)
  * [Serverless]
+ * configure your AWS profile
 
 ## Commands
 
