@@ -59,4 +59,10 @@ export ENV=dev
 sls deploy --stage $ENV
 ```
 
+## Todos;
+
+* deal with errors
+* use promise instead of callback
+* add unit test
+
 [Serverless]: https://serverless.com/
