@@ -27,13 +27,6 @@ _Note: Everything is packaged for a unix system, if you using windows: you shoul
 ### Testing
 
  * Install [Dredd](https://www.npmjs.com/package/dredd) `npm install -g dredd`
- * Init
-
- ```sh
- APIARY_KEY=toto
- dredd init -r apiary -j apiaryApiKey:$APIARY_KEY -j apiaryApiName:octoprofile #init
- dredd # run
- ```
 
 ## Commands
 
@@ -41,7 +34,7 @@ _Note: Everything is packaged for a unix system, if you using windows: you shoul
 
 #### Unit test
 ```sh
-npm test
+npm test # not yet configure
 ```
 
 #### Integration test
