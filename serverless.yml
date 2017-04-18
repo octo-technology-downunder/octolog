@@ -60,7 +60,7 @@ functions:
               paths:
                 id: true
 
-  getExperiences:
+  getExperience:
     handler: experiences.get
     events:
       - http:
@@ -78,6 +78,30 @@ functions:
       - http:
           path: experiences/{id}
           method: put
+          integration: lambda
+          request:
+            parameters:
+              paths:
+                id: true
+
+  createExperience:
+    handler: experiences.create
+    events:
+      - http:
+          path: people/{id}/experiences
+          method: post
+          integration: lambda
+          request:
+            parameters:
+              paths:
+                id: true
+
+  getExperiences:
+    handler: experiences.getAll
+    events:
+      - http:
+          path: people/{id}/experiences
+          method: get
           integration: lambda
           request:
             parameters:

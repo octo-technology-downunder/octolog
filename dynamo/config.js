@@ -3,7 +3,6 @@ const Joi = require('joi');
 const uuidV4 = require('uuid/v4');
 
 
-
 const endpoint = process.env.DYNAMO_URL || undefined
 dynamo.AWS.config.update({region: "ap-southeast-2", endpoint });
 
@@ -22,7 +21,8 @@ const PeopleTable = dynamo.define('People', {
       architectureTechnologies: dynamo.types.stringSet(),
       methodologies: dynamo.types.stringSet(),
       achievements: dynamo.types.stringSet()
-    }
+    },
+    experiencesId: dynamo.types.stringSet()
   }
 });
 
@@ -40,6 +40,7 @@ const ExperiencesTable = dynamo.define('Experience', {
     tags: dynamo.types.stringSet()
   }
 });
+
 
 
 module.exports = {

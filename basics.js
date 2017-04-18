@@ -13,5 +13,9 @@ module.exports.update = (event, context, callback) => {
 
 module.exports.get = (event, context, callback) => {
   const trigram = event.path.id
-  PeopleTable.get(trigram, callback)
+  PeopleTable.get(trigram, (err, data) => {
+    if(err) return callback(err)
+    delete data.experiencesId
+    callback(null, data)
+  })
 };
