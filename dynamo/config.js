@@ -1,5 +1,7 @@
 const dynamo = require('dynamodb');
 const Joi = require('joi');
+const uuidV4 = require('uuid/v4');
+
 
 
 const endpoint = process.env.DYNAMO_URL || undefined
@@ -25,15 +27,17 @@ const PeopleTable = dynamo.define('People', {
 });
 
 const ExperiencesTable = dynamo.define('Experience', {
-  hashKey : 'projectId',
+  hashKey : 'id',
   schema : {
+    id: Joi.string().default(() => uuidV4(), 'uuidV4'),
     projectId: Joi.number(),
     mission: Joi.string(),
     customer: Joi.string(),
     role: Joi.string(),
     from: Joi.string(),
     to: Joi.string(),
-    description: dynamo.types.stringSet()
+    description: dynamo.types.stringSet(),
+    tags: dynamo.types.stringSet()
   }
 });
 

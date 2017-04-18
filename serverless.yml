@@ -103,8 +103,8 @@ resources:
       Properties:
         TableName: experiences
         AttributeDefinitions:
-          - AttributeName: projectId
-            AttributeType: N
+          - AttributeName: id
+            AttributeType: S
         KeySchema:
           - AttributeName: projectId
             KeyType: HASH

@@ -5,7 +5,8 @@
   "main": "basics.js",
   "dependencies": {
     "dynamodb": "^1.0.0",
-    "joi": "^10.4.1"
+    "joi": "^10.4.1",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "serverless-offline": "^3.13.3"
