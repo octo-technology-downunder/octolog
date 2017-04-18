@@ -130,7 +130,7 @@ resources:
           - AttributeName: id
             AttributeType: S
         KeySchema:
-          - AttributeName: projectId
+          - AttributeName: id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 3
