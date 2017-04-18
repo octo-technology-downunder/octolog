@@ -5,3 +5,13 @@ jspm_packages
 # Serverless directories
 .serverless
 node_modules
+
+
+# local dynamoDB
+DynamoDBLocal.jar
+DynamoDBLocal_lib
+shared-local-instance.db
+
+
+# other
+*.log

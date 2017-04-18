@@ -111,3 +111,7 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 3
           WriteCapacityUnits: 3
+
+
+plugins:
+  - serverless-offline

@@ -1,0 +1,134 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# octo_profile
+
+OCTO Profile is a simple API to easily generate beautiful CV and bio.
+
+## User details [/people/{trigram}/basics]
+
+### Update user details [PUT]
+
++ Parameters
+    + trigram: `JBI` (String, required) - ID of the person
+
++ Request (application/json)
+
+        {
+            "firstName": "Billy",
+            "lastName": "Joe",
+            "pictureUrl": "https://pbs.twimg.com/profile_images/456738286732455936/uJGJyDbl.jpeg",
+            "job": "Architect",
+            "education":["UTC (Technical University of Compiegne)", "City University of Hong Kong"],
+            "skills":{
+                "technical": ["platform/frameworks: node, iOS, Rails, J2EE, Play", "Devops: Ansible, Puppet, Capistrano"],
+                "architectureTechnologies": ["Architecture studies", "Audits", "API Design"],
+                "methodologies": ["Agile", "Lean", "Lean Startup"],
+                "achievements": ["Speaker", "Blog articles"]
+            }
+        }
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "firstName": "Billy",
+            "lastName": "Joe",
+            "trigram": "JBI",
+            "pictureUrl": "https://pbs.twimg.com/profile_images/456738286732455936/uJGJyDbl.jpeg",
+            "job": "Architect",
+            "education":["UTC (Technical University of Compiegne)", "City University of Hong Kong"],
+            "skills":{
+                "technical": ["platform/frameworks: node, iOS, Rails, J2EE, Play", "Devops: Ansible, Puppet, Capistrano"],
+                "architectureTechnologies": ["Architecture studies", "Audits", "API Design"],
+                "methodologies": ["Agile", "Lean", "Lean Startup"],
+                "achievements": ["Speaker", "Blog articles"]
+            }
+        }
+
+
+### Get user details [GET]
+
++ Parameters
+    + trigram: `JBI` (String, required) - ID of the person
+
++ Response 200 (application/json; charset=utf-8)
+
+
+        {
+            "firstName": "Billy",
+            "lastName": "Joe",
+            "trigram": "JBI",
+            "pictureUrl": "https://pbs.twimg.com/profile_images/456738286732455936/uJGJyDbl.jpeg",
+            "job": "Architect",
+            "education":["UTC (Technical University of Compiegne)", "City University of Hong Kong"],
+            "skills":{
+                "technical": ["platform/frameworks: node, iOS, Rails, J2EE, Play", "Devops: Ansible, Puppet, Capistrano"],
+                "architectureTechnologies": ["Architecture studies", "Audits", "API Design"],
+                "methodologies": ["Agile", "Lean", "Lean Startup"],
+                "achievements": ["Speaker", "Blog articles"]
+            }
+        }
+
+## Experience details [/experiences/{id}]
+
+
+### Update an Experience [PUT]
+
+You may update an experience to add details.
+
++ Parameters
+    + id: `123456` (Number, required) - ID of the experience
+
++ Request (application/json)
+
+        {
+            "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
+            "customer":"ING Direct Australia",
+            "role":"Developer 1",
+            "from": "2015-08-05T08:40:51.620Z",
+            "to": "2015-08-05T08:40:51.620Z",
+            "description": [
+                "Frame internal API product",
+                "Design solution and push up technology choices",
+                "Develop solution"
+            ]
+        }
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "projectId": 123456,
+            "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
+            "customer":"ING Direct Australia",
+            "role":"Developer 1",
+            "from": "2015-08-05T08:40:51.620Z",
+            "to": "2015-08-05T08:40:51.620Z",
+            "description": [
+                "Frame internal API product",
+                "Design solution and push up technology choices",
+                "Develop solution"
+            ]
+        }
+
+### Update an Experience [GET]
+
+You may retrieve an experience to add details.
+
++ Parameters
+    + id: `123456` (Number, required) - ID of the experience
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "projectId": 123456,
+            "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
+            "customer":"ING Direct Australia",
+            "role":"Developer 1",
+            "from": "2015-08-05T08:40:51.620Z",
+            "to": "2015-08-05T08:40:51.620Z",
+            "description": [
+                "Frame internal API product",
+                "Design solution and push up technology choices",
+                "Develop solution"
+            ]
+        }

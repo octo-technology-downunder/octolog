@@ -1,0 +1,26 @@
+{
+  "name": "cv-octo",
+  "version": "0.0.1",
+  "description": "CV generator",
+  "main": "basics.js",
+  "dependencies": {
+    "dynamodb": "^1.0.0",
+    "joi": "^10.4.1"
+  },
+  "devDependencies": {
+    "serverless-offline": "^3.13.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "runDynamo": "java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb",
+    "dlDynamo": "curl https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.tar.gz | tar -x DynamoDBLocal.jar DynamoDBLocal_lib",
+    "predev": "DYNAMO_URL=http://localhost:8000 node ./dynamo/createTable",
+    "dev": "DYNAMO_URL=http://localhost:8000 sls offline start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.octo.com:australia/cv-generator-back.git"
+  },
+  "author": "tgery",
+  "license": "ISC"
+}

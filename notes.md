@@ -10,3 +10,5 @@ Notes on this project
  * integration API Gateway and lambda, no so pleasant (path parameter + return code)
  * DynamoDB is not as easy as mongo to setup, must explicitly give a schema
  * publish documentation on API Gateway ==> failure
+ * painful to run it locally on your computer
+ * first call ~1 seconds then around 120 ms
