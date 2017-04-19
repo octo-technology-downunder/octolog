@@ -21,30 +21,30 @@ module.exports.get = (event, context, callback) => {
 module.exports.create = (event, context, callback) => {
   const trigram = event.path.id
   const body = event.body
-
-  ExperiencesTable.create(body, (err, experience) => {
-    if (err) return callback(err)
-    PeopleTable.get(trigram, (err, people) => {
-      if (err) return callback(err)
-
-      people.attrs.experiencesId = people.experiencesId || []
-      people.attrs.experiencesId.push(experience.attrs.id)
-      PeopleTable.update(people.attrs, (err, newPeople) => {
-        if (err) return callback(err)
-        callback(null, experience.attrs)
-      })
-    })
-  })
+  ExperiencesTable.createP(body)
+    .then(function (experience) {
+      PeopleTable.getP(trigram)
+        .then(function (people) {
+          people.attrs.experiencesId = people.experiencesId || [];
+          people.attrs.experiencesId.push(experience.attrs.id);
+          return PeopleTable.updateP(people.attrs);
+        })
+        .then(function (newPeople) {
+          callback(null, experience.attrs);
+        }, callback);
+      },callback);
 };
 
 
 module.exports.getAll = (event, context, callback) => {
   const trigram = event.path.id
 
-  PeopleTable.get(trigram, (err, people) => {
-    if(err) return callback(err)
-    async.map(people.attrs.experiencesId, ExperiencesTable.get, (err, results) => {
-      callback(null, results.map(i => i.attrs))
+  PeopleTable.getP(trigram)
+    .then((people) => {
+      const experiencesPromises = people.attrs.experiencesId.map(ExperiencesTable.getP)
+      return Promise.all(experiencesPromises)
     })
-  })
+    .then((results) => {
+      callback(null, results.map(i => i.attrs))
+    }, callback)
 };

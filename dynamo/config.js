@@ -1,13 +1,14 @@
 const dynamo = require('dynamodb');
 const Joi = require('joi');
 const uuidV4 = require('uuid/v4');
+const promisify = require("promisify-node");
 
 
 const endpoint = process.env.DYNAMO_URL || undefined
 dynamo.AWS.config.update({region: "ap-southeast-2", endpoint });
 
 
-const PeopleTable = dynamo.define('People', {
+const PeopleTable = promisifySchema(dynamo.define('People', {
   hashKey : 'trigram',
   schema : {
     trigram: Joi.string().regex(/^[A-Z]{3}$/),
@@ -24,9 +25,9 @@ const PeopleTable = dynamo.define('People', {
     },
     experiencesId: dynamo.types.stringSet()
   }
-});
+}));
 
-const ExperiencesTable = dynamo.define('Experience', {
+const ExperiencesTable = promisifySchema(dynamo.define('Experience', {
   hashKey : 'id',
   schema : {
     id: Joi.string().default(() => uuidV4(), 'uuidV4'),
@@ -39,8 +40,14 @@ const ExperiencesTable = dynamo.define('Experience', {
     description: dynamo.types.stringSet(),
     tags: dynamo.types.stringSet()
   }
-});
+}));
 
+function promisifySchema(schema) {
+  schema.getP = promisify(schema.get)
+  schema.updateP = promisify(schema.update)
+  schema.createP = promisify(schema.create)
+  return schema
+}
 
 
 module.exports = {
