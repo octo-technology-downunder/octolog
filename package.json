@@ -6,6 +6,7 @@
   "dependencies": {
     "dynamodb": "^1.0.0",
     "joi": "^10.4.1",
+    "lodash": "^4.17.4",
     "promisify-node": "^0.4.0",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.3",

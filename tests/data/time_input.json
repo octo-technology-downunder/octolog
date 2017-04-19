@@ -1,0 +1,1094 @@
+[
+  {
+    "day": "2013-11-04",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 2140318370,
+      "title": "Arrivée",
+      "nb_days": "0.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146897756,
+        "url": "https://octopod.octo.com/api/v0/projects/2146897756",
+        "name": "Période d'intégration ",
+        "kind": "internal",
+        "reference": "I2009-5",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-05",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 2140318370,
+      "title": "Arrivée",
+      "nb_days": "0.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146897756,
+        "url": "https://octopod.octo.com/api/v0/projects/2146897756",
+        "name": "Période d'intégration ",
+        "kind": "internal",
+        "reference": "I2009-5",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-06",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 2140318370,
+      "title": "Arrivée",
+      "nb_days": "0.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146897756,
+        "url": "https://octopod.octo.com/api/v0/projects/2146897756",
+        "name": "Période d'intégration ",
+        "kind": "internal",
+        "reference": "I2009-5",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-07",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 2140318370,
+      "title": "Arrivée",
+      "nb_days": "0.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146897756,
+        "url": "https://octopod.octo.com/api/v0/projects/2146897756",
+        "name": "Période d'intégration ",
+        "kind": "internal",
+        "reference": "I2009-5",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-08",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 2140318370,
+      "title": "Arrivée",
+      "nb_days": "0.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146897756,
+        "url": "https://octopod.octo.com/api/v0/projects/2146897756",
+        "name": "Période d'intégration ",
+        "kind": "internal",
+        "reference": "I2009-5",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-12",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003189,
+      "title": "Shadowing",
+      "nb_days": "6.0",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900417,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900417",
+        "name": "Refonte Neptune",
+        "kind": "fixed_price",
+        "reference": "F2013-392",
+        "status": "mission_done",
+        "customer": {
+          "id": 1285,
+          "name": "Pacifica"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-11-13",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003189,
+      "title": "Shadowing",
+      "nb_days": "6.0",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900417,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900417",
+        "name": "Refonte Neptune",
+        "kind": "fixed_price",
+        "reference": "F2013-392",
+        "status": "mission_done",
+        "customer": {
+          "id": 1285,
+          "name": "Pacifica"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-11-14",
+    "time_in_days": "0.5",
+    "activity": {
+      "id": 3000003189,
+      "title": "Shadowing",
+      "nb_days": "6.0",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900417,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900417",
+        "name": "Refonte Neptune",
+        "kind": "fixed_price",
+        "reference": "F2013-392",
+        "status": "mission_done",
+        "customer": {
+          "id": 1285,
+          "name": "Pacifica"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-11-14",
+    "time_in_days": "0.5",
+    "activity": {
+      "id": 3000001166,
+      "title": "Volontaire",
+      "nb_days": "100.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146900123,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900123",
+        "name": "TIGRE B&A 2013",
+        "kind": "internal",
+        "reference": "I2013-131",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-15",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003189,
+      "title": "Shadowing",
+      "nb_days": "6.0",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900417,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900417",
+        "name": "Refonte Neptune",
+        "kind": "fixed_price",
+        "reference": "F2013-392",
+        "status": "mission_done",
+        "customer": {
+          "id": 1285,
+          "name": "Pacifica"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-11-18",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000001166,
+      "title": "Volontaire",
+      "nb_days": "100.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146900123,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900123",
+        "name": "TIGRE B&A 2013",
+        "kind": "internal",
+        "reference": "I2013-131",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-19",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000001166,
+      "title": "Volontaire",
+      "nb_days": "100.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146900123,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900123",
+        "name": "TIGRE B&A 2013",
+        "kind": "internal",
+        "reference": "I2013-131",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-20",
+    "time_in_days": "0.5",
+    "activity": {
+      "id": 3000001166,
+      "title": "Volontaire",
+      "nb_days": "100.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146900123,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900123",
+        "name": "TIGRE B&A 2013",
+        "kind": "internal",
+        "reference": "I2013-131",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-20",
+    "time_in_days": "0.5",
+    "activity": {
+      "id": 3000003189,
+      "title": "Shadowing",
+      "nb_days": "6.0",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900417,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900417",
+        "name": "Refonte Neptune",
+        "kind": "fixed_price",
+        "reference": "F2013-392",
+        "status": "mission_done",
+        "customer": {
+          "id": 1285,
+          "name": "Pacifica"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-11-21",
+    "time_in_days": "0.5",
+    "activity": {
+      "id": 2140321170,
+      "title": "BOF (Participation)",
+      "nb_days": "10.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146899079,
+        "url": "https://octopod.octo.com/api/v0/projects/2146899079",
+        "name": "BOF (Participation)",
+        "kind": "internal",
+        "reference": "I2011-329",
+        "status": null,
+        "customer": {
+          "id": 1247,
+          "name": "OCTO"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-11-21",
+    "time_in_days": "0.5",
+    "activity": {
+      "id": 3000003189,
+      "title": "Shadowing",
+      "nb_days": "6.0",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900417,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900417",
+        "name": "Refonte Neptune",
+        "kind": "fixed_price",
+        "reference": "F2013-392",
+        "status": "mission_done",
+        "customer": {
+          "id": 1285,
+          "name": "Pacifica"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-11-22",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003189,
+      "title": "Shadowing",
+      "nb_days": "6.0",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900417,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900417",
+        "name": "Refonte Neptune",
+        "kind": "fixed_price",
+        "reference": "F2013-392",
+        "status": "mission_done",
+        "customer": {
+          "id": 1285,
+          "name": "Pacifica"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-11-25",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000001166,
+      "title": "Volontaire",
+      "nb_days": "100.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146900123,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900123",
+        "name": "TIGRE B&A 2013",
+        "kind": "internal",
+        "reference": "I2013-131",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-26",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000001166,
+      "title": "Volontaire",
+      "nb_days": "100.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146900123,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900123",
+        "name": "TIGRE B&A 2013",
+        "kind": "internal",
+        "reference": "I2013-131",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-27",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000001166,
+      "title": "Volontaire",
+      "nb_days": "100.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146900123,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900123",
+        "name": "TIGRE B&A 2013",
+        "kind": "internal",
+        "reference": "I2013-131",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-28",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000001166,
+      "title": "Volontaire",
+      "nb_days": "100.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146900123,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900123",
+        "name": "TIGRE B&A 2013",
+        "kind": "internal",
+        "reference": "I2013-131",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-11-29",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-02",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003321,
+      "title": "Onboarding projet",
+      "nb_days": "24.5",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-03",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003321,
+      "title": "Onboarding projet",
+      "nb_days": "24.5",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-04",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003321,
+      "title": "Onboarding projet",
+      "nb_days": "24.5",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-05",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003321,
+      "title": "Onboarding projet",
+      "nb_days": "24.5",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-06",
+    "time_in_days": "0.5",
+    "activity": {
+      "id": 2140318370,
+      "title": "Arrivée",
+      "nb_days": "0.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146897756,
+        "url": "https://octopod.octo.com/api/v0/projects/2146897756",
+        "name": "Période d'intégration ",
+        "kind": "internal",
+        "reference": "I2009-5",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-12-06",
+    "time_in_days": "0.5",
+    "activity": {
+      "id": 3000003321,
+      "title": "Onboarding projet",
+      "nb_days": "24.5",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-09",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003321,
+      "title": "Onboarding projet",
+      "nb_days": "24.5",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-10",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003321,
+      "title": "Onboarding projet",
+      "nb_days": "24.5",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-11",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003321,
+      "title": "Onboarding projet",
+      "nb_days": "24.5",
+      "average_daily_rate": "0.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-12",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 2140318370,
+      "title": "Arrivée",
+      "nb_days": "0.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146897756,
+        "url": "https://octopod.octo.com/api/v0/projects/2146897756",
+        "name": "Période d'intégration ",
+        "kind": "internal",
+        "reference": "I2009-5",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-12-13",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 2140318370,
+      "title": "Arrivée",
+      "nb_days": "0.0",
+      "average_daily_rate": "0.0",
+      "kind": "not_billable",
+      "project": {
+        "id": 2146897756,
+        "url": "https://octopod.octo.com/api/v0/projects/2146897756",
+        "name": "Période d'intégration ",
+        "kind": "internal",
+        "reference": "I2009-5",
+        "status": null,
+        "customer": null
+      }
+    }
+  },
+  {
+    "day": "2013-12-16",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-17",
+    "time_in_days": "0.5",
+    "activity": {
+      "id": 2140317068,
+      "title": "Plénières et entretiens annuels",
+      "nb_days": null,
+      "average_daily_rate": null,
+      "kind": "permanent",
+      "project": null
+    }
+  },
+  {
+    "day": "2013-12-17",
+    "time_in_days": "0.5",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-18",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-19",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-20",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-23",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-24",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-26",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 2140298843,
+      "title": "RTT 35h ",
+      "nb_days": null,
+      "average_daily_rate": null,
+      "kind": "permanent",
+      "project": null
+    }
+  },
+  {
+    "day": "2013-12-27",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 2140298843,
+      "title": "RTT 35h ",
+      "nb_days": null,
+      "average_daily_rate": null,
+      "kind": "permanent",
+      "project": null
+    }
+  },
+  {
+    "day": "2013-12-30",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2013-12-31",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2014-01-02",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2014-01-03",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2014-01-06",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2014-01-07",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2014-01-08",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000003268,
+      "title": "Dev",
+      "nb_days": "140.5",
+      "average_daily_rate": "640.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146900704,
+        "url": "https://octopod.octo.com/api/v0/projects/2146900704",
+        "name": "Delivery KISS",
+        "kind": "fixed_price",
+        "reference": "F2013-678",
+        "status": "mission_done",
+        "customer": {
+          "id": 951,
+          "name": "CANAL+"
+        }
+      }
+    }
+  },
+  {
+    "day": "2014-01-08",
+    "time_in_days": "1.0",
+    "activity": {
+      "id": 3000024114,
+      "title": "Consultant Senior",
+      "nb_days": "5.0",
+      "average_daily_rate": "1800.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146904557,
+        "url": "https://octopod.octo.com/api/v0/projects/2146904557",
+        "name": "Catering prediction as a service",
+        "kind": "fixed_price",
+        "reference": "F2017-22",
+        "status": "mission_signed",
+        "customer": {
+          "id": 2001,
+          "name": "Qantas"
+        }
+      }
+    }
+  }
+]

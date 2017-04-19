@@ -1,6 +1,7 @@
 const expect = require("chai").expect
 const nock = require('nock')
 const octopod = require("../octopod")
+const fs = require('fs')
 
 const octopodCall = nock('https://octopod.octo.com')
 const octopodCallWithAuth = nock('https://octopod.octo.com', {
@@ -116,6 +117,43 @@ describe("Octopod'integration: ", () => {
         })
       })
     })
+  })
+  
+  describe("when getting the activity", () => {
+    it("return the token", () => {
+      //given
+      const httpResponse = fs.readFileSync( __dirname + '/data/time_input.json')
+      const actCall = octopodCallWithAuth
+                        .get('/api/v0/people/EKL/time_input?page=1&per_page=1000')
+                        .reply(200, httpResponse);
 
+      //when
+      const activitiesP = octopod.getActivities('EKL', 'Bearer toto');
+
+      //then
+      return activitiesP.then((activities) => {
+        actCall.isDone();
+        expect(activities).to.have.length(4)
+        expect(activities[0]).to.deep.equal({
+            "id": 3000003189,
+            "title": "Shadowing",
+            "nb_days": "6.0",
+            "average_daily_rate": "0.0",
+            "kind": "billable",
+            "project": {
+              "id": 2146900417,
+              "url": "https://octopod.octo.com/api/v0/projects/2146900417",
+              "name": "Refonte Neptune",
+              "kind": "fixed_price",
+              "reference": "F2013-392",
+              "status": "mission_done",
+              "customer": {
+                "id": 1285,
+                "name": "Pacifica"
+              }
+            }
+          })
+      })
+    })
   })
 })
