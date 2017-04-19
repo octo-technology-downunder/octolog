@@ -53,21 +53,38 @@ function getOctoId(trigram, authToken) {
 
 
 function getActivities(personId, authToken) {
-  var options = {
-    method: 'GET',
-    uri: `https://octopod.octo.com/api/v0/people/${personId}/time_input?page=1&per_page=1000`,
-    headers: {
-        Authorization: authToken
-    }
-  };
-  return rp(options)
-    .then(body => {
-      body = JSON.parse(body)
-      const projects = body
-              .map(i => i.activity)
-              .filter(act => act.project != null && act.project.kind != 'internal')
-      return _.uniqBy(projects, "id")
-    })
+  const activities = []
+  const resultPerPage = 1000
+  function activityCall(pageNumber) {
+    const options = {
+      method: 'GET',
+      uri: `https://octopod.octo.com/api/v0/people/${personId}/time_input?page=${pageNumber}&per_page=${resultPerPage}`,
+      headers: {
+          Authorization: authToken
+      }
+    };
+    return rp(options)
+      .then(body => {
+        return JSON.parse(body)
+                  .map(i => i.activity)
+      })
+      .then(newActivities => {
+        activities.push(...newActivities)
+        if(newActivities.length >= resultPerPage) {
+          const newpage = pageNumber + 1;
+          return activityCall(newpage)
+        } else {
+          return activities;
+        }
+      })
+  }
+  return activityCall(1).then(newActivities => {
+      const filteredAct = activities
+        .filter(act => act.project != null && act.project.kind != 'internal')
+      return _.uniqBy(filteredAct, "id")
+  })
+
+
 }
 
 module.exports = {sync, getAuth, getOctoId, getActivities}
