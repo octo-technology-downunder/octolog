@@ -7,13 +7,19 @@
     "dynamodb": "^1.0.0",
     "joi": "^10.4.1",
     "promisify-node": "^0.4.0",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.3",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "nock": "^9.0.13",
     "serverless-offline": "^3.13.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/istanbul cover --print details _mocha -- -R spec tests/** --recursive",
     "runDynamo": "java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb",
     "dlDynamo": "curl https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.tar.gz | tar -x DynamoDBLocal.jar DynamoDBLocal_lib",
     "predev": "DYNAMO_URL=http://localhost:8000 node ./dynamo/createTable",

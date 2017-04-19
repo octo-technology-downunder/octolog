@@ -107,6 +107,20 @@ functions:
             parameters:
               paths:
                 id: true
+  syncOctoExperiences:
+    handler: octopod.sync
+    environment:
+      CLIENT_ID: ${env:OCTOPOD_CLIENT_ID}
+      CLIENT_SECRET: ${env:OCTOPOD_CLIENT_SECRET}
+    events:
+      - http:
+          path: people/{id}/octopod/sync
+          method: post
+          integration: lambda
+          request:
+            parameters:
+              paths:
+                id: true
 resources:
   Resources:
     usersTable:
