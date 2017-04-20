@@ -238,4 +238,77 @@ describe("Octopod'integration: ", () => {
       })
     })
   })
+
+  describe("when updating the experience id in the DB", () => {
+
+    beforeEach(() => {
+      dynamo.PeopleTable.getP = sinon.stub()
+      dynamo.PeopleTable.updateP = sinon.stub()
+    })
+
+    afterEach(() => {
+      dynamo.PeopleTable.getP.reset();
+      dynamo.PeopleTable.updateP.reset();
+    })
+
+    const tge = {
+      trigram: "TGE",
+      experiencesId: ["3000024114"]
+    }
+
+    const nig = {
+      trigram: "NIG"
+    }
+
+    const expectedNig = {
+      trigram: "NIG",
+      experiencesId: ["3000024114"]
+    }
+
+    const experience = {
+        id: "3000024114"
+    }
+
+    describe("there is no experience in the DB", () => {
+      it("insert the experience id as a experience", () => {
+        //given
+        dynamo.PeopleTable.getP.withArgs("NIG").resolves({attrs: nig})
+        dynamo.PeopleTable.updateP.resolves({attrs: experience})
+
+        //when
+        return octopod.updatePersonWithExperience("NIG", [experience])
+          .then(experiences => {
+
+            //then
+            expect(dynamo.PeopleTable.updateP.calledOnce).to.be.true
+            const call = dynamo.PeopleTable.updateP.getCall(0)
+            expect(call.args).to.deep.equal([{
+              trigram: "NIG",
+              experiencesId: ["3000024114"]
+            }])
+          })
+      })
+    })
+
+    describe("there is already the experience in the DB", () => {
+      it("does't insert the expereince I as a experience", () => {
+        //given
+        dynamo.PeopleTable.getP.withArgs("TGE").resolves({attrs: tge})
+        dynamo.PeopleTable.updateP.resolves({attrs: experience})
+
+        //when
+        return octopod.updatePersonWithExperience("TGE",[experience])
+          .then(experiences => {
+
+            //then
+            expect(dynamo.PeopleTable.updateP.calledOnce).to.be.true
+            const call = dynamo.PeopleTable.updateP.getCall(0)
+            expect(call.args).to.deep.equal([{
+              trigram: "TGE",
+              experiencesId: ["3000024114"]
+            }])
+          })
+      })
+    })
+  })
 })

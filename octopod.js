@@ -41,10 +41,11 @@ function createExperienceIfNotexisting(activities) {
 
 function updatePersonWithExperience(trigram, experiences) {
     return PeopleTable.getP(trigram)
-      .then((people) => {
-        people.attrs.experiencesId = people.experiencesId || [];
-        people.attrs.experiencesId.push(...experiences.map(exp => exp.id));
-        return PeopleTable.updateP(people.attrs);
+      .then((person) => {
+        person.attrs.experiencesId = person.attrs.experiencesId || [];
+        person.attrs.experiencesId.push(...experiences.map(exp => exp.id));
+        person.attrs.experiencesId = _.uniq(person.attrs.experiencesId)
+        return PeopleTable.updateP(person.attrs);;
       })
       .then(() => experiences);
 }
