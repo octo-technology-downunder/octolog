@@ -58,7 +58,7 @@ const people = [
 
 describe("Octopod'integration: ", () => {
   describe("when getting the token", () => {
-    it("return the  token", () => {
+    it("return the token", () => {
 
       //given
       const authCall = octopodCall
@@ -84,7 +84,7 @@ describe("Octopod'integration: ", () => {
 
   describe("when getting the trigrams", () => {
     describe("when the trigram exist", () => {
-      it("return the  token", () => {
+      it("return the id", () => {
         //given
         const idCall = octopodCallWithAuth
                           .get('/api/v0/people?all=true')
@@ -102,7 +102,7 @@ describe("Octopod'integration: ", () => {
     })
 
     describe("when the trigram doesn't exist", () => {
-      it("return the  token", (done) => {
+      it("return an error", (done) => {
         //givenconst
         idCall = octopodCallWithAuth
                   .get('/api/v0/people?all=true')
@@ -118,9 +118,9 @@ describe("Octopod'integration: ", () => {
       })
     })
   })
-  
+
   describe("when getting the activity", () => {
-    it("return the token", () => {
+    it("return the activities", () => {
       //given
       const httpResponse = fs.readFileSync( __dirname + '/data/time_input.json')
       const actCall = octopodCallWithAuth
@@ -128,7 +128,7 @@ describe("Octopod'integration: ", () => {
                         .reply(200, httpResponse);
 
       //when
-      const activitiesP = octopod.getActivities('EKL', 'Bearer toto');
+      const activitiesP = octopod.getActivitiesFromOctopod('Bearer toto', 'EKL');
 
       //then
       return activitiesP.then((activities) => {

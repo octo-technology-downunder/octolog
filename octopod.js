@@ -10,22 +10,17 @@ function sync(event, context, callback) {
   getAuth(clientId, clientSecret)
     .then(accessToken => {
       return getOctoId(trigram, accessToken)
-        .then((id) => {
-          return getActivities(id, accessToken)
-        })
-        .then((activities) => {
-          return updateDBWithActivities(trigram, activities)
-        })
-        .then((activities) => {
-          return callback(null, activities)
-        })
+        .then(getActivitiesFromOctopod.bind(undefined,accessToken))
+        .then(createExperienceIfNotexisting.bind(undefined,trigram))
+        .then(updatePersonWithExperience.bind(undefined,trigram))
+        .then(activities => callback(null, activities))
         .catch(callback)
     })
     .catch(callback)
 }
 
-function updateDBWithActivities(trigram, activities) {
-  const experiencesP = activities.map(act => {
+function createExperienceIfNotexisting(trigram, activities) {
+  return activities.map(act => {
     act.id = act.id + ""
 
     return ExperiencesTable.getP(act.id)
@@ -43,17 +38,18 @@ function updateDBWithActivities(trigram, activities) {
         return actInDb
       }).then(i => i.attrs)
   })
+}
+
+function updatePersonWithExperience(trigram, experiencesP) {
   return Promise.all(experiencesP)
     .then(experiences => {
       return PeopleTable.getP(trigram)
-        .then(function (people) {
+        .then((people) => {
           people.attrs.experiencesId = people.experiencesId || [];
           people.attrs.experiencesId.push(...experiences.map(exp => exp.id));
           return PeopleTable.updateP(people.attrs);
         })
-        .then(function (newPeople) {
-          return experiences;
-        });
+        .then(() => experiences);
     })
 }
 
@@ -89,10 +85,9 @@ function getOctoId(trigram, authToken) {
 }
 
 
-function getActivities(personId, authToken) {
-  const activities = []
+function getActivitiesFromOctopod(authToken, personId) {
   const resultPerPage = 1000
-  function activityCall(pageNumber) {
+  function activityCall(pageNumber, activities) {
     const options = {
       method: 'GET',
       uri: `https://octopod.octo.com/api/v0/people/${personId}/time_input?page=${pageNumber}&per_page=${resultPerPage}`,
@@ -108,14 +103,13 @@ function getActivities(personId, authToken) {
       .then(newActivities => {
         activities.push(...newActivities)
         if(newActivities.length >= resultPerPage) {
-          const newpage = pageNumber + 1;
-          return activityCall(newpage)
+          return activityCall(pageNumber + 1, activities)
         } else {
           return activities;
         }
       })
   }
-  return activityCall(1).then(newActivities => {
+  return activityCall(1, []).then(activities => {
       const filteredAct = activities
         .filter(act => act.project != null && act.project.kind != 'internal')
       return _.uniqBy(filteredAct, "id")
@@ -124,4 +118,4 @@ function getActivities(personId, authToken) {
 
 }
 
-module.exports = {sync, getAuth, getOctoId, getActivities}
+module.exports = {sync, getAuth, getOctoId, getActivitiesFromOctopod}
