@@ -15,6 +15,7 @@ module.exports.get = (event, context, callback) => {
   const trigram = event.path.id
   PeopleTable.get(trigram, (err, data) => {
     if(err) return callback(err)
+    if(data == null) return callback(new Error(`The person ${trigram} was not found`))
     delete data.experiencesId
     callback(null, data)
   })

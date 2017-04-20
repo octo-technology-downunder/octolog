@@ -31,8 +31,10 @@ module.exports.create = (event, context, callback) => {
         })
         .then(function (newPeople) {
           callback(null, experience.attrs);
-        }, callback);
-      },callback);
+        })
+        .catch(callback)
+      })
+      .catch(callback)
 };
 
 
@@ -41,10 +43,11 @@ module.exports.getAll = (event, context, callback) => {
 
   PeopleTable.getP(trigram)
     .then((people) => {
-      const experiencesPromises = people.attrs.experiencesId.map(ExperiencesTable.getP)
+      const experiencesPromises = (people.attrs.experiencesId || []).map(ExperiencesTable.getP)
       return Promise.all(experiencesPromises)
     })
     .then((results) => {
       callback(null, results.map(i => i.attrs))
-    }, callback)
+    })
+    .catch(callback)
 };

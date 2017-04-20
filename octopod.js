@@ -1,5 +1,6 @@
 const rp = require('request-promise-native')
 const _ = require('lodash')
+const { ExperiencesTable, PeopleTable } = require('./dynamo/config')
 
 function sync(event, context, callback) {
   const clientId = process.env.CLIENT_ID
@@ -12,12 +13,48 @@ function sync(event, context, callback) {
         .then((id) => {
           return getActivities(id, accessToken)
         })
-        .then((project) => {
-          return callback(null, project)
+        .then((activities) => {
+          return updateDBWithActivities(trigram, activities)
+        })
+        .then((activities) => {
+          return callback(null, activities)
         })
         .catch(callback)
     })
     .catch(callback)
+}
+
+function updateDBWithActivities(trigram, activities) {
+  const experiencesP = activities.map(act => {
+    act.id = act.id + ""
+
+    return ExperiencesTable.getP(act.id)
+      .then((actInDb) => {
+        if(actInDb == null) {
+          const exp = {
+            id: act.id,
+            projectId: act.project.id,
+            mission: act.project.name,
+            customer: act.project.customer.name,
+            role: act.title
+          }
+          return ExperiencesTable.createP(exp)
+        }
+        return actInDb
+      }).then(i => i.attrs)
+  })
+  return Promise.all(experiencesP)
+    .then(experiences => {
+      return PeopleTable.getP(trigram)
+        .then(function (people) {
+          people.attrs.experiencesId = people.experiencesId || [];
+          people.attrs.experiencesId.push(...experiences.map(exp => exp.id));
+          return PeopleTable.updateP(people.attrs);
+        })
+        .then(function (newPeople) {
+          return experiences;
+        });
+    })
 }
 
 
