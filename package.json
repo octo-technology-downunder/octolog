@@ -17,7 +17,9 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "nock": "^9.0.13",
-    "serverless-offline": "^3.13.3"
+    "proxyquire": "^1.7.11",
+    "serverless-offline": "^3.13.3",
+    "sinon": "^2.1.0"
   },
   "scripts": {
     "test": "./node_modules/.bin/istanbul cover --print details _mocha -- -R spec tests/** --recursive",

@@ -11,7 +11,7 @@ function sync(event, context, callback) {
     .then(accessToken => {
       return getOctoId(trigram, accessToken)
         .then(getActivitiesFromOctopod.bind(undefined,accessToken))
-        .then(createExperienceIfNotexisting.bind(undefined,trigram))
+        .then(createExperienceIfNotexisting)
         .then(updatePersonWithExperience.bind(undefined,trigram))
         .then(activities => callback(null, activities))
         .catch(callback)
@@ -19,10 +19,9 @@ function sync(event, context, callback) {
     .catch(callback)
 }
 
-function createExperienceIfNotexisting(trigram, activities) {
-  return activities.map(act => {
+function createExperienceIfNotexisting(activities) {
+  return Promise.all(activities.map(act => {
     act.id = act.id + ""
-
     return ExperiencesTable.getP(act.id)
       .then((actInDb) => {
         if(actInDb == null) {
@@ -37,20 +36,17 @@ function createExperienceIfNotexisting(trigram, activities) {
         }
         return actInDb
       }).then(i => i.attrs)
-  })
+  }))
 }
 
-function updatePersonWithExperience(trigram, experiencesP) {
-  return Promise.all(experiencesP)
-    .then(experiences => {
-      return PeopleTable.getP(trigram)
-        .then((people) => {
-          people.attrs.experiencesId = people.experiencesId || [];
-          people.attrs.experiencesId.push(...experiences.map(exp => exp.id));
-          return PeopleTable.updateP(people.attrs);
-        })
-        .then(() => experiences);
-    })
+function updatePersonWithExperience(trigram, experiences) {
+    return PeopleTable.getP(trigram)
+      .then((people) => {
+        people.attrs.experiencesId = people.experiencesId || [];
+        people.attrs.experiencesId.push(...experiences.map(exp => exp.id));
+        return PeopleTable.updateP(people.attrs);
+      })
+      .then(() => experiences);
 }
 
 
@@ -118,4 +114,11 @@ function getActivitiesFromOctopod(authToken, personId) {
 
 }
 
-module.exports = {sync, getAuth, getOctoId, getActivitiesFromOctopod}
+module.exports = {
+  sync,
+  getAuth,
+  getOctoId,
+  getActivitiesFromOctopod,
+  createExperienceIfNotexisting,
+  updatePersonWithExperience
+}

@@ -1,7 +1,12 @@
 const expect = require("chai").expect
 const nock = require('nock')
-const octopod = require("../octopod")
 const fs = require('fs')
+const proxyquire = require('proxyquire')
+const sinon = require('sinon')
+
+const dynamo = { ExperiencesTable: {} , PeopleTable: {} }
+const octopod = proxyquire('../octopod', { './dynamo/config': dynamo });
+
 
 const octopodCall = nock('https://octopod.octo.com')
 const octopodCallWithAuth = nock('https://octopod.octo.com', {
@@ -152,6 +157,83 @@ describe("Octopod'integration: ", () => {
                 "name": "Pacifica"
               }
             }
+          })
+      })
+    })
+  })
+  describe("when inserting the experience in the DB", () => {
+
+    beforeEach(() => {
+      dynamo.ExperiencesTable.getP = sinon.stub()
+      dynamo.ExperiencesTable.createP = sinon.stub()
+    })
+
+    afterEach(() => {
+      dynamo.ExperiencesTable.getP.reset();
+      dynamo.ExperiencesTable.createP.reset();
+    })
+
+    const experience = {
+        id: "3000024114",
+        projectId: 2146904557,
+        mission: "Catering prediction as a service",
+        customer: "Qantas",
+        role: "Consultant Senior"
+      }
+
+    const activity = {
+      "id": 3000024114,
+      "title": "Consultant Senior",
+      "nb_days": "5.0",
+      "average_daily_rate": "1800.0",
+      "kind": "billable",
+      "project": {
+        "id": 2146904557,
+        "url": "https://octopod.octo.com/api/v0/projects/2146904557",
+        "name": "Catering prediction as a service",
+        "kind": "fixed_price",
+        "reference": "F2017-22",
+        "status": "mission_signed",
+        "customer": {
+          "id": 2001,
+          "name": "Qantas"
+        }
+      }
+    }
+
+    describe("there is no experience in the DB", () => {
+      it("insert the activity as a experience", () => {
+        //given
+
+        dynamo.ExperiencesTable.getP.withArgs("3000024114").resolves(null)
+        dynamo.ExperiencesTable.createP.withArgs(experience).resolves({attrs: experience})
+
+        //when
+        return octopod.createExperienceIfNotexisting([activity])
+          .then(experiences => {
+
+            //then
+            const experience = experiences[0]
+            expect(experience).to.deep.equal(experience)
+            expect(dynamo.ExperiencesTable.createP.calledWithExactly(experience)).to.be.true;
+          })
+      })
+    })
+
+    describe("there is already the experience in the DB", () => {
+      it("does't insert the activity as a experience", () => {
+
+        dynamo.ExperiencesTable.getP.withArgs("3000024114").resolves({attrs: experience})
+        dynamo.ExperiencesTable.createP.withArgs(experience).resolves({attrs: experience})
+
+        //when
+        return octopod.createExperienceIfNotexisting([activity])
+          .then(experiences => {
+
+            //then
+            const experience = experiences[0]
+            expect(experience).to.deep.equal(experience)
+            expect(dynamo.ExperiencesTable.createP.calledWithExactly(experience)).to.be.false;
           })
       })
     })
