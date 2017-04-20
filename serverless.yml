@@ -153,3 +153,12 @@ resources:
 
 plugins:
   - serverless-offline
+
+package:
+  exclude:
+    - tmp/**
+    - .git/**
+    - DynamoDBLocal.jar
+    - DynamoDBLocal_lib/**
+    - coverage/**
+    - shared-local-instance.db
