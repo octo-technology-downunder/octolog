@@ -39,7 +39,7 @@ provider:
 
 functions:
   updateBasics:
-    handler: basics.update
+    handler: lambda/basics.update
     events:
       - http:
           path: people/{id}/basics
@@ -50,7 +50,7 @@ functions:
               paths:
                 id: true
   getBasics:
-    handler: basics.get
+    handler: lambda/basics.get
     events:
       - http:
           path: people/{id}/basics
@@ -62,7 +62,7 @@ functions:
                 id: true
 
   getExperience:
-    handler: experiences.get
+    handler: lambda/experiences.get
     events:
       - http:
           path: experiences/{id}
@@ -74,7 +74,7 @@ functions:
                 id: true
 
   updateExperience:
-    handler: experiences.update
+    handler: lambda/experiences.update
     events:
       - http:
           path: experiences/{id}
@@ -86,7 +86,7 @@ functions:
                 id: true
 
   createExperience:
-    handler: experiences.create
+    handler: lambda/experiences.create
     events:
       - http:
           path: people/{id}/experiences
@@ -98,7 +98,7 @@ functions:
                 id: true
 
   getExperiences:
-    handler: experiences.getAll
+    handler: lambda/experiences.getAll
     events:
       - http:
           path: people/{id}/experiences
@@ -109,7 +109,7 @@ functions:
               paths:
                 id: true
   syncOctoExperiences:
-    handler: octopod.sync
+    handler: lambda/octopod.sync
     environment:
       CLIENT_ID: ${env:OCTOPOD_CLIENT_ID}
       CLIENT_SECRET: ${env:OCTOPOD_CLIENT_SECRET}
