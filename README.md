@@ -55,7 +55,6 @@ npm run back:dev # run backend server
 
 Use the CLI directly.
 ```sh
-export ENV=dev
 export OCTOPOD_CLIENT_ID=toto
 export OCTOPOD_CLIENT_SECRET=titi
 export ASKBOB_API_KEY=tutu
