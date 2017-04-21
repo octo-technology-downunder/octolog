@@ -59,7 +59,11 @@ export ENV=dev
 export OCTOPOD_CLIENT_ID=toto
 export OCTOPOD_CLIENT_SECRET=titi
 export ASKBOB_API_KEY=tutu
-sls deploy --stage $ENV
+npm run front:build
+rm -fr node_modules
+npm install --production
+sls deploy
+npm run front:deploy
 ```
 
 Or push the code to let the circleCI deploy for you

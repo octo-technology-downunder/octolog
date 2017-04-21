@@ -10,6 +10,8 @@
     "promisify-node": "0.4.0",
     "request": "2.81.0",
     "request-promise-native": "1.0.3",
+    "s3-deploy": "^0.7.5",
+    "serverless-offline": "3.13.3",
     "uuid": "3.0.1"
   },
   "devDependencies": {
@@ -60,7 +62,7 @@
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^2.0.2",
     "lolex": "^1.5.2",
-    "mocha": "^3.2.0",
+    "mocha": "3.2.0",
     "moxios": "^0.3.0",
     "nightwatch": "^0.9.12",
     "opn": "^4.0.2",
@@ -70,7 +72,7 @@
     "rimraf": "^2.6.0",
     "selenium-server": "^3.0.1",
     "semver": "^5.3.0",
-    "sinon": "^1.17.7",
+    "sinon": "2.1.0",
     "sinon-chai": "^2.8.0",
     "url-loader": "^0.5.7",
     "vue-loader": "^11.1.4",
@@ -83,29 +85,24 @@
     "webpack-merge": "^2.6.1",
     "dredd": "3.4.3",
     "istanbul": "0.4.5",
-    "mocha": "3.2.0",
     "nock": "9.0.13",
-    "proxyquire": "1.7.11",
-    "serverless-offline": "3.13.3",
-    "sinon": "2.1.0"
+    "proxyquire": "1.7.11"
   },
   "scripts": {
     "runDynamo": "java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb",
     "dlDynamo": "curl https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.tar.gz | tar -x DynamoDBLocal.jar DynamoDBLocal_lib",
-
     "preback:dev": "DYNAMO_URL=http://localhost:8000 node ./lambda/dynamo/createTable",
     "back:dev": "DYNAMO_URL=http://localhost:8000 sls offline start",
     "back:unit": "./node_modules/.bin/istanbul cover --print details _mocha -- -R spec lambda/tests/** --recursive",
     "back:e2e": "OCTOPOD_URL=http://private-08aab-octopodmock.apiary-mock.com ./node_modules/.bin/dredd",
     "back:test": "npm run back:unit && npm run back:e2e",
-
     "front:dev": "node client/build/dev-server.js",
     "front:build": "API_URL='\"https://dy1c366yol.execute-api.ap-southeast-2.amazonaws.com/dev\"' node client/build/build.js",
     "front:unit": "cross-env BABEL_ENV=test karma start client/test/unit/karma.conf.js --single-run",
     "front:e2e": "node client/test/e2e/runner.js",
     "front:test": "npm run front:unit && npm run front:e2e",
     "front:lint": "eslint --ext .js,.vue client/src client/test/unit/specs client/test/e2e/specs",
-
+    "front:deploy": "./node_modules/.bin/s3-deploy './client/dist/**'  --cwd './client/dist/' --region ap-southeast-2 --bucket octolog-dev-octologstatic-bdq96ia7gluv",
     "test": "npm run back:test && npm run front:test"
   },
   "repository": {

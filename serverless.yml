@@ -131,6 +131,14 @@ functions:
                 id: true
 resources:
   Resources:
+
+    octologStatic:
+      Type: AWS::S3::Bucket
+      Properties:
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: error.html
     usersTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -170,3 +178,4 @@ package:
     - DynamoDBLocal_lib/**
     - coverage/**
     - shared-local-instance.db
+    - client
