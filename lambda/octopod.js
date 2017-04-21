@@ -66,7 +66,7 @@ function getAuth(clientId, clientSecret) {
         client_secret: clientSecret
     }
   };
-  console.log("uri" + options.uri)
+
   return rp(options).then((body) => "Bearer " + JSON.parse(body).access_token)
 }
 
@@ -78,7 +78,7 @@ function getOctoId(trigram, authToken) {
         Authorization: authToken
     }
   };
-  console.log("uri" + options.uri)
+
   return rp(options)
     .then(body => {
       body = JSON.parse(body)
@@ -99,7 +99,7 @@ function getActivitiesFromOctopod(authToken, personId) {
           Authorization: authToken
       }
     };
-    console.log("uri" + options.uri)
+    
     return rp(options)
       .then(body => {
         return JSON.parse(body)

@@ -42,7 +42,7 @@ Using apiary as spec we can use dredd
 
 ```sh
 npm run dynamo # run dynamoDb
-dredd # run integration tests
+npm run apitest # run integration tests
 ```
 
 ### Run locally
