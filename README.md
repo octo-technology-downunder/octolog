@@ -24,10 +24,6 @@ The API specs are available on [Apiary](http://docs.octoprofile.apiary.io/)
 
 _Note: Everything is packaged for a unix system, if you using windows: you should ~~be ashamed~~ run a local VM/add the windows specific commands_
 
-### Testing
-
- * Install [Dredd](https://www.npmjs.com/package/dredd) `npm install -g dredd`
-
 ## Commands
 
 ### Test
