@@ -18,7 +18,7 @@ export default {
   components: {Profile, Education, Skills, Experience},
   data () {
     return {
-      trigram: 'TRI',
+      trigram: 'TGE',
       profile: {education: {}, skills: {}},
       errors: []
     }

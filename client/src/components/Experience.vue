@@ -17,7 +17,7 @@ export default {
   components: {Mission, MissionModalContainer},
   data () {
     return {
-      trigram: 'TRI',
+      trigram: 'TGE',
       missions: [],
       errors: []
     }
