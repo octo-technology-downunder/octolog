@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 6.10
+    version: "6.10"
   services:
     - docker
 general:
