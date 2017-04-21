@@ -21,8 +21,6 @@ test:
   pre:
     - docker run -dp 8000:8000 --name dynamo dwmkerr/dynamodb
 
-  post:
-    - docker rm -f dynamo
 
 deployment:
   deploy:
