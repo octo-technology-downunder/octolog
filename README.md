@@ -28,37 +28,45 @@ _Note: Everything is packaged for a unix system, if you using windows: you shoul
 
 ### Test
 
-#### Unit test
 ```sh
-npm test # not yet configure
+npm run runDynamo # run dynamodb locally (needed by e2e test)
+
+npm run back:unit # run backend unit tests
+npm run back:e2e # run backend integration tests (you need internet)
+npm run back:test # run backend unit and integration test
+
+npm run front:unit # run frontend unit tests
+npm run front:e2e # run frontend end to end tests
+npm run front:test # run frontend unit and end to end test
+
+npm run test # run all of the above
 ```
-
-#### Integration test
-Using apiary as spec we can use dredd
+### Locally
 
 ```sh
-npm run dynamo # run dynamoDb
-npm run apitest # run integration tests
-```
+npm run runDynamo # run dynamodb locally
 
-### Run locally
+npm run front:dev # run frontend server
+npm run back:dev # run backend server
 
-```sh
-npm run dynamo # run dynamoDb
-npm run dev # start the application
 ```
 
 ### Deployment
 
+Use the CLI directly.
 ```sh
 export ENV=dev
+export OCTOPOD_CLIENT_ID=toto
+export OCTOPOD_CLIENT_SECRET=titi
+export ASKBOB_API_KEY=tutu
 sls deploy --stage $ENV
 ```
 
-## Todos;
+Or push the code to let the circleCI deploy for you
 
-* deal with errors
-* use promise instead of callback
-* add unit test
+```sh
+git push
+```
+
 
 [Serverless]: https://serverless.com/

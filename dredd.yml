@@ -3,7 +3,7 @@ dry-run: null
 hookfiles: null
 language: nodejs
 sandbox: false
-server: npm run dev
+server: npm run back:dev
 server-wait: 6
 init: false
 names: false
