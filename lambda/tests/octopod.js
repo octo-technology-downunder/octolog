@@ -5,7 +5,7 @@ const proxyquire = require('proxyquire')
 const sinon = require('sinon')
 
 const dynamo = { ExperiencesTable: {} , PeopleTable: {} }
-const octopod = proxyquire('../octopod', { './dynamo/config': dynamo });
+const octopod = proxyquire('../octopod', { './dynamo/schema': dynamo });
 
 
 const octopodCall = nock('https://octopod.octo.com')

@@ -1,6 +1,6 @@
 const rp = require('request-promise-native')
 const _ = require('lodash')
-const { ExperiencesTable, PeopleTable } = require('./dynamo/config')
+const { ExperiencesTable, PeopleTable } = require('./dynamo/schema')
 
 
 function octopodUrl() {
@@ -99,7 +99,7 @@ function getActivitiesFromOctopod(authToken, personId) {
           Authorization: authToken
       }
     };
-    
+
     return rp(options)
       .then(body => {
         return JSON.parse(body)

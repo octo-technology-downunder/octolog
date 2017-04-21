@@ -1,6 +1,6 @@
 'use strict';
 
-const PeopleTable = require('./dynamo/config').PeopleTable
+const PeopleTable = require('./dynamo/schema').PeopleTable
 
 
 module.exports.update = (event, context, callback) => {

@@ -1,5 +1,5 @@
 const dynamo = require('dynamodb');
-require('./config')
+require('./schema')
 
 dynamo.createTables(function(err) {
   if (err) {

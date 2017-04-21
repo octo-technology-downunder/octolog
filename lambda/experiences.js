@@ -1,6 +1,6 @@
 'use strict';
 
-const { ExperiencesTable, PeopleTable } = require('./dynamo/config')
+const { ExperiencesTable, PeopleTable } = require('./dynamo/schema')
 const uuidV4 = require('uuid/v4');
 const async = require("async");
 
