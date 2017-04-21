@@ -44,6 +44,7 @@ functions:
       - http:
           path: people/{id}/basics
           method: put
+          cors: true
           integration: lambda
           request:
             parameters:
@@ -55,6 +56,7 @@ functions:
       - http:
           path: people/{id}/basics
           method: get
+          cors: true
           integration: lambda
           request:
             parameters:
@@ -67,6 +69,7 @@ functions:
       - http:
           path: experiences/{id}
           method: get
+          cors: true
           integration: lambda
           request:
             parameters:
@@ -79,6 +82,7 @@ functions:
       - http:
           path: experiences/{id}
           method: put
+          cors: true
           integration: lambda
           request:
             parameters:
@@ -91,6 +95,7 @@ functions:
       - http:
           path: people/{id}/experiences
           method: post
+          cors: true
           integration: lambda
           request:
             parameters:
@@ -103,6 +108,7 @@ functions:
       - http:
           path: people/{id}/experiences
           method: get
+          cors: true
           integration: lambda
           request:
             parameters:
@@ -117,6 +123,7 @@ functions:
       - http:
           path: people/{id}/octopod/sync
           method: post
+          cors: true
           integration: lambda
           request:
             parameters:
