@@ -1,0 +1,24 @@
+machine:
+  node:
+    version: 6.10
+  services:
+    - docker
+general:
+  artifacts:
+    - coverage
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+
+  pre:
+    - if [[ -e ~/docker/image_dynamo.tar ]]; then docker load -i ~/docker/image_dynamo.tar; fi
+    - docker pull dwmkerr/dynamodb
+    - mkdir -p ~/docker; docker save dwmkerr/dynamodb > ~/docker/image_dynamo.tar
+
+test:
+  pre:
+    - docker run -dp 8000:8000 --name dynamo dwmkerr/dynamodb
+
+  post:
+    - docker rm -f dynamo
