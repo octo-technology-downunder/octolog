@@ -2,6 +2,11 @@ const rp = require('request-promise-native')
 const _ = require('lodash')
 const { ExperiencesTable, PeopleTable } = require('./dynamo/config')
 
+
+function octopodUrl() {
+  return process.env.OCTOPOD_URL || "https://octopod.octo.com"
+}
+
 function sync(event, context, callback) {
   const clientId = process.env.CLIENT_ID
   const clientSecret = process.env.CLIENT_SECRET
@@ -52,26 +57,28 @@ function updatePersonWithExperience(trigram, experiences) {
 
 
 function getAuth(clientId, clientSecret) {
-  var options = {
+  const options = {
     method: 'POST',
-    uri: 'https://octopod.octo.com/api/oauth/token',
+    uri: octopodUrl() + '/api/oauth/token',
     form: {
         grant_type: "client_credentials",
         client_id: clientId,
         client_secret: clientSecret
     }
   };
+  console.log("uri" + options.uri)
   return rp(options).then((body) => "Bearer " + JSON.parse(body).access_token)
 }
 
 function getOctoId(trigram, authToken) {
   var options = {
     method: 'GET',
-    uri: 'https://octopod.octo.com/api/v0/people?all=true',
+    uri: octopodUrl() + '/api/v0/people?all=true',
     headers: {
         Authorization: authToken
     }
   };
+  console.log("uri" + options.uri)
   return rp(options)
     .then(body => {
       body = JSON.parse(body)
@@ -87,11 +94,12 @@ function getActivitiesFromOctopod(authToken, personId) {
   function activityCall(pageNumber, activities) {
     const options = {
       method: 'GET',
-      uri: `https://octopod.octo.com/api/v0/people/${personId}/time_input?page=${pageNumber}&per_page=${resultPerPage}`,
+      uri: `${octopodUrl()}/api/v0/people/${personId}/time_input?page=${pageNumber}&per_page=${resultPerPage}`,
       headers: {
           Authorization: authToken
       }
     };
+    console.log("uri" + options.uri)
     return rp(options)
       .then(body => {
         return JSON.parse(body)

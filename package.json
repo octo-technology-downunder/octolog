@@ -26,7 +26,8 @@
     "runDynamo": "java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb",
     "dlDynamo": "curl https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.tar.gz | tar -x DynamoDBLocal.jar DynamoDBLocal_lib",
     "predev": "DYNAMO_URL=http://localhost:8000 node ./lambda/dynamo/createTable",
-    "dev": "DYNAMO_URL=http://localhost:8000 sls offline start"
+    "dev": "DYNAMO_URL=http://localhost:8000 sls offline start",
+    "testapi": "OCTOPOD_URL=http://private-08aab-octopodmock.apiary-mock.com dredd"
   },
   "repository": {
     "type": "git",
