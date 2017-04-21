@@ -15,9 +15,9 @@ function sync(event, context, callback) {
   getAuth(clientId, clientSecret)
     .then(accessToken => {
       return getOctoId(trigram, accessToken)
-        .then(getActivitiesFromOctopod.bind(undefined,accessToken))
+        .then(personId => getActivitiesFromOctopod(accessToken, personId))
         .then(createExperienceIfNotexisting)
-        .then(updatePersonWithExperience.bind(undefined,trigram))
+        .then(experiences => updatePersonWithExperience(trigram, experiences))
         .then(activities => callback(null, activities))
         .catch(callback)
     })
