@@ -1,0 +1,232 @@
+html, body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #595959
+}
+
+body {
+  font-size: 12pt;
+  margin: auto;
+  width: 820px
+}
+
+a {
+  color: #595959;
+  text-decoration: none
+}
+
+a:hover {
+  text-decoration: underline
+}
+
+.octo-logo {
+  margin-top: 10px
+}
+
+.person {
+  color: #0290a7;
+  display: inline-block;
+  float: right;
+  margin-right: 10px;
+  text-align: right
+}
+
+.person p {
+  display: inline-block;
+  font-size: 14pt;
+  margin-right: 1em;
+  vertical-align: top
+}
+
+.person img {
+  height: 110px;
+  margin-top: 10px;
+  width: 110px;
+  -webkit-box-shadow: 2px 2px 2px 2px;
+  -webkit-filter: blur(0)
+}
+
+h1 {
+  background: #0290a7;
+  -webkit-print-color-adjust: exact;
+  color: #fff;
+  font-size: 14pt;
+  font-weight: normal;
+  margin-top: 1em;
+  padding: 1px 5px;
+  text-transform: uppercase
+}
+
+h1 span {
+  font-size: 9pt
+}
+
+.bloc {
+  text-indent: 25px
+}
+
+.bloc-skills {
+  display: table-cell;
+  vertical-align: top;
+  width: 405px
+}
+
+.divider {
+  background: #d9d9d9;
+  height: 1px;
+  width: 100%
+}
+
+h2 {
+  font-size: 12pt;
+  font-weight: normal;
+  margin-bottom: 0
+}
+
+ul {
+  margin-top: 0;
+  margin-left: 0;
+  padding: 0 0 0 60px;
+  text-indent: -24px
+}
+
+li {
+  display: block;
+  list-style: inside
+}
+
+li:before {
+  color: #3eb9d0;
+  content: "+";
+  font-weight: bold;
+  margin-right: 15px
+}
+
+li, .mission-logo-time, .mission-keywords {
+  font-size: 10pt
+}
+
+li li {
+  font-size: 9pt;
+  margin-left: -30px
+}
+
+li li:before {
+  content: "\02013"
+}
+
+.mission {
+  border-bottom: 1px solid #d9d9d9;
+  page-break-inside: avoid;
+  display: table;
+  padding: .8em 0;
+  width: 100%
+}
+
+.mission h2 {
+  margin-top: 0
+}
+
+.mission li li {
+  margin-left: 0
+}
+
+.mission-logo-time, .mission-desc {
+  display: table-cell
+}
+
+.mission-logo-time {
+  text-align: center;
+  text-indent: 0;
+  vertical-align: middle;
+  width: 25%
+}
+
+.mission-logo-time img {
+  max-height: 70px;
+  max-width: 190px
+}
+
+.mission-logo-time p {
+  margin: 0
+}
+
+.mission-desc {
+  text-indent: 0;
+  vertical-align: top;
+  width: 75%
+}
+
+.mission-desc ul {
+  padding-left: 30px
+}
+
+.mission-keywords {
+  font-style: italic;
+  margin: 0
+}
+
+.mission-modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.mission-modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.mission-modal-container {
+  width: 820px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.mission-modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.mission-modal-body {
+  margin: 20px 0;
+}
+
+.mission-modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.mission-modal-enter {
+  opacity: 0;
+}
+
+.mission-modal-leave-active {
+  opacity: 0;
+}
+
+.mission-modal-enter .modal-container,
+.mission-modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
