@@ -5,7 +5,7 @@ import moxios from 'moxios'
 describe('Cv.vue', () => {
   beforeEach(function () {
     moxios.install()
-    moxios.stubRequest(process.env.API_URL + process.env.LIST_BASICS_PATH.replace('{trigram}', 'TRI'), {
+    moxios.stubRequest(process.env.API_URL + process.env.LIST_BASICS_PATH.replace('{trigram}', 'TGE'), {
       status: 200,
       responseText: fakeProfile
     })

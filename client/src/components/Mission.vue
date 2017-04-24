@@ -1,7 +1,7 @@
 <template>
   <div class="mission">
     <div class="mission-logo-time">
-      <img src="../assets/logo-octo-technology.jpg">
+      <img src="../assets/octo_logo_code.jpg">
       <p>{{ mission.from }} – {{ mission.to }}</p>
       <div class="actions">
         <button v-on:click="editMission(mission)">Edit experience</button>

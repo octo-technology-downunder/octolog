@@ -5,7 +5,7 @@ import moxios from 'moxios'
 describe('Experience.vue', () => {
   beforeEach(function () {
     moxios.install()
-    moxios.stubRequest(process.env.API_URL + process.env.LIST_EXPERIENCES_PATH.replace('{trigram}', 'TRI'), {
+    moxios.stubRequest(process.env.API_URL + process.env.LIST_EXPERIENCES_PATH.replace('{trigram}', 'TGE'), {
       status: 200,
       responseText: fakeExperiences
     })
@@ -29,7 +29,7 @@ describe('Experience.vue', () => {
   it('should render title', () => {
     const Constructor = Vue.extend(Experience)
     const vm = new Constructor().$mount()
-    expect(vm.$el.querySelector('.experience h1').textContent).to.equal('missions  - pour OCTO Technology')
+    expect(vm.$el.querySelector('.experience h1').textContent).to.equal('missions  - for OCTO Technology Retrieve latest missions')
   })
 
   it('should have empty missions data', () => {
