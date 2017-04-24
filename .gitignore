@@ -16,3 +16,4 @@ shared-local-instance.db
 
 # other
 *.log
+.DS_Store
