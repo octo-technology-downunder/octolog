@@ -3,6 +3,8 @@
     <profile v-bind:profile="profile"></profile>
     <education v-bind:education="profile.education"></education>
     <skills v-bind:skills="profile.skills"></skills>
+    <profileModalContainer></profileModalContainer>
+    <button v-on:click="editProfile(profile)">Edit profile</button>
     <experience></experience>
   </div>
 </template>
@@ -13,9 +15,11 @@ import Experience from '@/components/Experience'
 import Education from '@/components/Education'
 import Skills from '@/components/Skills'
 import axios from 'axios'
+import ProfileModalContainer from '@/components/ProfileModalContainer'
+import ProfileModalHub from '@/components/events/ProfileModalHub'
 
 export default {
-  components: {Profile, Education, Skills, Experience},
+  components: {Profile, Education, Skills, Experience, ProfileModalContainer, ProfileModalHub},
   data () {
     return {
       trigram: 'TGE',
@@ -28,13 +32,18 @@ export default {
   },
   methods: {
     fetchProfile: function () {
-      return axios.get(process.env.API_URL + process.env.LIST_BASICS_PATH.replace('{trigram}', this.trigram))
+      return axios.get(process.env.API_URL + process.env.UPDATE_BASICS_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
           this.profile = response.data
         })
         .catch(e => {
           this.errors.push(e)
         })
+    },
+    editProfile: function (profile) {
+      console.log('editing profile ' + profile)
+      ProfileModalHub.$emit('open-modal')
+      ProfileModalHub.$emit('set-modal-data', this.profile, this.trigram)
     }
   }
 }

@@ -167,7 +167,11 @@ li li:before {
   margin: 0
 }
 
-.mission-modal-mask {
+/*
+* modal 
+*/
+
+.modal-mask {
   position: fixed;
   z-index: 9998;
   top: 0;
@@ -179,12 +183,12 @@ li li:before {
   transition: opacity .3s ease;
 }
 
-.mission-modal-wrapper {
+.modal-wrapper {
   display: table-cell;
   vertical-align: middle;
 }
 
-.mission-modal-container {
+.modal-container {
   width: 820px;
   margin: 0px auto;
   padding: 20px 30px;
@@ -195,38 +199,15 @@ li li:before {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.mission-modal-header h3 {
+.modal-header h3 {
   margin-top: 0;
   color: #42b983;
 }
 
-.mission-modal-body {
+.modal-body {
   margin: 20px 0;
 }
 
-.mission-modal-default-button {
+.modal-default-button {
   float: right;
-}
-
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
-
-.mission-modal-enter {
-  opacity: 0;
-}
-
-.mission-modal-leave-active {
-  opacity: 0;
-}
-
-.mission-modal-enter .modal-container,
-.mission-modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
 }

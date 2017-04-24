@@ -1,7 +1,7 @@
 <template>
-  <div class="mission-modal-mask" v-if="active">
-    <div class="mission-modal-wrapper">
-      <div class="mission-modal-container">
+  <div class="modal-mask" v-if="active">
+    <div class="modal-wrapper">
+      <div class="modal-container">
         <div class="mission">
           <div class="mission-logo-time">
             <img src="../assets/octo_logo_code.jpg">
@@ -13,9 +13,7 @@
             <textarea v-model="missionDescription" placeholder="- ...\n- ..." rows="5" cols="100"></textarea>
             <p class="mission-keywords"><input v-model.lazy="missionTags"></p>
           </div>
-          <button class="mission-modal-default-button" v-on:click="close">
-            OK
-          </button>
+          <button class="modal-default-button" v-on:click="updateMission">OK</button>
         </div>
       </div>
     </div>
@@ -46,9 +44,6 @@ export default {
     MissionModalHub.$off('open-modal', this.open)
   },
   methods: {
-    close () {
-      this.updateMission()
-    },
     open () {
       this.active = true
     },
