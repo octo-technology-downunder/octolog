@@ -211,3 +211,9 @@ li li:before {
 .modal-default-button {
   float: right;
 }
+
+@media print {
+  .hidden-print {
+    display: none !important;
+  }
+}

@@ -4,7 +4,7 @@
     <education v-bind:education="profile.education"></education>
     <skills v-bind:skills="profile.skills"></skills>
     <profileModalContainer></profileModalContainer>
-    <button v-on:click="editProfile(profile)">Edit profile</button>
+    <button v-on:click="editProfile(profile)" class="hidden-print">Edit profile</button>
     <experience></experience>
   </div>
 </template>

@@ -4,7 +4,7 @@
       <img src="../assets/octo_logo_code.jpg">
       <p>{{ mission.from }} – {{ mission.to }}</p>
       <div class="actions">
-        <button v-on:click="editMission(mission)">Edit experience</button>
+        <button v-on:click="editMission(mission)" class="hidden-print">Edit experience</button>
       </div>    
     </div>
     <div class="mission-desc">

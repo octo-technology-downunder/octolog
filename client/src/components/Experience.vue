@@ -1,6 +1,6 @@
 <template>
   <div class="experience">
-    <h1>missions <span> - for OCTO Technology</span>&nbsp;<button v-on:click="syncOctopod">Retrieve latest missions</button></h1>
+    <h1>missions <span> - for OCTO Technology</span>&nbsp;<button v-on:click="syncOctopod" class="hidden-print">Retrieve latest missions</button></h1>
     <missionModalContainer></missionModalContainer>
     <div class="experience">
       <mission v-for="mission in missions" v-bind:mission="mission" :key="mission.id"></mission>
