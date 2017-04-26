@@ -102,7 +102,7 @@
     "front:e2e": "node client/test/e2e/runner.js --env phantomjs",
     "front:test": "npm run front:unit && npm run front:e2e",
     "front:lint": "eslint --ext .js,.vue client/src client/test/unit/specs client/test/e2e/specs",
-    "front:deploy": "./node_modules/.bin/s3-deploy './client/dist/**'  --cwd './client/dist/' --region ap-southeast-2 --bucket octolog-dev-staticcontent-1kik9gxfamfd6",
+    "front:deploy": "./node_modules/.bin/s3-deploy './client/dist/**'  --cwd './client/dist/' --region ap-southeast-2 --bucket octolog-dev-staticcontent-1kik9gxfamfd6 --cache 300",
     "test": "npm run back:test & npm run front:test"
   },
   "repository": {
