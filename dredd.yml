@@ -4,7 +4,7 @@ hookfiles: null
 language: nodejs
 sandbox: false
 server: npm run back:dev
-server-wait: 6
+server-wait: 10
 init: false
 names: false
 only: []
