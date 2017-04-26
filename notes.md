@@ -12,3 +12,5 @@ Notes on this project
  * publish documentation on API Gateway ==> failure
  * painful to run it locally on your computer
  * first call ~1 seconds then around 120 ms
+ * lots of Cloudformation
+ * integration s3/cloudfront is okayish (need to setup cache control at every level)
