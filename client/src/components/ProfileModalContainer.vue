@@ -77,7 +77,7 @@ export default {
       this.profile.skills.architectureTechnologies = this.architectureTechnologySkills.substring(2).split('\n- ')
       this.profile.skills.methodologies = this.methodologySkills.substring(2).split('\n- ')
       this.profile.skills.achievements = this.achievementSkills.substring(2).split('\n- ')
-      return axios.put(process.env.API_URL + process.env.UPDATE_EXPERIENCE_PATH.replace('{trigram}', this.profile.trigram))
+      return axios.put(process.env.API_URL + process.env.UPDATE_BASICS_PATH.replace('{trigram}', this.profile.trigram))
         .then((response) => {
           this.profile = response.data
           this.active = false
