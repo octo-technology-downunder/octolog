@@ -95,14 +95,14 @@
     "back:dev": "DYNAMO_URL=http://localhost:8000 sls offline start",
     "back:unit": "./node_modules/.bin/istanbul cover --print details _mocha -- -R spec lambda/tests/** --recursive",
     "back:e2e": "OCTOPOD_URL=http://private-08aab-octopodmock.apiary-mock.com ./node_modules/.bin/dredd",
-    "back:test": "npm run back:unit && npm run back:e2e",
+    "back:test": "npm run back:unit & npm run back:e2e",
     "front:dev": "node client/build/dev-server.js",
     "front:build": "API_URL='\"https://dy1c366yol.execute-api.ap-southeast-2.amazonaws.com/dev\"' node client/build/build.js",
     "front:unit": "cross-env BABEL_ENV=test karma start client/test/unit/karma.conf.js --single-run",
     "front:e2e": "node client/test/e2e/runner.js",
-    "front:test": "npm run front:unit && npm run front:e2e",
+    "front:test": "npm run front:unit & npm run front:e2e",
     "front:lint": "eslint --ext .js,.vue client/src client/test/unit/specs client/test/e2e/specs",
-    "front:deploy": "./node_modules/.bin/s3-deploy './client/dist/**'  --cwd './client/dist/' --region ap-southeast-2 --bucket octolog-dev-octologstatic-bdq96ia7gluv",
+    "front:deploy": "./node_modules/.bin/s3-deploy './client/dist/**'  --cwd './client/dist/' --region ap-southeast-2 --bucket octolog-dev-staticcontent-1kik9gxfamfd6",
     "test": "npm run back:test & npm run front:test"
   },
   "repository": {
