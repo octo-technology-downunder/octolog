@@ -1,0 +1,974 @@
+{
+    "items": [
+        {
+            "trigram": "TGE",
+            "first_name": "Thibaut",
+            "last_name": "Géry",
+            "phone_numbers": [
+                "+61 413 766 987"
+            ],
+            "email": "tgery@octo.com",
+            "tiny_photo": "http://s3.amazonaws.com/askbob/users/photos/312/tiny/CINE1232.jpg?1476667003",
+            "photo": "http://s3.amazonaws.com/askbob/users/photos/312/preview/CINE1232.jpg?1476667003",
+            "big_photo": "http://s3.amazonaws.com/askbob/users/photos/312/big/CINE1232.jpg?1476667003",
+            "lob": "AUSTRALIE",
+            "manager": "FXB",
+            "entry_date": "2013-11-04",
+            "leaving_date": null,
+            "level": "2 CC",
+            "job": "Consultant confirmé",
+            "description": "<p>je suis&nbsp;<a href=\"https://www.youtube.com/watch?v=rlarCLhzfoU\">Ing&eacute;nieur&nbsp;informaticien</a></p>",
+            "skills": [
+                {
+                    "category": null,
+                    "name": "R",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": "Database",
+                    "name": "Oracle",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Sybase",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "SQL Server",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "MySQL",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "PostgreSQL",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "ObjectStore",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "DB2",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": "BigData / NoSQL",
+                    "name": "Hadoop Ecosystem",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Storm",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Hive",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Pig",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Cascading",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "MongoDB",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Cassandra",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Neo4J",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Elastic Search",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "SolR",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "HypergraphDB",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Summingbird",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Infinispan",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Oracle Coherence",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Redis",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "CouchDB",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "CouchBase",
+                    "level": 1,
+                    "motivation": 2
+                },
+                {
+                    "category": null,
+                    "name": "Kafka",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Spark",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "HBase",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": "Mobility",
+                    "name": "iOS",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Android",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "WindowsPhone",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "JavaME",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": "Methodology",
+                    "name": "Scrum",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "XP",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Lean IT",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "DevOps",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "2;-1",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "PMI",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Kanban",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Holacracy",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "TDD (Test-Driven Development)",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": "EA Frameworks",
+                    "name": "TOGAF",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Zachman",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Matrice Architecture OCTO",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "COBIT",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "ITIL",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "CMMi",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": "Application Management & Tools",
+                    "name": "TFS",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "TeamCity",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Rational Suite",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Git",
+                    "level": 2,
+                    "motivation": 2
+                },
+                {
+                    "category": null,
+                    "name": "Jenkins",
+                    "level": 2,
+                    "motivation": 2
+                },
+                {
+                    "category": null,
+                    "name": "Sonar",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "NDepend",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Maven",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Sbt",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Nuget",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "WPF",
+                    "level": 2,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Jira",
+                    "level": 1,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Redmine",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Mingle",
+                    "level": 2,
+                    "motivation": 2
+                },
+                {
+                    "category": null,
+                    "name": "SVN",
+                    "level": 1,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Ant",
+                    "level": 2,
+                    "motivation": 2
+                },
+                {
+                    "category": null,
+                    "name": "Travis CI",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Nexus",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Gradle",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Vagrant",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Chef",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Puppet",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Ansible",
+                    "level": 0,
+                    "motivation": 2
+                },
+                {
+                    "category": null,
+                    "name": "Fitnesse",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Twist",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Test Director (Quality Center)",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": "Integration frameworks and solutions",
+                    "name": "Tibco BusinessWorks",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "IBM - WebSphere",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Oracle - BEA WebLogic",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Red Hat - JBoss",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Mule ESB",
+                    "level": 2,
+                    "motivation": -1
+                },
+                {
+                    "category": null,
+                    "name": "Spring Integration",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Camel",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": "Security",
+                    "name": "Gestion de l'Identité et des Habilitations",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Protocoles (OAuth - SAML...)",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Infrastructures (sécurité des réseaux...)",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": "Business sector",
+                    "name": "Insurance",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Retail & Middle-market bank",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Investment bank",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "e-Commerce",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Distribution",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Telecommunication",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Industry",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Entertainment",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Media",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Internet",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Energy",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": "Architecture",
+                    "name": "SOA",
+                    "level": 1,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "BI",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "WOA (Web Oriented Architecture)",
+                    "level": 1,
+                    "motivation": 2
+                },
+                {
+                    "category": null,
+                    "name": "REST API",
+                    "level": 2,
+                    "motivation": 2
+                },
+                {
+                    "category": null,
+                    "name": "Portail",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "IS Architecture (Archi de SI)",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": "Consulting",
+                    "name": "Cadrage 360°",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Étude opportunité",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Audit Technique",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Audit de SI",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Schéma directeur",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Application Portfolio Mngt OCTO",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "DAG (Dossier d'architecture)",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": "Coaching and Support",
+                    "name": "Agile Coaching",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Software Craftsmanship",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Lean Startup",
+                    "level": 0,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Product Ownership",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": "Devops patterns",
+                    "name": "Continuous Delivery/Deployment",
+                    "level": 2,
+                    "motivation": 2
+                },
+                {
+                    "category": null,
+                    "name": "Infrastructure as a code",
+                    "level": 2,
+                    "motivation": 2
+                },
+                {
+                    "category": "Test Tools/Performance/Monitor",
+                    "name": "Apache JMeter",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Bees with Machine Guns",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Gatling",
+                    "level": 2,
+                    "motivation": 2
+                },
+                {
+                    "category": null,
+                    "name": "HttpPerf",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "LoadImpact",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "LoadRunner",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "LoadUI",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "NeoLoad",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Testing Anywhere",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "WAPT",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "WebLOAD",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Blazemeter",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "ELK (ElasticSearch/LogStash/Kibana)",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "AppDynamics",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "NewRelic",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "C#",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": "Java",
+                    "name": "Java",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Spring",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Hibernate",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "JEE",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": ".NET",
+                    "name": "ASP.NET",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "F#",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": "Javascript",
+                    "name": "JavaScript",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "AngularJS",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Backbone.js",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Node.js",
+                    "level": 2,
+                    "motivation": 1
+                },
+                {
+                    "category": "PHP",
+                    "name": "PHP",
+                    "level": 1,
+                    "motivation": 0
+                },
+                {
+                    "category": "Development Languages",
+                    "name": "Ruby on Rails",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Python",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Cobol",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "PL/SQL",
+                    "level": 1,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "Scala",
+                    "level": 1,
+                    "motivation": 2
+                },
+                {
+                    "category": null,
+                    "name": "C/C++",
+                    "level": 0,
+                    "motivation": 0
+                },
+                {
+                    "category": null,
+                    "name": "HTML/CSS",
+                    "level": 1,
+                    "motivation": 1
+                },
+                {
+                    "category": null,
+                    "name": "Groovy/Grails",
+                    "level": 0,
+                    "motivation": 0
+                }
+            ],
+            "tags": [
+                {
+                    "name": "Course",
+                    "category": 1
+                },
+                {
+                    "name": "Roller",
+                    "category": 1
+                },
+                {
+                    "name": "Agile",
+                    "category": 2
+                },
+                {
+                    "name": "Rock'n'Roll",
+                    "category": 1
+                },
+                {
+                    "name": "Ski",
+                    "category": 1
+                },
+                {
+                    "name": "Nouvelles techno",
+                    "category": 1
+                },
+                {
+                    "name": "Escalade",
+                    "category": 1
+                },
+                {
+                    "name": "danse",
+                    "category": 1
+                },
+                {
+                    "name": "Oz",
+                    "category": 0
+                },
+                {
+                    "name": "java",
+                    "category": 2
+                },
+                {
+                    "name": "Scala",
+                    "category": 2
+                },
+                {
+                    "name": "NodeJS",
+                    "category": 2
+                },
+                {
+                    "name": "Ansible",
+                    "category": 2
+                },
+                {
+                    "name": "Docker",
+                    "category": 2
+                }
+            ],
+            "urls": [],
+            "mobile_number": "+61 413 766 987",
+            "nickname": "TGE"
+        }
+    ]
+}

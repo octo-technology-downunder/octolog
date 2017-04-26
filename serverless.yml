@@ -129,6 +129,20 @@ functions:
             parameters:
               paths:
                 id: true
+  syncBasics:
+    handler: lambda/askbob.sync
+    environment:
+      API_KEY: ${env:ASKBOB_API_KEY}
+    events:
+      - http:
+          path: people/{id}/askbob/sync
+          method: post
+          cors: true
+          integration: lambda
+          request:
+            parameters:
+              paths:
+                id: true
 resources:
   Resources:
 
