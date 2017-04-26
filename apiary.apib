@@ -77,14 +77,14 @@ OCTOLog is a simple API to easily generate beautiful CV and bio.
 You may update an experience to add details.
 
 + Parameters
-    + id: `123456` (String, required) - ID of the experience
+    + id: `3000003189` (String, required) - ID of the experience
 
 + Request (application/json)
 
         {
             "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
             "projectId": 123456,
-            "customer":"ING Direct Australia",
+            "customer":"Pacifica",
             "role":"Developer 1",
             "from": "2015-08-05T08:40:51.620Z",
             "to": "2015-08-05T08:40:51.620Z",
@@ -99,11 +99,11 @@ You may update an experience to add details.
 + Response 200 (application/json; charset=utf-8)
 
         {
-            "id": "123456",
+            "id": "3000003189",
             "projectId": 123456,
             "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
-            "customer":"ING Direct Australia",
-            "role":"Developer 1",
+            "customer":"Pacifica",
+            "role":"",
             "from": "2015-08-05T08:40:51.620Z",
             "to": "2015-08-05T08:40:51.620Z",
             "description": [
@@ -151,7 +151,7 @@ You may add a new experience
 + Request (application/json)
 
         {
-            "id": "1234567",
+            "id": "1234568",
             "projectId": 123456,
             "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
             "customer":"ING Direct Australia",
@@ -171,7 +171,7 @@ You may add a new experience
     + Body
 
             {
-                "id": "1234567",
+                "id": "1234568",
                 "projectId": 123456,
                 "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
                 "customer":"ING Direct Australia",
@@ -234,12 +234,43 @@ You may add a new experience
 
 + Response 200 (application/json; charset=utf-8)
 
-        [
+        [            
             {
-                "mission": "Refonte Neptune",
+                "id": "123456",
+                "projectId": 123456,
+                "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
+                "customer":"ING Direct Australia",
+                "role":"Developer 1",
+                "from": "Aug 2015",
+                "to": "Nov 2015",
+                "description": [
+                    "Frame internal API product",
+                    "Design solution and push up technology choices",
+                    "Develop solution"
+                ],
+                "tags": ["agile", "javascript"]
+            },
+            {
                 "id": "3000003189",
-                "role": "Shadowing",
                 "projectId": 2146900417,
-                "customer": "Pacifica"
+                "mission": "Refonte Neptune",
+                "customer": "Pacifica",
+                "role": "Shadowing"
             }
         ]
+        
+## ASKBOB [/people/{id}/askbob/sync]
+
++ Parameters
+    + id: `JBI` (String, required) - ID of the person
+
+### Sync [POST]
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+          "job": "Consultant confirmé",
+          "trigram": "TGE",
+          "firstName": "Thibaut",
+          "lastName": "Géry"
+        }
