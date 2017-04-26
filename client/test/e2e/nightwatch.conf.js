@@ -41,6 +41,17 @@ module.exports = {
         javascriptEnabled: true,
         acceptSslCerts: true
       }
+    },
+
+    phantomjs: {
+      "desiredCapabilities" : {
+        "browserName" : "phantomjs",
+        "javascriptEnabled" : true,
+        "acceptSslCerts" : true,
+        "phantomjs.binary.path" : "node_modules/phantomjs-prebuilt/bin/phantomjs",
+        "phantomjs.cli.args" : ["--ignore-ssl-errors=true"],
+        "phantomjs.page.settings.userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/52.0.2743.116 Chrome/52.0.2743.116 Safari/537.36"
+      }
     }
   }
 }
