@@ -16,6 +16,7 @@ dependencies:
     - docker pull dwmkerr/dynamodb
     - mkdir -p ~/docker; docker save dwmkerr/dynamodb > ~/docker/image_dynamo.tar
     - npm install -g serverless
+    - npm install cloudfront-invalidate-cli -g
 
 test:
   pre:
@@ -32,3 +33,4 @@ deployment:
       - npm install --production
       - sls deploy
       - npm run front:deploy
+      - cf-invalidate --wait -- IASK5RR9P2RJH index.html # invalidating the index.html in cloudfront
