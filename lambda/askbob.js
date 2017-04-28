@@ -11,15 +11,21 @@ function sync(event, context, callback) {
   const apiKey = process.env.API_KEY
   const trigram = event.path.id
 
-  getInfo(apiKey, trigram)
-    .then(jsonResponse => {
-      let basics = extractBasic(jsonResponse)
-      basics = extractSkills(basics, jsonResponse)
-      basics = extractPicture(basics, jsonResponse)
-      return basics
-    })
-    .then(basics => callback(null, basics))
-    .catch(callback)
+retrieveInfoFromDB(trigram).then(basicInDb => {
+    let newBasics = basicInDb
+    return getInfo(apiKey, trigram)
+      .then(jsonResponse => {
+        newBasics = extractBasic(newBasics, jsonResponse)
+        newBasics = extractSkills(newBasics, jsonResponse)
+        newBasics = extractPicture(newBasics, jsonResponse)
+        return newBasics
+      })
+      .catch(callback)
+  })
+  .then(PeopleTable.updateP)
+  .then(basics => callback(null, basics))
+  .catch(callback)
+
 }
 
 function getInfo(token, trigram) {
@@ -32,13 +38,14 @@ function getInfo(token, trigram) {
     .then(json => json.items[0])
 }
 
-function extractBasic(askbobInfo) {
-  return {
+function extractBasic(oldBasics, askbobInfo) {
+  const newbasics = {
     job: askbobInfo.job,
     trigram: askbobInfo.nickname,
     firstName: askbobInfo.first_name,
     lastName: askbobInfo.last_name
   }
+  return Object.assign(newbasics, oldBasics);
 }
 
 function extractSkills(basics, jsonReponse) {
@@ -49,5 +56,11 @@ function extractPicture(basics, jsonReponse) {
   return basics
 }
 
+function retrieveInfoFromDB(trigram) {
+  return PeopleTable.getP(trigram).then(info => {
+    return info == null ? {} : info.attrs
+  });
+}
 
-module.exports = { sync, getInfo, extractBasic, extractSkills, extractPicture }
+
+module.exports = { sync, getInfo, extractBasic, extractSkills, extractPicture, retrieveInfoFromDB }
