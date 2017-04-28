@@ -125,6 +125,16 @@ describe("Askbob API: ", () => {
           //then
           expect(basic.toto).to.equal('toto')
         })
+
+
+        it("we populate the skills with skill > level 2", () => {
+          //when
+          const basic = askbob.extractSkills({}, tge.items[0]);
+
+          //then
+          expect(basic.skills.fromAskbob).to.have.lengthOf(1)
+          expect(basic.skills.fromAskbob).to.include("PostgreSQL")
+        })
       })
     })
   })

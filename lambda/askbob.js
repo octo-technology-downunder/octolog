@@ -49,6 +49,11 @@ function extractBasic(oldBasics, askbobInfo) {
 }
 
 function extractSkills(basics, jsonReponse) {
+  const skills = jsonReponse.skills
+    .filter(skill => skill.level > 2)
+    .map(skill => skill.name)
+  basics.skills = basics.skills || {}
+  basics.skills.fromAskbob = skills
   return basics
 }
 
