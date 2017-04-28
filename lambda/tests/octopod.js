@@ -61,7 +61,7 @@ const people = [
   }
 ]
 
-describe("Octopod'integration: ", () => {
+describe("Octopod's integration: ", () => {
   describe("when getting the token", () => {
     it("return the token", () => {
 

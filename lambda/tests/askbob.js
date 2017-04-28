@@ -13,7 +13,7 @@ const askbobCall = nock('http://askbob.octo.com')
 
 const tge = JSON.parse(fs.readFileSync(__dirname + '/data/askbob-TGE.json').toString('utf8'))
 
-describe("Askbob API: ", () => {
+describe("Askbob's integration: ", () => {
   beforeEach(() => {
     dynamo.PeopleTable.getP = sinon.stub()
     dynamo.PeopleTable.createP = sinon.stub()
@@ -115,9 +115,25 @@ describe("Askbob API: ", () => {
           //then
           expect(basic.toto).to.equal('toto')
         })
+
+        it("it add the preview picture from octopod", () => {
+          //when
+          const basic = askbob.extractPicture({}, tge.items[0]);
+
+          //then
+          expect(basic.pictureUrl).to.equal("http://s3.amazonaws.com/askbob/users/photos/312/preview/CINE1232.jpg")
+        })
+
+        it("it should not oveerride the existing picture", () => {
+          //when
+          const basic = askbob.extractPicture({ pictureUrl: "toto" }, tge.items[0]);
+
+          //then
+          expect(basic.pictureUrl).to.equal("toto")
+        })
       })
 
-      describe("extracting the picture", () => {
+      describe("extracting the skills", () => {
         it("we return the old data", () => {
           //when
           const basic = askbob.extractSkills({ toto:"toto" }, tge.items[0]);

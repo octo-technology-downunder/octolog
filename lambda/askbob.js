@@ -58,7 +58,9 @@ function extractSkills(basics, jsonReponse) {
 }
 
 function extractPicture(basics, jsonReponse) {
-  return basics
+  const pictureUrl = jsonReponse.photo.split('?')[0]
+
+  return Object.assign( { pictureUrl }, basics)
 }
 
 function retrieveInfoFromDB(trigram) {
