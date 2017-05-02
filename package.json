@@ -5,6 +5,7 @@
   "main": "basics.js",
   "dependencies": {
     "dynamodb": "1.0.0",
+    "dynamodb-backup-restore": "^0.2.11",
     "joi": "10.4.1",
     "lodash": "4.17.4",
     "promisify-node": "0.4.0",

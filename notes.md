@@ -14,3 +14,4 @@ Notes on this project
  * first call ~1 seconds then around 120 ms
  * lots of Cloudformation
  * integration s3/cloudfront is okayish (need to setup cache control at every level)
+ * how to enable caching with classic lambda ? Can we access the cache header ?

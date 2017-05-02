@@ -144,6 +144,12 @@ functions:
               paths:
                 id: true
 
+  backupDb:
+    handler: lambda/tech/backup.backup
+    events:
+      - schedule:
+        rate: rate(12 hours)
+
 resources: ${file(./ops/cloud-formation.yml)}
 
 plugins:
