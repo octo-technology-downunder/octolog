@@ -47,6 +47,7 @@ function promisifySchema(schema) {
   schema.getP = promisify(schema.get)
   schema.updateP = promisify(schema.update)
   schema.createP = promisify(schema.create)
+  schema.destroyP = promisify(schema.destroy)
   return schema
 }
 

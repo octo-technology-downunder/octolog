@@ -63,6 +63,19 @@ functions:
             parameters:
               paths:
                 id: true
+                
+  deleteBasics:
+    handler: lambda/basics.delete
+    events:
+      - http:
+          path: people/{id}/basics
+          method: delete
+          cors: true
+          integration: lambda
+          request:
+            parameters:
+              paths:
+                id: true
 
   getExperience:
     handler: lambda/experiences.get

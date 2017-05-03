@@ -20,3 +20,16 @@ module.exports.get = (event, context, callback) => {
     callback(null, data)
   })
 };
+
+module.exports.delete = (event, context, callback) => {
+  const trigram = event.path.id
+  PeopleTable.getP(trigram, { AttributesToGet : ['trigram'] })
+    .then((person) => {
+      if(person == null) throw new Error(`The person ${trigram} was not found`)
+      return trigram;
+    })
+    .then(PeopleTable.destroyP)
+    .then(data => callback(null, data))
+    .catch(callback)
+  
+};
