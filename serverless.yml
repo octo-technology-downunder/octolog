@@ -37,6 +37,11 @@ provider:
         - "dynamodb:*"
       Resource:
         - "arn:aws:dynamodb:ap-southeast-2:754380202678:table/experiences"
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+      Resource:
+        - "arn:aws:s3:::octolog-*"
 
 functions:
   updateBasics:
