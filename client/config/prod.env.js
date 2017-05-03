@@ -5,5 +5,6 @@ module.exports = {
   LIST_EXPERIENCES_PATH: '"/people/{trigram}/experiences"',
   UPDATE_EXPERIENCE_PATH: '"/experiences/{id}"',
   UPDATE_BASICS_PATH: '"/people/{trigram}/basics"',
-  SYNC_OCTOPOD_PATH: '"/people/{id}/octopod/sync"'
+  SYNC_OCTOPOD_PATH: '"/people/{trigram}/octopod/sync"',
+  SYNC_ASKBOB_PATH: '"/people/{trigram}/askbob/sync"'
 }

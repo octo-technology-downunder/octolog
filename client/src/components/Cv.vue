@@ -4,6 +4,7 @@
     <education v-bind:education="profile.education"></education>
     <skills v-bind:skills="profile.skills"></skills>
     <profileModalContainer></profileModalContainer>
+    <button v-on:click="syncAskbob" class="hidden-print">Retrieve details from AskBob</button>
     <button v-on:click="editProfile(profile)" class="hidden-print">Edit profile</button>
     <experience></experience>
   </div>
@@ -44,6 +45,16 @@ export default {
       console.log('editing profile ' + profile)
       ProfileModalHub.$emit('open-modal')
       ProfileModalHub.$emit('set-modal-data', this.profile, this.trigram)
+    },
+    syncAskbob () {
+      return axios.post(process.env.API_URL + process.env.SYNC_ASKBOB_PATH.replace('{trigram}', this.trigram))
+        .then((response) => {
+          Object.assign(this.profile, response.data)
+          console.log(response.data)
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
     }
   }
 }

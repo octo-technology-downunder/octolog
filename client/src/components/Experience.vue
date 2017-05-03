@@ -1,10 +1,11 @@
 <template>
   <div class="experience">
-    <h1>missions <span> - for OCTO Technology</span>&nbsp;<button v-on:click="syncOctopod" class="hidden-print">Retrieve latest missions</button></h1>
+    <h1>missions <span> - for OCTO Technology</span></h1>
     <missionModalContainer></missionModalContainer>
     <div class="experience">
       <mission v-for="mission in missions" v-bind:mission="mission" :key="mission.id"></mission>
     </div>
+    <button v-on:click="syncOctopod" class="hidden-print">Retrieve latest missions from Octopod</button>    
     <h1>experience <span> - prior to OCTO Technology</span></h1>
   </div>
 </template>
@@ -37,7 +38,7 @@ export default {
         })
     },
     syncOctopod () {
-      return axios.post(process.env.API_URL + process.env.SYNC_OCTOPOD_PATH)
+      return axios.post(process.env.API_URL + process.env.SYNC_OCTOPOD_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
           this.missions = response.data
           console.log(response.data)

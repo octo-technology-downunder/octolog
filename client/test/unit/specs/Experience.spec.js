@@ -29,7 +29,7 @@ describe('Experience.vue', () => {
   it('should render title', () => {
     const Constructor = Vue.extend(Experience)
     const vm = new Constructor().$mount()
-    expect(vm.$el.querySelector('.experience h1').textContent).to.equal('missions  - for OCTO Technology Retrieve latest missions')
+    expect(vm.$el.querySelector('.experience h1').textContent).to.equal('missions  - for OCTO Technology')
   })
 
   it('should have empty missions data', () => {
