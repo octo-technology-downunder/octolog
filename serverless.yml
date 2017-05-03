@@ -21,7 +21,8 @@ provider:
   name: aws
   runtime: nodejs6.10
   timeout: 15
-
+  stackTags:
+    key: ${self:service}-${self:provider.stage} # useful to create AWS group
   stage: dev
   region: ap-southeast-2
 
