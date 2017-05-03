@@ -19,7 +19,6 @@ let backup = configs.map(config => new Backup(config))
 
 function doBackup() {
   const date = new Date().toISOString()
-  console.log(date)
   const configs = tableName.map(table => {
     return  {
         S3Bucket: process.env.BACKUP_BUCKET,
