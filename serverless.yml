@@ -128,6 +128,19 @@ functions:
             parameters:
               paths:
                 id: true
+  deleteExperience:
+    handler: lambda/experiences.delete
+    events:
+      - http:
+          path: experiences/{id}
+          method: delete
+          cors: true
+          integration: lambda
+          request:
+            parameters:
+              paths:
+                id: true
+
   syncOctoExperiences:
     handler: lambda/octopod.sync
     environment:

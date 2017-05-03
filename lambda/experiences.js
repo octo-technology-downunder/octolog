@@ -51,3 +51,17 @@ module.exports.getAll = (event, context, callback) => {
     })
     .catch(callback)
 };
+
+
+module.exports.delete = (event, context, callback) => {
+  const id = event.path.id
+  ExperiencesTable.getP(id, { AttributesToGet : ['id'] })
+    .then((exp) => {
+      if(exp == null) throw new Error(`The experience ${id} was not found`)
+      return id;
+    })
+    .then(ExperiencesTable.destroyP)
+    .then(data => callback(null, data))
+    .catch(callback)
+
+};
