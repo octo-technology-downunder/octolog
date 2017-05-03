@@ -142,6 +142,8 @@ describe("Octopod's integration: ", () => {
         expect(activities[0]).to.deep.equal({
             "id": 3000003189,
             "title": "Shadowing",
+            "from": "2013-11-12",
+            "to": "2013-11-22",
             "nb_days": "6.0",
             "average_daily_rate": "0.0",
             "kind": "billable",
@@ -176,6 +178,8 @@ describe("Octopod's integration: ", () => {
     const experience = {
         id: "3000024114",
         projectId: 2146904557,
+        from: "2016-08-09",
+        to: "2016-08-23",
         mission: "Catering prediction as a service",
         customer: "Qantas",
         role: "Consultant Senior"
@@ -185,6 +189,8 @@ describe("Octopod's integration: ", () => {
       "id": 3000024114,
       "title": "Consultant Senior",
       "nb_days": "5.0",
+      "from": "2016-08-09",
+      "to": "2016-08-23",
       "average_daily_rate": "1800.0",
       "kind": "billable",
       "project": {

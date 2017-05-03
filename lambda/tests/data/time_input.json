@@ -1075,18 +1075,18 @@
       "id": 3000024114,
       "title": "Consultant Senior",
       "nb_days": "5.0",
-      "average_daily_rate": "1800.0",
+      "average_daily_rate": "600.0",
       "kind": "billable",
       "project": {
-        "id": 2146904557,
-        "url": "https://octopod.octo.com/api/v0/projects/2146904557",
-        "name": "Catering prediction as a service",
+        "id": 21464557,
+        "url": "https://octopod.octo.com/api/v0/projects/21464557",
+        "name": "Some project",
         "kind": "fixed_price",
         "reference": "F2017-22",
         "status": "mission_signed",
         "customer": {
           "id": 2001,
-          "name": "Qantas"
+          "name": "Some company"
         }
       }
     }

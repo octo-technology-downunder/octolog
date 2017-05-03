@@ -34,6 +34,8 @@ function createExperienceIfNotexisting(activities) {
             id: act.id,
             projectId: act.project.id,
             mission: act.project.name,
+            from: act.from,
+            to: act.to,
             customer: act.project.customer.name,
             role: act.title
           }
@@ -103,7 +105,12 @@ function getActivitiesFromOctopod(authToken, personId) {
     return rp(options)
       .then(body => {
         return JSON.parse(body)
-                  .map(i => i.activity)
+                  .map(i => {
+                    const v = i.activity
+                    v.from = i.day
+                    v.to = i.day
+                    return v
+                  })
       })
       .then(newActivities => {
         activities.push(...newActivities)
@@ -114,11 +121,27 @@ function getActivitiesFromOctopod(authToken, personId) {
         }
       })
   }
+
   return activityCall(1, []).then(activities => {
-      const filteredAct = activities
+      const activitiesAsObject = activities
         .filter(act => act.project != null && act.project.kind != 'internal')
-      return _.uniqBy(filteredAct, "id")
+        .reduce(setupUniqActivitiesAndDate, {})
+    return Object.keys(activitiesAsObject).map(key => activitiesAsObject[key])
   })
+
+  function setupUniqActivitiesAndDate(acc, item) {
+    if(acc[item.id] == null) {
+      acc[item.id] = item
+    } else {
+      if(acc[item.id].from > item.from) {
+        acc[item.id].from = item.from
+      }
+      if(acc[item.id].to < item.to) {
+        acc[item.id].to = item.to
+      }
+    }
+    return acc;
+  }
 
 
 }
