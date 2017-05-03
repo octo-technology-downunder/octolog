@@ -149,6 +149,8 @@ functions:
     handler: lambda/tech/backup.backup
     events:
       - schedule: rate(12 hours)
+    environment:
+      BACKUP_BUCKET: ${self:resources.Resources.backup.Properties.BucketName}
 
 resources: ${file(./ops/cloud-formation.yml)}
 

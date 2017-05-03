@@ -22,7 +22,7 @@ function doBackup() {
   console.log(date)
   const configs = tableName.map(table => {
     return  {
-        S3Bucket: 'octolog-db-backup/' ,
+        S3Bucket: process.env.BACKUP_BUCKET,
         S3Prefix: '/' + date + '/' + table,
         S3Region: region,
         DbTable:  table,

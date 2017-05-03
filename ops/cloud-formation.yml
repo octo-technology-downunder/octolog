@@ -2,10 +2,15 @@ Resources:
   staticContent:
     Type: AWS::S3::Bucket
     Properties:
+      BucketName: ${self:service}-${self:provider.stage}-static
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
+  backup:
+    Type: AWS::S3::Bucket
+    Properties:
+        BucketName: ${self:service}-${self:provider.stage}-backup
 
   usersTable:
     Type: AWS::DynamoDB::Table
