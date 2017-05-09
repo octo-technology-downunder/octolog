@@ -55,11 +55,9 @@ export default {
     updateMission () {
       this.mission.tags = this.missionTags.split(',')
       this.mission.description = this.missionDescription.substring(2).split('\n- ')
-      console.log('Updating mission ' + JSON.stringify(this.mission))
       return axios.put(process.env.API_URL + process.env.UPDATE_EXPERIENCE_PATH.replace('{id}', this.mission.id))
         .then((response) => {
           this.mission = response.data
-          console.log('Updating mission ' + JSON.stringify(this.mission))
           this.active = false
         })
         .catch(e => {

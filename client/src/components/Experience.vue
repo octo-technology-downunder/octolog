@@ -16,10 +16,10 @@ import MissionModalContainer from '@/components/MissionModalContainer'
 import axios from 'axios'
 
 export default {
+  props: ['trigram'],
   components: {Mission, MissionModalContainer},
   data () {
     return {
-      trigram: 'TGE',
       missions: [],
       errors: []
     }

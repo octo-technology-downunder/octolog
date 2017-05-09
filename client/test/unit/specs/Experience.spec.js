@@ -2,10 +2,18 @@ import Vue from 'vue'
 import Experience from '@/components/Experience'
 import moxios from 'moxios'
 
+function getRenderedVm (Component, propsData) {
+  const Ctor = Vue.extend(Component)
+  const vm = new Ctor({ propsData }).$mount()
+  return vm
+}
+
+const fakeTrigram = 'TRI'
+
 describe('Experience.vue', () => {
   beforeEach(function () {
     moxios.install()
-    moxios.stubRequest(process.env.API_URL + process.env.LIST_EXPERIENCES_PATH.replace('{trigram}', 'TGE'), {
+    moxios.stubRequest(process.env.API_URL + process.env.LIST_EXPERIENCES_PATH.replace('{trigram}', fakeTrigram), {
       status: 200,
       responseText: fakeExperiences
     })
@@ -16,8 +24,7 @@ describe('Experience.vue', () => {
   })
 
   it('should populate the missions data with API response', (done) => {
-    const Constructor = Vue.extend(Experience)
-    const vm = new Constructor().$mount()
+    const vm = getRenderedVm(Experience, {trigram: fakeTrigram})
     expect(vm.missions).to.be.an('array')
     expect(vm.missions).to.be.empty
     vm.fetchExperience().then(() => {
@@ -27,25 +34,22 @@ describe('Experience.vue', () => {
   })
 
   it('should render title', () => {
-    const Constructor = Vue.extend(Experience)
-    const vm = new Constructor().$mount()
+    const vm = getRenderedVm(Experience, {trigram: fakeTrigram})
     expect(vm.$el.querySelector('.experience h1').textContent).to.equal('missions  - for OCTO Technology')
   })
 
   it('should have empty missions data', () => {
-    const Constructor = Vue.extend(Experience)
-    const vm = new Constructor().$mount()
+    const vm = getRenderedVm(Experience, {trigram: fakeTrigram})
     expect(vm.missions).to.be.empty
   })
 
   it('should have empty errors data', () => {
-    const Constructor = Vue.extend(Experience)
-    const vm = new Constructor().$mount()
+    const vm = getRenderedVm(Experience, {trigram: fakeTrigram})
     expect(vm.errors).to.be.empty
   })
 
   it('should display experiences vm.missions is populated', done => {
-    const vm = new Vue(Experience).$mount()
+    const vm = getRenderedVm(Experience, {trigram: fakeTrigram})
     vm.missions = fakeExperiences
     Vue.nextTick(() => {
       expect(vm.$el.querySelectorAll('.mission')).to.have.lengthOf(2)
