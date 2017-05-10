@@ -95,16 +95,16 @@
     "preback:dev": "DYNAMO_URL=http://localhost:8000 node ./lambda/dynamo/createTable",
     "back:dev": "DYNAMO_URL=http://localhost:8000 sls offline start",
     "back:unit": "./node_modules/.bin/istanbul cover --print details _mocha -- -R spec lambda/tests/** --recursive",
-    "back:e2e": "OCTOPOD_URL=http://private-08aab-octopodmock.apiary-mock.com ./node_modules/.bin/dredd",
-    "back:test": "npm run back:unit & npm run back:e2e",
+    "back:e2e": "OCTOPOD_URL=http://private-08aab-octopodmock.apiary-mock.com ./node_modules/.bin/dredd -l verbose",
+    "back:test": "npm run back:unit; RET=$?; npm run back:e2e && exit ${RET}",
     "front:dev": "node client/build/dev-server.js",
     "front:build": "node client/build/build.js",
     "front:unit": "cross-env BABEL_ENV=test karma start client/test/unit/karma.conf.js --single-run",
     "front:e2e": "node client/test/e2e/runner.js --env phantomjs",
-    "front:test": "npm run front:unit && npm run front:e2e",
+    "front:test": "npm run front:unit; RET=$?; npm run front:e2e && exit ${RET}",
     "front:lint": "eslint --ext .js,.vue client/src client/test/unit/specs client/test/e2e/specs",
     "front:deploy": "./node_modules/.bin/s3-deploy './client/dist/**'  --cwd './client/dist/' --region ap-southeast-2 --bucket octolog-dev-static --cache 31556952",
-    "test": "npm run back:test & npm run front:test"
+    "test": "npm run back:test; RET=$?; npm run front:test && exit ${RET}"
   },
   "repository": {
     "type": "git",
