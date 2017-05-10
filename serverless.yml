@@ -23,20 +23,17 @@ provider:
   timeout: 15
   stackTags:
     octolog: ${self:provider.stage} # useful to create AWS group
-  stage: dev
+  stage: refacto
   region: ap-southeast-2
+  environment: # Service wide environment variables
+    CV_TABLE: ${self:resources.Resources.cvTable.Properties.TableName}
 
   iamRoleStatements:
     - Effect: "Allow"
       Action:
         - "dynamodb:*"
       Resource:
-        - "arn:aws:dynamodb:ap-southeast-2:754380202678:table/peoples"
-    - Effect: "Allow"
-      Action:
-        - "dynamodb:*"
-      Resource:
-        - "arn:aws:dynamodb:ap-southeast-2:754380202678:table/experiences"
+        - "arn:aws:dynamodb:ap-southeast-2:754380202678:table/octolog-refacto-cvs"
     - Effect: "Allow"
       Action:
         - "s3:*"
@@ -68,7 +65,7 @@ functions:
             parameters:
               paths:
                 id: true
-                
+
   deleteBasics:
     handler: lambda/basics.delete
     events:

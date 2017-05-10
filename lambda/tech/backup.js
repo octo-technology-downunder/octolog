@@ -23,5 +23,4 @@ module.exports.backup = function(event, context, callback) {
   doBackup()
     .then(v => callback(null))
     .catch(callback)
-
 }

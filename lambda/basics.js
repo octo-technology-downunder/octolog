@@ -1,35 +1,34 @@
 'use strict';
 
-const PeopleTable = require('./dynamo/schema').PeopleTable
+const CvTable = require('./dynamo/cv-schema').CvTable
 
 
 module.exports.update = (event, context, callback) => {
   const body = event.body
   const trigram = event.path.id
   body.trigram = trigram
-  PeopleTable.create(body, callback)
+  CvTable.create(body, callback)
 };
 
 
 module.exports.get = (event, context, callback) => {
   const trigram = event.path.id
-  PeopleTable.get(trigram, (err, data) => {
+  CvTable.query(trigram).exec((err, data) => {
     if(err) return callback(err)
     if(data == null) return callback(new Error(`The person ${trigram} was not found`))
-    delete data.experiencesId
     callback(null, data)
   })
 };
 
 module.exports.delete = (event, context, callback) => {
   const trigram = event.path.id
-  PeopleTable.getP(trigram, { AttributesToGet : ['trigram'] })
+  CvTable.getP(trigram, { AttributesToGet : ['trigram'] })
     .then((person) => {
       if(person == null) throw new Error(`The person ${trigram} was not found`)
       return trigram;
     })
-    .then(PeopleTable.destroyP)
+    .then(CvTable.destroyP)
     .then(data => callback(null, data))
     .catch(callback)
-  
+
 };
