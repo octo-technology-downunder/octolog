@@ -15,3 +15,5 @@ Notes on this project
  * lots of Cloudformation
  * integration s3/cloudfront is okayish (need to setup cache control at every level)
  * how to enable caching with classic lambda ? Can we access the cache header ?
+ * possible to add nested document in root document
+ * impossible to create indexes on nested fields
