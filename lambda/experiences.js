@@ -6,7 +6,9 @@ const async = require("async");
 
 module.exports.update = (event, context, callback) => {
   const id = event.path.id
+  const trigram = event.path.trigram
   const body = event.body
+  body.trigram = trigram
   body.id = id
   ExperiencesTable.create(body, callback)
 };
@@ -14,54 +16,40 @@ module.exports.update = (event, context, callback) => {
 
 module.exports.get = (event, context, callback) => {
   const id = event.path.id
-  ExperiencesTable.get(id, callback)
+  const trigram = event.path.trigram
+  ExperiencesTable.get(trigram, id, callback)
 };
 
 
 module.exports.create = (event, context, callback) => {
-  const trigram = event.path.id
+  const trigram = event.path.trigram
   const body = event.body
-  ExperiencesTable.createP(body)
-    .then(function (experience) {
-      PeopleTable.getP(trigram)
-        .then(function (people) {
-          people.attrs.experiencesId = people.experiencesId || [];
-          people.attrs.experiencesId.push(experience.attrs.id);
-          return PeopleTable.updateP(people.attrs);
-        })
-        .then(function (newPeople) {
-          callback(null, experience.attrs);
-        })
-        .catch(callback)
-      })
-      .catch(callback)
+  body.trigram = trigram
+  ExperiencesTable.create(body, callback)
 };
 
 
 module.exports.getAll = (event, context, callback) => {
-  const trigram = event.path.id
-
-  PeopleTable.getP(trigram)
-    .then((people) => {
-      const experiencesPromises = (people.attrs.experiencesId || []).map(ExperiencesTable.getP)
-      return Promise.all(experiencesPromises)
-    })
-    .then((results) => {
-      callback(null, results.map(i => i.attrs))
-    })
-    .catch(callback)
+  const trigram = event.path.trigram
+  ExperiencesTable
+    .query(trigram)
+    .exec((err, data) => {
+      if(err) return callback(err)
+      callback(null, data.Items)
+    });
 };
 
 
 module.exports.delete = (event, context, callback) => {
+  const trigram = event.path.trigram
   const id = event.path.id
-  ExperiencesTable.getP(id, { AttributesToGet : ['id'] })
+  ExperiencesTable.getP(trigram, id, { AttributesToGet : ['id'] })
     .then((exp) => {
       if(exp == null) throw new Error(`The experience ${id} was not found`)
-      return id;
+      return [trigram, id];
     })
-    .then(ExperiencesTable.destroyP)
-    .then(data => callback(null, data))
+    .then(trigramAndId => ExperiencesTable.destroyP(...trigramAndId))
+    .then(data => callback(null, { id, trigram }))
     .catch(callback)
 
 };

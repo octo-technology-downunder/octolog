@@ -180,6 +180,7 @@ describe("Octopod's integration: ", () => {
         projectId: 2146904557,
         from: "2016-08-09",
         to: "2016-08-23",
+        trigram: 'TGE',
         mission: "Catering prediction as a service",
         customer: "Qantas",
         role: "Consultant Senior"
@@ -211,17 +212,20 @@ describe("Octopod's integration: ", () => {
       it("insert the activity as a experience", () => {
         //given
 
-        dynamo.ExperiencesTable.getP.withArgs("3000024114").resolves(null)
-        dynamo.ExperiencesTable.createP.withArgs(experience).resolves({attrs: experience})
+        dynamo.ExperiencesTable.getP.withArgs('TGE', "3000024114").resolves(null)
+        dynamo.ExperiencesTable.createP.resolves({attrs: experience})
 
         //when
-        return octopod.createExperienceIfNotexisting([activity])
+        return octopod.createExperienceIfNotexisting([activity], 'TGE')
           .then(experiences => {
 
             //then
-            const experience = experiences[0]
-            expect(experience).to.deep.equal(experience)
-            expect(dynamo.ExperiencesTable.createP.calledWithExactly(experience)).to.be.true;
+            const actualExperience = experiences[0]
+            const expectedExperience = experience
+            expectedExperience.description = []
+            expect(actualExperience).to.deep.equal(expectedExperience)
+            expect(dynamo.ExperiencesTable.createP.args[0][0]).to.deep.equal(experience)
+            //expect(dynamo.ExperiencesTable.createP.calledWithExactly(experience)).to.be.true;
           })
       })
     })
@@ -229,90 +233,17 @@ describe("Octopod's integration: ", () => {
     describe("there is already the experience in the DB", () => {
       it("does't insert the activity as a experience", () => {
 
-        dynamo.ExperiencesTable.getP.withArgs("3000024114").resolves({attrs: experience})
-        dynamo.ExperiencesTable.createP.withArgs(experience).resolves({attrs: experience})
+        dynamo.ExperiencesTable.getP.withArgs('TGE', "3000024114").resolves({attrs: experience})
+        dynamo.ExperiencesTable.createP.resolves({attrs: experience})
 
         //when
-        return octopod.createExperienceIfNotexisting([activity])
+        return octopod.createExperienceIfNotexisting([activity], 'TGE')
           .then(experiences => {
 
             //then
             const experience = experiences[0]
             expect(experience).to.deep.equal(experience)
             expect(dynamo.ExperiencesTable.createP.calledWithExactly(experience)).to.be.false;
-          })
-      })
-    })
-  })
-
-  describe("when updating the experience id in the DB", () => {
-
-    beforeEach(() => {
-      dynamo.PeopleTable.getP = sinon.stub()
-      dynamo.PeopleTable.updateP = sinon.stub()
-    })
-
-    afterEach(() => {
-      dynamo.PeopleTable.getP.reset();
-      dynamo.PeopleTable.updateP.reset();
-    })
-
-    const tge = {
-      trigram: "TGE",
-      experiencesId: ["3000024114"]
-    }
-
-    const nig = {
-      trigram: "NIG"
-    }
-
-    const expectedNig = {
-      trigram: "NIG",
-      experiencesId: ["3000024114"]
-    }
-
-    const experience = {
-        id: "3000024114"
-    }
-
-    describe("there is no experience in the DB", () => {
-      it("insert the experience id as a experience", () => {
-        //given
-        dynamo.PeopleTable.getP.withArgs("NIG").resolves({attrs: nig})
-        dynamo.PeopleTable.updateP.resolves({attrs: experience})
-
-        //when
-        return octopod.updatePersonWithExperience("NIG", [experience])
-          .then(experiences => {
-
-            //then
-            expect(dynamo.PeopleTable.updateP.calledOnce).to.be.true
-            const call = dynamo.PeopleTable.updateP.getCall(0)
-            expect(call.args).to.deep.equal([{
-              trigram: "NIG",
-              experiencesId: ["3000024114"]
-            }])
-          })
-      })
-    })
-
-    describe("there is already the experience in the DB", () => {
-      it("does't insert the expereince I as a experience", () => {
-        //given
-        dynamo.PeopleTable.getP.withArgs("TGE").resolves({attrs: tge})
-        dynamo.PeopleTable.updateP.resolves({attrs: experience})
-
-        //when
-        return octopod.updatePersonWithExperience("TGE",[experience])
-          .then(experiences => {
-
-            //then
-            expect(dynamo.PeopleTable.updateP.calledOnce).to.be.true
-            const call = dynamo.PeopleTable.updateP.getCall(0)
-            expect(call.args).to.deep.equal([{
-              trigram: "TGE",
-              experiencesId: ["3000024114"]
-            }])
           })
       })
     })

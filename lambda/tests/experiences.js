@@ -26,9 +26,12 @@ describe("experiences webservice: ", () => {
     describe("when there is no CV in the DB", () => {
       it("return an error", (done) => {
         //given
-        dynamo.ExperiencesTable.getP.withArgs("1234").resolves(null)
+        dynamo.ExperiencesTable.getP.withArgs("TGE", "1234").resolves(null)
         const input = {
-          path: {id: '1234'}
+          path: {
+            id: '1234',
+            trigram: 'TGE'
+          }
         }
         //when
         experiences.delete(input, {}, (err, data) => {
@@ -42,16 +45,19 @@ describe("experiences webservice: ", () => {
     describe("when there is a CV in the DB", () => {
       it("remove the CV", (done) => {
         //given
-        dynamo.ExperiencesTable.getP.withArgs("1234").resolves(exp)
-        dynamo.ExperiencesTable.destroyP.withArgs("1234").resolves({})
+        dynamo.ExperiencesTable.getP.withArgs("TGE", "1234").resolves(exp)
+        dynamo.ExperiencesTable.destroyP.withArgs("TGE", "1234").resolves({})
 
         const input = {
-          path: {id: '1234'}
+          path: {
+            id: '1234',
+            trigram: 'TGE'
+          }
         }
         //when
         experiences.delete(input, {}, (err, data) => {
           expect(err).to.not.exist
-          expect(dynamo.ExperiencesTable.destroyP.calledWithExactly("1234")).to.be.true;
+          expect(dynamo.ExperiencesTable.destroyP.calledWithExactly("TGE", "1234")).to.be.true;
           done()
         })
       })

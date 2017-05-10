@@ -9,7 +9,7 @@ function askbobUrl() {
 
 function sync(event, context, callback) {
   const apiKey = process.env.API_KEY
-  const trigram = event.path.id
+  const trigram = event.path.trigram
 
 retrieveInfoFromDB(trigram).then(basicInDb => {
     let newBasics = basicInDb

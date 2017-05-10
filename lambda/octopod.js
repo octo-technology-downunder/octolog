@@ -10,51 +10,47 @@ function octopodUrl() {
 function sync(event, context, callback) {
   const clientId = process.env.CLIENT_ID
   const clientSecret = process.env.CLIENT_SECRET
-  const trigram = event.path.id
+  const trigram = event.path.trigram
 
   getAuth(clientId, clientSecret)
     .then(accessToken => {
       return getOctoId(trigram, accessToken)
         .then(personId => getActivitiesFromOctopod(accessToken, personId))
-        .then(createExperienceIfNotexisting)
-        .then(experiences => updatePersonWithExperience(trigram, experiences))
-        .then(activities => callback(null, activities))
+        .then(activities => createExperienceIfNotexisting(activities, trigram))
+        .then(activities => callback(null, activities.map(prepareExperience)))
         .catch(callback)
     })
     .catch(callback)
 }
 
-function createExperienceIfNotexisting(activities) {
+function prepareExperience(exp) {
+  if(exp.tags == null) exp.tags = []
+  if(exp.description == null) exp.description = []
+  return exp
+}
+
+function createExperienceIfNotexisting(activities, trigram) {
   return Promise.all(activities.map(act => {
     act.id = act.id + ""
-    return ExperiencesTable.getP(act.id)
+    return ExperiencesTable.getP(trigram, act.id)
       .then((actInDb) => {
         if(actInDb == null) {
           const exp = {
             id: act.id,
+            trigram,
             projectId: act.project.id,
             mission: act.project.name,
             from: act.from,
             to: act.to,
             customer: act.project.customer.name,
-            role: act.title
+            role: act.title,
+            description: []
           }
           return ExperiencesTable.createP(exp)
         }
         return actInDb
       }).then(i => i.attrs)
   }))
-}
-
-function updatePersonWithExperience(trigram, experiences) {
-    return PeopleTable.getP(trigram)
-      .then((person) => {
-        person.attrs.experiencesId = person.attrs.experiencesId || [];
-        person.attrs.experiencesId.push(...experiences.map(exp => exp.id));
-        person.attrs.experiencesId = _.uniq(person.attrs.experiencesId)
-        return PeopleTable.updateP(person.attrs);;
-      })
-      .then(() => experiences);
 }
 
 
@@ -151,6 +147,5 @@ module.exports = {
   getAuth,
   getOctoId,
   getActivitiesFromOctopod,
-  createExperienceIfNotexisting,
-  updatePersonWithExperience
+  createExperienceIfNotexisting
 }

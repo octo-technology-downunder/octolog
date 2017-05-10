@@ -34,7 +34,7 @@ describe("CV webservice: ", () => {
         //given
         dynamo.PeopleTable.getP.withArgs("TGE").resolves(null)
         const input = {
-          path: {id: 'TGE'}
+          path: {trigram: 'TGE'}
         }
         //when
         basics.delete(input, {}, (err, data) => {
@@ -52,7 +52,7 @@ describe("CV webservice: ", () => {
         dynamo.PeopleTable.destroyP.withArgs("TGE").resolves({})
 
         const input = {
-          path: {id: 'TGE'}
+          path: {trigram: 'TGE'}
         }
         //when
         basics.delete(input, {}, (err, data) => {

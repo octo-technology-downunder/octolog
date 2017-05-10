@@ -23,15 +23,16 @@ const PeopleTable = promisifySchema(dynamo.define('People', {
       architectureTechnologies: dynamo.types.stringSet(),
       methodologies: dynamo.types.stringSet(),
       achievements: dynamo.types.stringSet()
-    },
-    experiencesId: dynamo.types.stringSet()
+    }
   }
 }));
 
 const ExperiencesTable = promisifySchema(dynamo.define('Experience', {
-  hashKey : 'id',
+  hashKey : 'trigram',
+  rangeKey : 'id',
   schema : {
     id: Joi.string().default(() => uuidV4(), 'uuidV4'),
+    trigram: Joi.string().regex(/^[A-Z]{3}$/),
     projectId: Joi.number(),
     mission: Joi.string(),
     customer: Joi.string(),

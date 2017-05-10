@@ -48,7 +48,7 @@ functions:
     handler: lambda/basics.update
     events:
       - http:
-          path: people/{id}/basics
+          path: people/{trigram}/basics
           method: put
           cors: true
           integration: lambda
@@ -60,7 +60,7 @@ functions:
     handler: lambda/basics.get
     events:
       - http:
-          path: people/{id}/basics
+          path: people/{trigram}/basics
           method: get
           cors: true
           integration: lambda
@@ -68,12 +68,12 @@ functions:
             parameters:
               paths:
                 id: true
-                
+
   deleteBasics:
     handler: lambda/basics.delete
     events:
       - http:
-          path: people/{id}/basics
+          path: people/{trigram}/basics
           method: delete
           cors: true
           integration: lambda
@@ -86,7 +86,7 @@ functions:
     handler: lambda/experiences.get
     events:
       - http:
-          path: experiences/{id}
+          path: people/{trigram}/experiences/{id}
           method: get
           cors: true
           integration: lambda
@@ -99,7 +99,7 @@ functions:
     handler: lambda/experiences.update
     events:
       - http:
-          path: experiences/{id}
+          path: people/{trigram}/experiences/{id}
           method: put
           cors: true
           integration: lambda
@@ -112,7 +112,7 @@ functions:
     handler: lambda/experiences.create
     events:
       - http:
-          path: people/{id}/experiences
+          path: people/{trigram}/experiences
           method: post
           cors: true
           integration: lambda
@@ -125,7 +125,7 @@ functions:
     handler: lambda/experiences.getAll
     events:
       - http:
-          path: people/{id}/experiences
+          path: people/{trigram}/experiences
           method: get
           cors: true
           integration: lambda
@@ -133,11 +133,12 @@ functions:
             parameters:
               paths:
                 id: true
+
   deleteExperience:
     handler: lambda/experiences.delete
     events:
       - http:
-          path: experiences/{id}
+          path: people/{trigram}/experiences/{id}
           method: delete
           cors: true
           integration: lambda
@@ -153,7 +154,7 @@ functions:
       CLIENT_SECRET: ${env:OCTOPOD_CLIENT_SECRET}
     events:
       - http:
-          path: people/{id}/octopod/sync
+          path: people/{trigram}/octopod/sync
           method: post
           cors: true
           integration: lambda
@@ -167,7 +168,7 @@ functions:
       API_KEY: ${env:ASKBOB_API_KEY}
     events:
       - http:
-          path: people/{id}/askbob/sync
+          path: people/{trigram}/askbob/sync
           method: post
           cors: true
           integration: lambda

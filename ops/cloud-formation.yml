@@ -25,6 +25,7 @@ Resources:
       ProvisionedThroughput:
         ReadCapacityUnits: 3
         WriteCapacityUnits: 3
+
   experiencesTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -32,9 +33,13 @@ Resources:
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
+        - AttributeName: trigram
+          AttributeType: S
       KeySchema:
         - AttributeName: id
           KeyType: HASH
+        - AttributeName: trigram
+          KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: 3
         WriteCapacityUnits: 3
