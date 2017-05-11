@@ -3,7 +3,7 @@
     <h1>missions <span> - for OCTO Technology</span></h1>
     <missionModalContainer></missionModalContainer>
     <div class="experience">
-      <mission v-for="mission in missions" v-bind:mission="mission" :key="mission.id"></mission>
+      <mission v-for="mission in missions" v-bind:mission="mission" v-bind:trigram="trigram" :key="mission.id"></mission>
     </div>
     <button v-on:click="syncOctopod" class="hidden-print">Retrieve latest missions from Octopod</button>    
     <h1>experience <span> - prior to OCTO Technology</span></h1>

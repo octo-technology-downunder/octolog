@@ -28,6 +28,7 @@ export default {
   data () {
     return {
       active: false,
+      trigram: '',
       mission: {},
       missionTags: '',
       missionDescription: ''
@@ -47,7 +48,8 @@ export default {
     open () {
       this.active = true
     },
-    set (mission) {
+    set (mission, trigram) {
+      this.trigram = trigram
       this.mission = mission
       this.missionTags = mission.tags ? mission.tags.join(',') : ''
       this.missionDescription = '- ' + (mission.description ? mission.description.join('\n- ') : '...')
@@ -55,7 +57,7 @@ export default {
     updateMission () {
       this.mission.tags = this.missionTags.split(',')
       this.mission.description = this.missionDescription.substring(2).split('\n- ')
-      return axios.put(process.env.API_URL + process.env.UPDATE_EXPERIENCE_PATH.replace('{id}', this.mission.id))
+      return axios.put(process.env.API_URL + process.env.UPDATE_EXPERIENCE_PATH.replace('{id}', this.mission.id).replace('{trigram}', this.trigram))
         .then((response) => {
           this.mission = response.data
           this.active = false
