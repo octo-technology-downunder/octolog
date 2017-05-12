@@ -1,18 +1,21 @@
-// For authoring Nightwatch tests, see
-// http://nightwatchjs.org/guide#usage
-
 module.exports = {
-  'default e2e tests': function (browser) {
-    // automatically uses dev Server port from /config.index.js
-    // default: http://localhost:8080
-    // see nightwatch.conf.js
+  'home to cv navigation': function (browser) {
     const devServer = browser.globals.devServerURL
 
     browser
       .url(devServer)
-      .waitForElementVisible('#app', 5000)
+      .waitForElementVisible('div', 5000)
+      .assert.containsText('h2', 'Enter your trigram')
+      .setValue('input[class=trigram]', 'TRI')
+      .click('button[class="validate"]')
+      .waitForElementVisible('div', 5000)
+      .assert.urlContains("/cv?trigram=TRI")
       .assert.elementPresent('.person')
-      .assert.containsText('h1', 'EDUCATION')
+      .assert.elementCount('h1', 4)
+      .assert.containsText('.education h1', 'EDUCATION')
+      .assert.containsText('.skills h1', 'SKILLS')
+      .assert.containsText('.experience h1:nth-of-type(1)', 'MISSIONS - FOR OCTO TECHNOLOGY')
+      .assert.containsText('.experience h1:nth-of-type(2)', 'EXPERIENCE - PRIOR TO OCTO TECHNOLOGY')
       .assert.elementCount('img', 2)
       .end()
   }
