@@ -13,10 +13,6 @@
 
 service: octolog
 
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
-# frameworkVersion: "=X.X.X"
-
 provider:
   name: aws
   runtime: nodejs6.10
@@ -25,23 +21,21 @@ provider:
     octolog: ${self:provider.stage} # useful to create AWS group
   stage: dev
   region: ap-southeast-2
+  environment: # Service wide environment variables
+    BASICS_TABLE: ${self:resources.Resources.usersTable.Properties.TableName}
+    EXPERIENCES_TABLE: ${self:resources.Resources.experiencesTable.Properties.TableName}
 
   iamRoleStatements:
     - Effect: "Allow"
       Action:
         - "dynamodb:*"
       Resource:
-        - "arn:aws:dynamodb:ap-southeast-2:754380202678:table/peoples"
-    - Effect: "Allow"
-      Action:
-        - "dynamodb:*"
-      Resource:
-        - "arn:aws:dynamodb:ap-southeast-2:754380202678:table/experiences"
+        - "arn:aws:dynamodb:${self:provider.region}:754380202678:table/${self:service}-*"
     - Effect: "Allow"
       Action:
         - "s3:*"
       Resource:
-        - "arn:aws:s3:::octolog-*"
+        - "arn:aws:s3:::${self:service}-*"
 
 functions:
   updateBasics:

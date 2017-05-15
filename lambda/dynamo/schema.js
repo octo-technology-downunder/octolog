@@ -7,8 +7,9 @@ const promisify = require("promisify-node");
 const endpoint = process.env.DYNAMO_URL || undefined
 dynamo.AWS.config.update({region: "ap-southeast-2", endpoint });
 
+const basicTableName = retrieveTableName("BASICS_TABLE")
 
-const PeopleTable = promisifySchema(dynamo.define('People', {
+const PeopleTable = promisifySchema(dynamo.define(basicTableName, {
   hashKey : 'trigram',
   schema : {
     trigram: Joi.string().regex(/^[A-Z]{3}$/),
@@ -27,7 +28,9 @@ const PeopleTable = promisifySchema(dynamo.define('People', {
   }
 }));
 
-const ExperiencesTable = promisifySchema(dynamo.define('Experience', {
+const experiencesTableName = retrieveTableName("EXPERIENCES_TABLE")
+
+const ExperiencesTable = promisifySchema(dynamo.define(experiencesTableName, {
   hashKey : 'trigram',
   rangeKey : 'id',
   schema : {
@@ -52,6 +55,10 @@ function promisifySchema(schema) {
   return schema
 }
 
+function retrieveTableName(envVarName) {
+  const defaultName = "octolog-local-" + envVarName + 's'
+  return (process.env[envVarName] || defaultName).slice(0, -1)
+}
 
 module.exports = {
   ExperiencesTable,

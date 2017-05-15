@@ -15,7 +15,7 @@ Resources:
   usersTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: peoples
+      TableName: ${self:service}-${self:provider.stage}-basics
       AttributeDefinitions:
         - AttributeName: trigram
           AttributeType: S
@@ -29,7 +29,7 @@ Resources:
   experiencesTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: experiences
+      TableName: ${self:service}-${self:provider.stage}-experiences
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
