@@ -24,7 +24,8 @@ OCTOLog is a simple API to easily generate beautiful CV and bio.
                 "technical": ["platform/frameworks: node, iOS, Rails, J2EE, Play", "Devops: Ansible, Puppet, Capistrano"],
                 "architectureTechnologies": ["Architecture studies", "Audits", "API Design"],
                 "methodologies": ["Agile", "Lean", "Lean Startup"],
-                "achievements": ["Speaker", "Blog articles"]
+                "achievements": ["Speaker", "Blog articles"],
+                "others": ["English", "Spanish"]
             }
         }
 
@@ -41,7 +42,8 @@ OCTOLog is a simple API to easily generate beautiful CV and bio.
                 "technical": ["platform/frameworks: node, iOS, Rails, J2EE, Play", "Devops: Ansible, Puppet, Capistrano"],
                 "architectureTechnologies": ["Architecture studies", "Audits", "API Design"],
                 "methodologies": ["Agile", "Lean", "Lean Startup"],
-                "achievements": ["Speaker", "Blog articles"]
+                "achievements": ["Speaker", "Blog articles"],
+                "others": ["English", "Spanish"]
             }
         }
 
@@ -65,7 +67,8 @@ OCTOLog is a simple API to easily generate beautiful CV and bio.
                 "technical": ["platform/frameworks: node, iOS, Rails, J2EE, Play", "Devops: Ansible, Puppet, Capistrano"],
                 "architectureTechnologies": ["Architecture studies", "Audits", "API Design"],
                 "methodologies": ["Agile", "Lean", "Lean Startup"],
-                "achievements": ["Speaker", "Blog articles"]
+                "achievements": ["Speaker", "Blog articles"],
+                "others": ["English", "Spanish"]
             }
         }
 
@@ -88,6 +91,7 @@ You may update an experience to add details.
             "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
             "projectId": 123456,
             "customer":"Pacifica",
+            "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
             "role":"Developer 1",
             "from": "2015-08-05T08:40:51.620Z",
             "to": "2015-08-05T08:40:51.620Z",
@@ -107,6 +111,7 @@ You may update an experience to add details.
             "trigram": "JBI",
             "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
             "customer":"Pacifica",
+            "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
             "role":"",
             "from": "2015-08-05",
             "to": "2015-08-05",
@@ -133,6 +138,7 @@ You may retrieve an experience to add details.
             "projectId": 123456,
             "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
             "customer":"ING Direct Australia",
+            "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
             "role":"Developer 1",
             "from": "2015-08-05",
             "to": "2015-08-05",
@@ -144,13 +150,14 @@ You may retrieve an experience to add details.
             "tags": ["agile", "javascript"]
         }
 
-### Delete user details [DELETE]
+### Delete an experience [DELETE]
 
 + Parameters
     + id: `3000003189` (Number, required) - ID of the experience
     + trigram: `JBI` (String, required) - ID of the person
 
 + Response 200 (application/json; charset=utf-8)
+        
         {
             "id":"3000003189",
             "trigram":"JBI"
@@ -172,6 +179,7 @@ You may add a new experience
             "projectId": 123456,
             "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
             "customer":"ING Direct Australia",
+            "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
             "role":"Developer 1",
             "from": "2015-08-05T08:40:51.620Z",
             "to": "2015-08-05T08:40:51.620Z",
@@ -192,6 +200,7 @@ You may add a new experience
                 "projectId": 123456,
                 "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
                 "customer":"ING Direct Australia",
+                "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
                 "role":"Developer 1",
                 "from": "2015-08-05",
                 "to": "2015-08-05",
@@ -208,12 +217,13 @@ You may add a new experience
 
 + Response 200 (application/json; charset=utf-8)
 
-        [
+        {"octo": [
             {
                 "id": "123456",
                 "projectId": 123456,
                 "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
                 "customer":"ING Direct Australia",
+                "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
                 "role":"Developer 1",
                 "from": "2015-09-23",
                 "to": "2015-11-14",
@@ -229,6 +239,7 @@ You may add a new experience
                 "projectId": 123456,
                 "mission": "AUTRE MISSION",
                 "customer":"Australian Post",
+                "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
                 "role":"Architect",
                 "from": "2015-09-23",
                 "to": "2015-11-14",
@@ -239,7 +250,23 @@ You may add a new experience
                 ],
                 "tags": ["agile", "javascript"]
             }
-        ]
+        ],
+        "priorToOcto": [
+            {
+                "id": "123456789",
+                "customer":"Atari",
+                "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
+                "role":"Intern",
+                "from": "2008-09-23",
+                "to": "2009-11-14",
+                "description": [
+                    "Improve coffee quality",
+                    "Automate printer low ink alert",
+                    "Develop closest sandwich shop application"
+                ],
+                "tags": ["C#"]
+            }
+        ]}
 
 
 ## Octopod [/people/{id}/octopod/sync]
@@ -257,6 +284,7 @@ You may add a new experience
                 "projectId": 123456,
                 "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
                 "customer":"ING Direct Australia",
+                "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
                 "role":"Developer 1",
                 "from": "Aug 2015",
                 "to": "Nov 2015",
@@ -290,7 +318,12 @@ You may add a new experience
           "trigram": "TGE",
           "firstName": "Thibaut",
           "lastName": "Géry",
+          "pictureUrl": "http://s3.amazonaws.com/askbob/users/photos/312/preview/CINE1232.jpg?1476667003",
           "skills": {
-            "fromAskbob": ["TDD (Test-Driven Development)"]
+            "technical": [],
+            "architectureTechnologies": [],
+            "methodologies": [],
+            "achievements": [],
+            "others": ["TDD (Test-Driven Development)"]
           }
         }

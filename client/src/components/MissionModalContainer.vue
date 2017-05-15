@@ -4,7 +4,8 @@
       <div class="modal-container">
         <div class="mission">
           <div class="mission-logo-time">
-            <img src="../assets/octo_logo_code.jpg">
+            <img v-bind:src="mission.customerLogo"/>
+            <input v-model="mission.customerLogo">
             <input v-model="mission.from">
             <input v-model="mission.to">
           </div>
@@ -63,6 +64,7 @@ export default {
           this.active = false
         })
         .catch(e => {
+          console.log(e)
           this.errors.push(e)
         })
     }

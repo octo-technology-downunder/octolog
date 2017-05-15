@@ -83,6 +83,7 @@ export default {
           this.active = false
         })
         .catch(e => {
+          console.log(e)
           this.errors.push(e)
         })
     }
