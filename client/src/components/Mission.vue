@@ -2,7 +2,7 @@
   <div class="mission">
     <div class="mission-logo-time">
       <img v-bind:src="mission.customerLogo"/>
-      <p>{{ mission.from }} – {{ mission.to }} - {{ mission.pictureUrl }}</p>
+      <p>{{ mission.from }} – {{ mission.to }}</p>
       <div class="actions">
         <button v-on:click="editMission(mission)" class="hidden-print">Edit experience</button>
       </div>    

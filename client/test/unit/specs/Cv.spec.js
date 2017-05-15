@@ -50,6 +50,7 @@ const fakeProfile = {
   'job': 'Architect',
   'education': ['UTC (Technical University of Compiegne)', 'City University of Hong Kong'],
   'skills': {
+    'others': [],
     'technical': ['platform/frameworks: node, iOS, Rails, J2EE, Play', 'Devops: Ansible, Puppet, Capistrano'],
     'architectureTechnologies': ['Architecture studies', 'Audits', 'API Design'],
     'methodologies': ['Agile', 'Lean', 'Lean Startup'],
