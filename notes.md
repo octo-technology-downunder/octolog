@@ -17,3 +17,4 @@ Notes on this project
  * how to enable caching with classic lambda ? Can we access the cache header ?
  * possible to add nested document in root document
  * impossible to create indexes on nested fields
+ * can't change the index after the table was created, we re-create one and migrate the data
