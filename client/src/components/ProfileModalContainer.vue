@@ -35,6 +35,7 @@
             <h2>Others</h2>
             <textarea v-model="otherSkills" placeholder="- ..." rows="5" cols="50"></textarea>
           </div>
+          <button class="modal-default-button" v-on:click="close">Cancel</button>
           <button class="modal-default-button" v-on:click="updateProfile">OK</button>
         </div>
       </div>
@@ -82,6 +83,9 @@ export default {
       this.achievementSkills = this.mapArrayToMultilineList(profile.skills.achievements)
       this.otherSkills = this.mapArrayToMultilineList(profile.skills.others)
       this.trigram = trigram
+    },
+    close () {
+      this.active = false
     },
     updateProfile () {
       this.profile.education = this.mapMultilineListToArray(this.education)
