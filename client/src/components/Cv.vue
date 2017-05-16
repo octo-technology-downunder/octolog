@@ -53,6 +53,7 @@ export default {
       return axios.post(process.env.API_URL + process.env.SYNC_ASKBOB_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
           Object.assign(this.profile, response.data)
+          console.log(this.profile)
         })
         .catch(e => {
           this.errors.push(e)
