@@ -148,8 +148,8 @@ describe("Askbob's integration: ", () => {
           const basic = askbob.extractSkills({}, tge.items[0]);
 
           //then
-          expect(basic.skills.fromAskbob).to.have.lengthOf(1)
-          expect(basic.skills.fromAskbob).to.include("PostgreSQL")
+          expect(basic.skills.others).to.have.lengthOf(1)
+          expect(basic.skills.others).to.include("PostgreSQL")
         })
       })
     })
