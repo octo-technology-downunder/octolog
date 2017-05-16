@@ -64,3 +64,63 @@ describe("CV webservice: ", () => {
     })
   })
 })
+
+
+describe('CV model', () => {
+  describe('default are setup', () => {
+    describe('when no education', () => {
+      // https://www.youtube.com/watch?v=YR5ApYxkU-U
+      it('the education is initialised with an empty list', () => {
+        //given
+        const input = {}
+
+        //when
+        const actual = basics.setupDefault(input)
+
+        //then
+        expect(actual.education).to.deep.equal([])
+      })
+    })
+
+    describe('when no skills', () => {
+      it('the skill are initialise with an empty list', () => {
+        //given
+        const input = {}
+
+        //when
+        const actual = basics.setupDefault(input)
+
+        //then
+        expect(actual.skills).to.deep.equal({
+            technical: [],
+            architectureTechnologies: [],
+            methodologies: [],
+            achievements: [],
+            others: []
+        })
+      })
+    })
+    describe('when there is a few skills', () => {
+      it('the skill are initialise with an empty list and we keep the present one', () => {
+        //given
+        const input = {
+          skills: {
+            others: [ "toto" ]
+          }
+        }
+
+        //when
+        const actual = basics.setupDefault(input)
+
+        //then
+        expect(actual.skills).to.deep.equal({
+            technical: [],
+            architectureTechnologies: [],
+            methodologies: [],
+            achievements: [],
+            others: [ "toto" ]
+        })
+      })
+    })
+  })
+})
