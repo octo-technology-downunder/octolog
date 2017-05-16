@@ -14,8 +14,9 @@
             <textarea v-model="missionDescription" rows="5" cols="100"></textarea>
             <p class="mission-keywords"><input placeholder="tag1, tag2" v-model.lazy="missionTags"></p>
           </div>
-          <button class="modal-default-button" v-on:click="updateMission">OK</button>
         </div>
+        <button class="modal-default-button" v-on:click="close">Cancel</button>
+        <button class="modal-default-button" v-on:click="updateMission">OK</button>
       </div>
     </div>
   </div>
@@ -58,6 +59,9 @@ export default {
       if (mission.description) {
         this.missionDescription = '- ' + mission.description.join('\n- ')
       }
+    },
+    close () {
+      this.active = false
     },
     updateMission () {
       this.mission.tags = this.missionTags.split(',')
