@@ -181,6 +181,7 @@ describe("Octopod's integration: ", () => {
         from: "2016-08-09",
         to: "2016-08-23",
         trigram: 'TGE',
+        isOcto: true,
         mission: "Catering prediction as a service",
         customer: "Qantas",
         role: "Consultant Senior"

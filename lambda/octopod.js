@@ -42,6 +42,7 @@ function createExperienceIfNotexisting(activities, trigram) {
             mission: act.project.name,
             from: act.from,
             to: act.to,
+            isOcto: true,
             customer: act.project.customer.name,
             role: act.title,
             description: []
