@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     goToCv: function () {
-      this.$router.push({path: 'cv', query: {trigram: this.trigram}})
+      this.$router.push({path: 'cv', query: {trigram: this.trigram.toUpperCase()}})
     }
   }
 }
