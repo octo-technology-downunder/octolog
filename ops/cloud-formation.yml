@@ -19,9 +19,13 @@ Resources:
       AttributeDefinitions:
         - AttributeName: trigram
           AttributeType: S
+        - AttributeName: name
+          AttributeType: S
       KeySchema:
         - AttributeName: trigram
           KeyType: HASH
+        - AttributeName: name
+          KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: 3
         WriteCapacityUnits: 3

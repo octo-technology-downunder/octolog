@@ -24,16 +24,17 @@ describe("Askbob's integration: ", () => {
     dynamo.PeopleTable.createP.reset();
   })
   const nig = {
-    trigram: 'NIG'
+    trigram: 'NIG',
+    name: 'default'
   }
   describe("when getting the CV from the DB", () => {
     describe("when the user is found", () => {
       it("return the user", () => {
         //given
-        dynamo.PeopleTable.getP.withArgs("NIG").resolves({attrs: nig})
+        dynamo.PeopleTable.getP.withArgs("NIG", 'default').resolves({attrs: nig})
 
         //when
-        return askbob.retrieveInfoFromDB("NIG").then((data) => {
+        return askbob.retrieveInfoFromDB("NIG", 'default').then((data) => {
 
           //then
           expect(data).to.deep.equal(nig)
@@ -42,15 +43,15 @@ describe("Askbob's integration: ", () => {
     })
 
     describe("when the user is not found", () => {
-      it("return the empty object", () => {
+      it("return the cv with the name object", () => {
         //given
-        dynamo.PeopleTable.getP.withArgs("NIG").resolves(null)
+        dynamo.PeopleTable.getP.withArgs("NIG", 'default').resolves(null)
 
         //when
-        return askbob.retrieveInfoFromDB("NIG").then((data) => {
+        return askbob.retrieveInfoFromDB("NIG", 'default').then((data) => {
 
           //then
-          expect(data).to.deep.equal({})
+          expect(data).to.deep.equal({ name: 'default' })
         })
       })
     })

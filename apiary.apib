@@ -5,12 +5,13 @@ HOST: http://private-7723ff-octolog.apiary-mock.com/
 
 OCTOLog is a simple API to easily generate beautiful CV and bio.
 
-## User details [/people/{trigram}/basics]
+## User details [/people/{trigram}/cv/{name}]
 
 ### Update user details [PUT]
 
 + Parameters
     + trigram: `JBI` (String, required) - ID of the person
+    + name: `default` (String, required) - name of the CV
 
 + Request (application/json)
 
@@ -35,6 +36,7 @@ OCTOLog is a simple API to easily generate beautiful CV and bio.
             "firstName": "Billy",
             "lastName": "Joe",
             "trigram": "JBI",
+            "name": "default",
             "pictureUrl": "https://pbs.twimg.com/profile_images/456738286732455936/uJGJyDbl.jpeg",
             "job": "Architect",
             "education":["UTC (Technical University of Compiegne)", "City University of Hong Kong"],
@@ -52,6 +54,7 @@ OCTOLog is a simple API to easily generate beautiful CV and bio.
 
 + Parameters
     + trigram: `JBI` (String, required) - ID of the person
+    + name: `default` (String, required) - name of the CV
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -60,6 +63,7 @@ OCTOLog is a simple API to easily generate beautiful CV and bio.
             "firstName": "Billy",
             "lastName": "Joe",
             "trigram": "JBI",
+            "name": "default",
             "pictureUrl": "https://pbs.twimg.com/profile_images/456738286732455936/uJGJyDbl.jpeg",
             "job": "Architect",
             "education":["UTC (Technical University of Compiegne)", "City University of Hong Kong"],
@@ -294,10 +298,11 @@ You may add a new experience
             }
         ]
 
-## ASKBOB [/people/{id}/askbob/sync]
+## ASKBOB [/people/{id}/cv/{name}/askbob/sync]
 
 + Parameters
     + id: `JBI` (String, required) - ID of the person
+    + name: `default` (String, required) - name of the CV
 
 ### Sync [POST]
 
@@ -308,6 +313,7 @@ You may add a new experience
           "trigram": "TGE",
           "firstName": "Thibaut",
           "lastName": "Géry",
+          "name": "default",
           "pictureUrl": "http://s3.amazonaws.com/askbob/users/photos/312/preview/CINE1232.jpg?1476667003",
           "skills": {
             "technical": [],

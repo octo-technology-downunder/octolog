@@ -10,8 +10,9 @@ function askbobUrl() {
 function sync(event, context, callback) {
   const apiKey = process.env.API_KEY
   const trigram = event.path.trigram
+  const cvName = event.path.name
 
-retrieveInfoFromDB(trigram).then(basicInDb => {
+retrieveInfoFromDB(trigram, cvName).then(basicInDb => {
     let newBasics = basicInDb
     return getInfo(apiKey, trigram)
       .then(jsonResponse => {
@@ -63,9 +64,10 @@ function extractPicture(basics, jsonReponse) {
   return Object.assign( { pictureUrl }, basics)
 }
 
-function retrieveInfoFromDB(trigram) {
-  return PeopleTable.getP(trigram).then(info => {
-    return info == null ? {} : info.attrs
+function retrieveInfoFromDB(trigram, name) {
+  return PeopleTable.getP(trigram, name).then(info => {
+    const defaultCV = { name }
+    return info == null ? defaultCV : info.attrs
   });
 }
 

@@ -29,39 +29,42 @@ functions:
     handler: lambda/basics.update
     events:
       - http:
-          path: people/{trigram}/basics
+          path: people/{trigram}/cv/{name}
           method: put
           cors: true
           integration: lambda
           request:
             parameters:
               paths:
-                id: true
+                trigram: true
+                name: true
   getBasics:
     handler: lambda/basics.get
     events:
       - http:
-          path: people/{trigram}/basics
+          path: people/{trigram}/cv/{name}
           method: get
           cors: true
           integration: lambda
           request:
             parameters:
               paths:
-                id: true
+                trigram: true
+                name: true
 
   deleteBasics:
     handler: lambda/basics.delete
     events:
       - http:
-          path: people/{trigram}/basics
+          path: people/{trigram}/cv/{name}
           method: delete
           cors: true
           integration: lambda
           request:
             parameters:
               paths:
-                id: true
+                trigram: true
+                name: true
 
   getExperience:
     handler: lambda/experiences.get
@@ -74,7 +77,7 @@ functions:
           request:
             parameters:
               paths:
-                id: true
+                trigram: true
 
   updateExperience:
     handler: lambda/experiences.update
@@ -87,7 +90,7 @@ functions:
           request:
             parameters:
               paths:
-                id: true
+                trigram: true
 
   createExperience:
     handler: lambda/experiences.create
@@ -100,7 +103,7 @@ functions:
           request:
             parameters:
               paths:
-                id: true
+                trigram: true
 
   getExperiences:
     handler: lambda/experiences.getAll
@@ -113,7 +116,7 @@ functions:
           request:
             parameters:
               paths:
-                id: true
+                trigram: true
 
   deleteExperience:
     handler: lambda/experiences.delete
@@ -126,7 +129,7 @@ functions:
           request:
             parameters:
               paths:
-                id: true
+                trigram: true
 
   syncOctoExperiences:
     handler: lambda/octopod.sync
@@ -149,14 +152,15 @@ functions:
       API_KEY: ${env:ASKBOB_API_KEY}
     events:
       - http:
-          path: people/{trigram}/askbob/sync
+          path: people/{trigram}/cv/{name}/askbob/sync
           method: post
           cors: true
           integration: lambda
           request:
             parameters:
               paths:
-                id: true
+                trigram: true
+                name: true
 
   backupDb:
     handler: lambda/tech/backup.backup

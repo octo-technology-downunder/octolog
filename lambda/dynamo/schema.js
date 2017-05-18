@@ -11,9 +11,11 @@ const basicTableName = retrieveTableName("BASICS_TABLE")
 
 const PeopleTable = promisifySchema(dynamo.define(basicTableName, {
   hashKey : 'trigram',
+  rangeKey : 'name',
   schema : {
     trigram: Joi.string().regex(/^[A-Z]{3}$/),
-    firstName: Joi.string(),
+    name: Joi.string(),
+    firstName: Joi.string(),e: Joi.string(),
     lastName: Joi.string(),
     pictureUrl: Joi.string().uri(),
     job: Joi.string(),
