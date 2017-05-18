@@ -40,6 +40,7 @@ const ExperiencesTable = promisifySchema(dynamo.define('Experience', {
     from: Joi.string(),
     to: Joi.string(),
     description: dynamo.types.stringSet(),
+    customerLogo: Joi.string().uri(),
     tags: dynamo.types.stringSet()
   }
 }));
