@@ -6,7 +6,7 @@ module.exports = {
       .url(devServer)
       .waitForElementVisible('div', 5000)
       .assert.containsText('h2', 'Enter your trigram')
-      .setValue('input[class=trigram]', 'TRI')
+      .setValue('input[class=trigram]', 'tri')
       .click('button[class="validate"]')
       .waitForElementVisible('div', 5000)
       .assert.urlContains("/cv?trigram=TRI")
