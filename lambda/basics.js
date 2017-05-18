@@ -36,8 +36,7 @@ module.exports.delete = (event, context, callback) => {
     .catch(callback)
 
 };
-
-module.exports.setupDefault = function setupDefault(basics) {
+function setupDefault(basics) {
   const defaultValue = {
     skills: {
       technical: [],
@@ -51,3 +50,5 @@ module.exports.setupDefault = function setupDefault(basics) {
 
   return _.merge(defaultValue, basics);
 }
+
+module.exports.setupDefault = setupDefault
