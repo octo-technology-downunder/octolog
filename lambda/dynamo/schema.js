@@ -19,7 +19,7 @@ const PeopleTable = promisifySchema(dynamo.define('People', {
     education: dynamo.types.stringSet(),
     skills: {
       technical: dynamo.types.stringSet(),
-      fromAskbob: dynamo.types.stringSet(),
+      others: dynamo.types.stringSet(),
       architectureTechnologies: dynamo.types.stringSet(),
       methodologies: dynamo.types.stringSet(),
       achievements: dynamo.types.stringSet()
