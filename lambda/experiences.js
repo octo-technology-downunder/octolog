@@ -35,7 +35,7 @@ module.exports.getAll = (event, context, callback) => {
     .query(trigram)
     .exec((err, data) => {
       if(err) return callback(err)
-      callback(null, data.Items)
+      callback(null, separateOctoAndNoneOctoExp(data.Items))
     });
 };
 
@@ -51,5 +51,20 @@ module.exports.delete = (event, context, callback) => {
     .then(trigramAndId => ExperiencesTable.destroyP(...trigramAndId))
     .then(data => callback(null, { id, trigram }))
     .catch(callback)
-
 };
+
+
+function separateOctoAndNoneOctoExp(experiences) {
+  function separateIfIsOcto(isOcto) {
+    return experiences.filter(exp => exp.isOcto === isOcto).map(exp => {
+      delete exp.isOcto
+      return exp
+    })
+  }
+  return {
+    octo: separateIfIsOcto(true),
+    priorToOcto: separateIfIsOcto(false)
+  }
+}
+
+module.exports.separateOctoAndNoneOctoExp = separateOctoAndNoneOctoExp

@@ -2,28 +2,33 @@
   <div class="modal-mask" v-if="active">
     <div class="modal-wrapper">
       <div class="modal-container">
+        <div class="person-edit">
+          <h1>profile</h1>
+          <input v-model="profile.job" />
+          <input v-model="profile.pictureUrl" size="120" />          
+        </div>
         <div class="education">
           <h1>education</h1>
-          <textarea v-model="education" placeholder="- ...&#10;- ..." rows="5" cols="120"></textarea>
+          <textarea v-model="education" placeholder="- ..." rows="5" cols="120"></textarea>
         </div>
         <div class="skills">
           <h1>skills</h1>
           <div class="bloc bloc-skills">
             <h2>Technical skills</h2>
-            <textarea v-model="technicalSkills" placeholder="- ...&#10;- ..." rows="5" cols="50"></textarea>
+            <textarea v-model="technicalSkills" placeholder="- ..." rows="5" cols="50"></textarea>
           </div>
           <div class="bloc bloc-skills">
             <h2>Architecture &amp; Technologies</h2>
-            <textarea v-model="architectureTechnologySkills" placeholder="- ...&#10;- ..." rows="5" cols="50"></textarea>
+            <textarea v-model="architectureTechnologySkills" placeholder="- ..." rows="5" cols="50"></textarea>
           </div>
           <div class="divider"></div>
           <div class="bloc bloc-skills">
             <h2>Methodologies</h2>
-            <textarea v-model="methodologySkills" placeholder="- ...&#10;- ..." rows="5" cols="50"></textarea>
+            <textarea v-model="methodologySkills" placeholder="- ..." rows="5" cols="50"></textarea>
           </div>
           <div class="bloc bloc-skills">
             <h2>Publications / Responsibilities / Certifications</h2>
-             <textarea v-model="achievementSkills" placeholder="- ...&#10;- ..." rows="5" cols="50"></textarea>
+             <textarea v-model="achievementSkills" placeholder="- ..." rows="5" cols="50"></textarea>
           </div>
           <button class="modal-default-button" v-on:click="updateProfile">OK</button>
         </div>
@@ -83,6 +88,7 @@ export default {
           this.active = false
         })
         .catch(e => {
+          console.log(e)
           this.errors.push(e)
         })
     }

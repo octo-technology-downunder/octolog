@@ -1,7 +1,7 @@
 <template>
   <div class="mission">
     <div class="mission-logo-time">
-      <img src="../assets/octo_logo_code.jpg">
+      <img v-bind:src="mission.customerLogo"/>
       <p>{{ mission.from }} – {{ mission.to }}</p>
       <div class="actions">
         <button v-on:click="editMission(mission)" class="hidden-print">Edit experience</button>
@@ -24,7 +24,6 @@ export default {
   props: ['mission', 'trigram'],
   methods: {
     editMission: function (mission) {
-      console.log('editing mission ' + mission.customer)
       MissionModalHub.$emit('open-modal')
       MissionModalHub.$emit('set-modal-data', this.mission, this.trigram)
     }

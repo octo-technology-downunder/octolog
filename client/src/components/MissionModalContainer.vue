@@ -4,14 +4,15 @@
       <div class="modal-container">
         <div class="mission">
           <div class="mission-logo-time">
-            <img src="../assets/octo_logo_code.jpg">
+            <img v-bind:src="mission.customerLogo"/>
+            <input v-model="mission.customerLogo">
             <input v-model="mission.from">
             <input v-model="mission.to">
           </div>
           <div class="mission-desc">
             <h2><input v-model="mission.role"> for <input v-model="mission.customer"></h2>
-            <textarea v-model="missionDescription" placeholder="- ...\n- ..." rows="5" cols="100"></textarea>
-            <p class="mission-keywords"><input v-model.lazy="missionTags"></p>
+            <textarea v-model="missionDescription" rows="5" cols="100"></textarea>
+            <p class="mission-keywords"><input placeholder="tag1, tag2" v-model.lazy="missionTags"></p>
           </div>
           <button class="modal-default-button" v-on:click="updateMission">OK</button>
         </div>
@@ -31,7 +32,7 @@ export default {
       trigram: '',
       mission: {},
       missionTags: '',
-      missionDescription: ''
+      missionDescription: '-... \n-...'
     }
   },
   mounted () {
@@ -51,8 +52,12 @@ export default {
     set (mission, trigram) {
       this.trigram = trigram
       this.mission = mission
-      this.missionTags = mission.tags ? mission.tags.join(',') : ''
-      this.missionDescription = '- ' + (mission.description ? mission.description.join('\n- ') : '...')
+      if (mission.tags) {
+        this.missionTags = mission.tags.join(',')
+      }
+      if (mission.description) {
+        this.missionDescription = '- ' + mission.description.join('\n- ')
+      }
     },
     updateMission () {
       this.mission.tags = this.missionTags.split(',')
@@ -63,6 +68,7 @@ export default {
           this.active = false
         })
         .catch(e => {
+          console.log(e)
           this.errors.push(e)
         })
     }

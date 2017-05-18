@@ -64,3 +64,79 @@ describe("experiences webservice: ", () => {
     })
   })
 })
+
+
+describe('experience web model', () => {
+  describe('when there is no experiences', () => {
+    it('initialise two empty list', () => {
+      //given
+      const input = []
+
+      //when
+      const actual = experiences.separateOctoAndNoneOctoExp(input)
+
+      //then
+      const expected = {
+        octo: [],
+        priorToOcto: []
+      }
+      expect(actual).to.deep.equal(expected)
+    })
+  })
+
+  describe('when there is octo experiences', () => {
+    it('fill the octo list', () => {
+      //given
+      const input = [{
+        id: 1,
+        isOcto: true
+      }]
+
+      //when
+      const actual = experiences.separateOctoAndNoneOctoExp(input)
+
+      //then
+      const expected = {
+        octo: [
+          {
+            id: 1
+          }
+        ],
+        priorToOcto: []
+      }
+      expect(actual).to.deep.equal(expected)
+    })
+  })
+
+  describe('when there is both experiences type', () => {
+    it('fill the octo list', () => {
+      //given
+      const input = [{
+        id: 1,
+        isOcto: true
+      },
+      {
+        id: 2,
+        isOcto: false
+      }]
+
+      //when
+      const actual = experiences.separateOctoAndNoneOctoExp(input)
+
+      //then
+      const expected = {
+        octo: [
+          {
+            id: 1
+          }
+        ],
+        priorToOcto: [
+          {
+            id: 2
+          }
+        ]
+      }
+      expect(actual).to.deep.equal(expected)
+    })
+  })
+})

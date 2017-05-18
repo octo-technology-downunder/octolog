@@ -20,7 +20,7 @@ const PeopleTable = promisifySchema(dynamo.define(basicTableName, {
     education: dynamo.types.stringSet(),
     skills: {
       technical: dynamo.types.stringSet(),
-      fromAskbob: dynamo.types.stringSet(),
+      others: dynamo.types.stringSet(),
       architectureTechnologies: dynamo.types.stringSet(),
       methodologies: dynamo.types.stringSet(),
       achievements: dynamo.types.stringSet()
@@ -43,6 +43,8 @@ const ExperiencesTable = promisifySchema(dynamo.define(experiencesTableName, {
     from: Joi.string(),
     to: Joi.string(),
     description: dynamo.types.stringSet(),
+    customerLogo: Joi.string().uri(),
+    isOcto: Joi.boolean().default(false),
     tags: dynamo.types.stringSet()
   }
 }));

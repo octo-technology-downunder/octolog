@@ -53,7 +53,7 @@ function extractSkills(basics, jsonReponse) {
     .filter(skill => skill.level > 2)
     .map(skill => skill.name)
   basics.skills = basics.skills || {}
-  basics.skills.fromAskbob = skills
+  basics.skills.others = skills
   return basics
 }
 

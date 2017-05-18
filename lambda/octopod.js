@@ -26,6 +26,8 @@ function sync(event, context, callback) {
 function prepareExperience(exp) {
   if(exp.tags == null) exp.tags = []
   if(exp.description == null) exp.description = []
+  if(exp.customerLogo == null) exp.customerLogo = null
+  delete exp.isOcto
   return exp
 }
 
@@ -42,6 +44,7 @@ function createExperienceIfNotexisting(activities, trigram) {
             mission: act.project.name,
             from: act.from,
             to: act.to,
+            isOcto: true,
             customer: act.project.customer.name,
             role: act.title,
             description: []
