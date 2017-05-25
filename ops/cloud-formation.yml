@@ -39,15 +39,13 @@ Resources:
           AttributeType: S
         - AttributeName: trigram
           AttributeType: S
+        - AttributeName: octopodActivityId
+          AttributeType: N
       KeySchema:
         - AttributeName: id
           KeyType: HASH
         - AttributeName: trigram
           KeyType: RANGE
-        - AttributeName: octopodActivityId
-          KeyType: N
-        - AttributeName: octopodProjectId
-          KeyType: N
       GlobalSecondaryIndexes:
         - IndexName: "octopodActivityId"
           KeySchema:
@@ -56,12 +54,14 @@ Resources:
           Projection:
             ProjectionType: "ALL"
           ProvisionedThroughput:
-            ReadCapacityUnits: "2"
-            WriteCapacityUnits: "2"
+            ReadCapacityUnits: 2
+            WriteCapacityUnits: 2
+
 
       ProvisionedThroughput:
         ReadCapacityUnits: 3
         WriteCapacityUnits: 3
+
 
   cdn:
     Type: AWS::CloudFront::Distribution
