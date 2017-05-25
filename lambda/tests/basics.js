@@ -10,6 +10,7 @@ const tge = {
   "firstName": "Thibaut",
   "lastName": "Gery",
   "trigram": "TGE",
+  "name": "default",
   "pictureUrl": "http://s3.amazonaws.com/askbob/users/photos/252/preview/221591_65_o.jpg",
   "job": "Consultant confirmé"
 }
@@ -32,13 +33,16 @@ describe("CV webservice: ", () => {
     describe("when there is no CV in the DB", () => {
       it("return an error", (done) => {
         //given
-        dynamo.PeopleTable.getP.withArgs("TGE").resolves(null)
+        dynamo.PeopleTable.getP.withArgs("TGE", 'default').resolves(null)
         const input = {
-          path: {trigram: 'TGE'}
+          path: {
+            trigram: 'TGE',
+            name: 'default'
+          }
         }
         //when
         basics.delete(input, {}, (err, data) => {
-          expect(err.message).to.equal('The person TGE was not found')
+          expect(err.message).to.equal('The CV default of TGE was not found')
           expect(data).to.not.exist
           done()
         })
@@ -48,16 +52,19 @@ describe("CV webservice: ", () => {
     describe("when there is a CV in the DB", () => {
       it("remove the CV", (done) => {
         //given
-        dynamo.PeopleTable.getP.withArgs("TGE").resolves(tge)
-        dynamo.PeopleTable.destroyP.withArgs("TGE").resolves({})
+        dynamo.PeopleTable.getP.withArgs("TGE", 'default').resolves(tge)
+        dynamo.PeopleTable.destroyP.withArgs("TGE", 'default').resolves({})
 
         const input = {
-          path: {trigram: 'TGE'}
+          path: {
+            trigram: 'TGE',
+            name: 'default'
+          }
         }
         //when
         basics.delete(input, {}, (err, data) => {
           expect(err).to.not.exist
-          expect(dynamo.PeopleTable.destroyP.calledWithExactly("TGE")).to.be.true;
+          expect(dynamo.PeopleTable.destroyP.calledWithExactly("TGE", 'default')).to.be.true;
           done()
         })
       })

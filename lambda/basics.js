@@ -6,7 +6,9 @@ const _ = require('lodash')
 module.exports.update = (event, context, callback) => {
   const body = event.body
   const trigram = event.path.trigram
+  const name = event.path.name
   body.trigram = trigram
+  body.name = name
   PeopleTable.createP(body)
     .then(data => {
       callback(null, setupDefault(data))
@@ -17,21 +19,23 @@ module.exports.update = (event, context, callback) => {
 
 module.exports.get = (event, context, callback) => {
   const trigram = event.path.trigram
-  PeopleTable.get(trigram, (err, data) => {
+  const name = event.path.name
+  PeopleTable.get(trigram, name, (err, data) => {
     if(err) return callback(err)
-    if(data == null) return callback(new Error(`The person ${trigram} was not found`))
+    if(data == null) return callback(new Error(`The CV ${name} of ${trigram} was not found`))
     callback(null, setupDefault(data))
   })
 };
 
 module.exports.delete = (event, context, callback) => {
   const trigram = event.path.trigram
-  PeopleTable.getP(trigram, { AttributesToGet : ['trigram'] })
+  const name = event.path.name
+  PeopleTable.getP(trigram, name, { AttributesToGet : ['trigram'] })
     .then((person) => {
-      if(person == null) throw new Error(`The person ${trigram} was not found`)
+      if(person == null) throw new Error(`The CV ${name} of ${trigram} was not found`)
       return trigram;
     })
-    .then(PeopleTable.destroyP)
+    .then(tri => PeopleTable.destroyP(trigram, name))
     .then(data => callback(null, setupDefault(data)))
     .catch(callback)
 

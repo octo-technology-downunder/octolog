@@ -19,9 +19,13 @@ Resources:
       AttributeDefinitions:
         - AttributeName: trigram
           AttributeType: S
+        - AttributeName: name
+          AttributeType: S
       KeySchema:
         - AttributeName: trigram
           KeyType: HASH
+        - AttributeName: name
+          KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: 3
         WriteCapacityUnits: 3
@@ -40,6 +44,21 @@ Resources:
           KeyType: HASH
         - AttributeName: trigram
           KeyType: RANGE
+        - AttributeName: octopodActivityId
+          KeyType: N
+        - AttributeName: octopodProjectId
+          KeyType: N
+      GlobalSecondaryIndexes:
+        - IndexName: "octopodActivityId"
+          KeySchema:
+            - AttributeName: "octopodActivityId"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "ALL"
+          ProvisionedThroughput:
+            ReadCapacityUnits: "2"
+            WriteCapacityUnits: "2"
+
       ProvisionedThroughput:
         ReadCapacityUnits: 3
         WriteCapacityUnits: 3

@@ -11,12 +11,13 @@ function sync(event, context, callback) {
   const clientId = process.env.CLIENT_ID
   const clientSecret = process.env.CLIENT_SECRET
   const trigram = event.path.trigram
+  const cvName = event.path.name
 
   getAuth(clientId, clientSecret)
     .then(accessToken => {
       return getOctoId(trigram, accessToken)
         .then(personId => getActivitiesFromOctopod(accessToken, personId))
-        .then(activities => createExperienceIfNotexisting(activities, trigram))
+        .then(activities => createExperienceIfNotexisting(activities, trigram, cvName))
         .then(activities => callback(null, activities.map(prepareExperience)))
         .catch(callback)
     })
@@ -31,18 +32,22 @@ function prepareExperience(exp) {
   return exp
 }
 
-function createExperienceIfNotexisting(activities, trigram) {
+function createExperienceIfNotexisting(activities, trigram, cvName) {
   return Promise.all(activities.map(act => {
-    act.id = act.id + ""
-    return ExperiencesTable.getP(trigram, act.id)
+    return ExperiencesTable.getExperienceByOctopodActivityIdP(act.id)
+      .then(experiences => {
+        experiences = experiences.filter(exp => exp.cvName === cvName)
+        return experiences.length === 0 ? null : experiences[0]
+      })
       .then((actInDb) => {
         if(actInDb == null) {
           const exp = {
-            id: act.id,
+            octopodActivityId: act.id,
             trigram,
-            projectId: act.project.id,
+            octopodProjectId: act.project.id,
             mission: act.project.name,
             from: act.from,
+            cvName,
             to: act.to,
             isOcto: true,
             customer: act.project.customer.name,
@@ -50,9 +55,10 @@ function createExperienceIfNotexisting(activities, trigram) {
             description: []
           }
           return ExperiencesTable.createP(exp)
+                    .then(i => i.attrs)
         }
         return actInDb
-      }).then(i => i.attrs)
+      })
   }))
 }
 

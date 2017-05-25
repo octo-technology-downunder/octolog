@@ -3,7 +3,7 @@ const nock = require('nock')
 const fs = require('fs')
 const proxyquire = require('proxyquire')
 const sinon = require('sinon')
-
+const _ = require('lodash')
 const dynamo = { ExperiencesTable: {} , PeopleTable: {} }
 const octopod = proxyquire('../octopod', { './dynamo/schema': dynamo });
 
@@ -166,19 +166,21 @@ describe("Octopod's integration: ", () => {
   describe("when inserting the experience in the DB", () => {
 
     beforeEach(() => {
-      dynamo.ExperiencesTable.getP = sinon.stub()
+      dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP = sinon.stub()
       dynamo.ExperiencesTable.createP = sinon.stub()
     })
 
     afterEach(() => {
-      dynamo.ExperiencesTable.getP.reset();
+      dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.reset();
       dynamo.ExperiencesTable.createP.reset();
     })
 
     const experience = {
-        id: "3000024114",
-        projectId: 2146904557,
+        id: "345",
+        octopodProjectId: 2146904557,
+        octopodActivityId: 3000024114,
         from: "2016-08-09",
+        cvName: "default",
         to: "2016-08-23",
         trigram: 'TGE',
         isOcto: true,
@@ -212,12 +214,13 @@ describe("Octopod's integration: ", () => {
     describe("there is no experience in the DB", () => {
       it("insert the activity as a experience", () => {
         //given
-
-        dynamo.ExperiencesTable.getP.withArgs('TGE', "3000024114").resolves(null)
+        const experienceFromOtherCV = _.cloneDeep(experience)
+        experienceFromOtherCV.cvName = "other"
+        dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.withArgs(3000024114).resolves([experienceFromOtherCV])
         dynamo.ExperiencesTable.createP.resolves({attrs: experience})
 
         //when
-        return octopod.createExperienceIfNotexisting([activity], 'TGE')
+        return octopod.createExperienceIfNotexisting([activity], 'TGE', 'default')
           .then(experiences => {
 
             //then
@@ -225,6 +228,7 @@ describe("Octopod's integration: ", () => {
             const expectedExperience = experience
             expectedExperience.description = []
             expect(actualExperience).to.deep.equal(expectedExperience)
+            delete experience.id
             expect(dynamo.ExperiencesTable.createP.args[0][0]).to.deep.equal(experience)
             //expect(dynamo.ExperiencesTable.createP.calledWithExactly(experience)).to.be.true;
           })
@@ -234,11 +238,11 @@ describe("Octopod's integration: ", () => {
     describe("there is already the experience in the DB", () => {
       it("does't insert the activity as a experience", () => {
 
-        dynamo.ExperiencesTable.getP.withArgs('TGE', "3000024114").resolves({attrs: experience})
+        dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.withArgs(3000024114).resolves([experience])
         dynamo.ExperiencesTable.createP.resolves({attrs: experience})
 
         //when
-        return octopod.createExperienceIfNotexisting([activity], 'TGE')
+        return octopod.createExperienceIfNotexisting([activity], 'TGE', 'default')
           .then(experiences => {
 
             //then

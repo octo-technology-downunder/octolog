@@ -23,7 +23,9 @@ module.exports.get = (event, context, callback) => {
 
 module.exports.create = (event, context, callback) => {
   const trigram = event.path.trigram
+  const cvName = event.path.name
   const body = event.body
+  body.cvName = cvName
   body.trigram = trigram
   ExperiencesTable.create(body, callback)
 };
@@ -31,11 +33,13 @@ module.exports.create = (event, context, callback) => {
 
 module.exports.getAll = (event, context, callback) => {
   const trigram = event.path.trigram
+  const cvName = event.path.cvName
   ExperiencesTable
     .query(trigram)
     .exec((err, data) => {
       if(err) return callback(err)
-      callback(null, separateOctoAndNoneOctoExp(data.Items))
+      const filteredExp = data.Items.filter(z => z.cvName === cvName)
+      callback(null, separateOctoAndNoneOctoExp(filteredExp))
     });
 };
 
