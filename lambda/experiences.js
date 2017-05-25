@@ -33,7 +33,7 @@ module.exports.create = (event, context, callback) => {
 
 module.exports.getAll = (event, context, callback) => {
   const trigram = event.path.trigram
-  const cvName = event.path.cvName
+  const cvName = event.path.name
   ExperiencesTable
     .query(trigram)
     .exec((err, data) => {
