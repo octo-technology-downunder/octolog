@@ -33,4 +33,4 @@ deployment:
       - npm install --production
       - sls deploy
       - npm run front:deploy
-      - cf-invalidate --wait -- E3OGYID4JFVX93 index.html # invalidating the index.html in cloudfront
+      - cf-invalidate --wait -- E3RGZU9LM62GZ2 index.html # invalidating the index.html in cloudfront
