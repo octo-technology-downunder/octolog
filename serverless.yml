@@ -78,6 +78,7 @@ functions:
             parameters:
               paths:
                 trigram: true
+                id: true
 
   updateExperience:
     handler: lambda/experiences.update
@@ -91,12 +92,13 @@ functions:
             parameters:
               paths:
                 trigram: true
+                name: true
 
   createExperience:
     handler: lambda/experiences.create
     events:
       - http:
-          path: people/{trigram}/experiences
+          path: people/{trigram}/cv/{name}/experiences
           method: post
           cors: true
           integration: lambda
@@ -104,12 +106,13 @@ functions:
             parameters:
               paths:
                 trigram: true
+                name: true
 
   getExperiences:
     handler: lambda/experiences.getAll
     events:
       - http:
-          path: people/{trigram}/experiences
+          path: people/{trigram}/cv/{name}/experiences
           method: get
           cors: true
           integration: lambda
@@ -117,6 +120,7 @@ functions:
             parameters:
               paths:
                 trigram: true
+                name: true
 
   deleteExperience:
     handler: lambda/experiences.delete
@@ -130,6 +134,7 @@ functions:
             parameters:
               paths:
                 trigram: true
+                id: true
 
   syncOctoExperiences:
     handler: lambda/octopod.sync
@@ -138,7 +143,7 @@ functions:
       CLIENT_SECRET: ${env:OCTOPOD_CLIENT_SECRET}
     events:
       - http:
-          path: people/{trigram}/octopod/sync
+          path: people/{trigram}/cv/{name}/octopod/sync
           method: post
           cors: true
           integration: lambda
@@ -146,6 +151,7 @@ functions:
             parameters:
               paths:
                 id: true
+                name: true
   syncBasics:
     handler: lambda/askbob.sync
     environment:

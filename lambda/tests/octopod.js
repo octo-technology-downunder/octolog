@@ -166,18 +166,19 @@ describe("Octopod's integration: ", () => {
   describe("when inserting the experience in the DB", () => {
 
     beforeEach(() => {
-      dynamo.ExperiencesTable.getP = sinon.stub()
+      dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP = sinon.stub()
       dynamo.ExperiencesTable.createP = sinon.stub()
     })
 
     afterEach(() => {
-      dynamo.ExperiencesTable.getP.reset();
+      dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.reset();
       dynamo.ExperiencesTable.createP.reset();
     })
 
     const experience = {
-        id: "3000024114",
-        projectId: 2146904557,
+        id: "345",
+        octopodProjectId: 2146904557,
+        octopodActivityId: 3000024114,
         from: "2016-08-09",
         to: "2016-08-23",
         trigram: 'TGE',
@@ -213,7 +214,7 @@ describe("Octopod's integration: ", () => {
       it("insert the activity as a experience", () => {
         //given
 
-        dynamo.ExperiencesTable.getP.withArgs('TGE', "3000024114").resolves(null)
+        dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.withArgs(3000024114).resolves(null)
         dynamo.ExperiencesTable.createP.resolves({attrs: experience})
 
         //when
@@ -225,6 +226,7 @@ describe("Octopod's integration: ", () => {
             const expectedExperience = experience
             expectedExperience.description = []
             expect(actualExperience).to.deep.equal(expectedExperience)
+            delete experience.id
             expect(dynamo.ExperiencesTable.createP.args[0][0]).to.deep.equal(experience)
             //expect(dynamo.ExperiencesTable.createP.calledWithExactly(experience)).to.be.true;
           })
@@ -234,7 +236,7 @@ describe("Octopod's integration: ", () => {
     describe("there is already the experience in the DB", () => {
       it("does't insert the activity as a experience", () => {
 
-        dynamo.ExperiencesTable.getP.withArgs('TGE', "3000024114").resolves({attrs: experience})
+        dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.withArgs(3000024114).resolves(experience)
         dynamo.ExperiencesTable.createP.resolves({attrs: experience})
 
         //when

@@ -35,10 +35,19 @@ const experiencesTableName = retrieveTableName("EXPERIENCES_TABLE")
 const ExperiencesTable = promisifySchema(dynamo.define(experiencesTableName, {
   hashKey : 'trigram',
   rangeKey : 'id',
+  indexes : [
+    {
+      name : 'octopodActivityId',
+      hashKey : 'octopodActivityId',
+      type : 'global'
+    }
+  ],
   schema : {
     id: Joi.string().default(() => uuidV4(), 'uuidV4'),
     trigram: Joi.string().regex(/^[A-Z]{3}$/),
-    projectId: Joi.number(),
+    cvName: Joi.string(),
+    octopodActivityId: Joi.number(),
+    octopodProjectId: Joi.number(),
     mission: Joi.string(),
     customer: Joi.string(),
     role: Joi.string(),
@@ -62,6 +71,18 @@ function promisifySchema(schema) {
 function retrieveTableName(envVarName) {
   const defaultName = "octolog-local-" + envVarName + 's'
   return (process.env[envVarName] || defaultName).slice(0, -1)
+}
+
+ExperiencesTable.getExperienceByOctopodActivityIdP = function(octopodActivityId) {
+  return new Promise(function(resolve, reject) {
+    ExperiencesTable.query(octopodActivityId)
+                        .usingIndex('octopodActivityId')
+                        .exec((err, data) => {
+                          if(err) return reject(err)
+                          const exp = data.Count === 0 ? null : data.Items[0].attrs
+                          resolve(exp)
+                        })
+  });
 }
 
 module.exports = {

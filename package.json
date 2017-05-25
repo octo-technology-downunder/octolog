@@ -90,11 +90,13 @@
     "proxyquire": "1.7.11"
   },
   "scripts": {
+    "createTable": "BASICS_TABLE=octolog-dev-basics EXPERIENCES_TABLE=octolog-dev-experiences DYNAMO_URL=http://localhost:8000 node ./lambda/dynamo/createTable",
     "runDynamo": "java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb",
     "dlDynamo": "curl https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.tar.gz | tar -x DynamoDBLocal.jar DynamoDBLocal_lib",
-    "preback:dev": "BASICS_TABLE=octolog-dev-basics EXPERIENCES_TABLE=octolog-dev-experiences DYNAMO_URL=http://localhost:8000 node ./lambda/dynamo/createTable",
+    "preback:dev": "npm run createTable",
     "back:dev": "DYNAMO_URL=http://localhost:8000 sls offline start",
-    "back:unit": "./node_modules/.bin/istanbul cover --print details _mocha -- -R spec lambda/tests/** --recursive",
+    "back:unit": "BASICS_TABLE=octolog-dev-basics EXPERIENCES_TABLE=octolog-dev-experiences DYNAMO_URL=http://localhost:8000 ./node_modules/.bin/istanbul cover --print details _mocha -- -R spec lambda/tests/** --recursive",
+    "preback:unit": "npm run createTable",
     "back:e2e": "OCTOPOD_URL=http://private-08aab-octopodmock.apiary-mock.com ./node_modules/.bin/dredd -l verbose",
     "back:test": "npm run back:unit; RET=$?; npm run back:e2e && exit ${RET}",
     "front:dev": "node client/build/dev-server.js",

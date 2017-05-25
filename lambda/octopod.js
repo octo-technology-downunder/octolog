@@ -33,14 +33,13 @@ function prepareExperience(exp) {
 
 function createExperienceIfNotexisting(activities, trigram) {
   return Promise.all(activities.map(act => {
-    act.id = act.id + ""
-    return ExperiencesTable.getP(trigram, act.id)
+    return ExperiencesTable.getExperienceByOctopodActivityIdP(act.id)
       .then((actInDb) => {
         if(actInDb == null) {
           const exp = {
-            id: act.id,
+            octopodActivityId: act.id,
             trigram,
-            projectId: act.project.id,
+            octopodProjectId: act.project.id,
             mission: act.project.name,
             from: act.from,
             to: act.to,
@@ -50,9 +49,10 @@ function createExperienceIfNotexisting(activities, trigram) {
             description: []
           }
           return ExperiencesTable.createP(exp)
+                    .then(i => i.attrs)
         }
         return actInDb
-      }).then(i => i.attrs)
+      })
   }))
 }
 

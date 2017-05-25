@@ -93,7 +93,7 @@ You may update an experience to add details.
 
         {
             "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
-            "projectId": 123456,
+            "octopodProjectId": 123456,
             "customer":"Pacifica",
             "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
             "role":"Developer 1",
@@ -111,7 +111,7 @@ You may update an experience to add details.
 
         {
             "id": "3000003189",
-            "projectId": 123456,
+            "octopodProjectId": 123456,
             "trigram": "JBI",
             "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
             "customer":"Pacifica",
@@ -139,7 +139,7 @@ You may retrieve an experience to add details.
 
         {
             "id": "123456",
-            "projectId": 123456,
+            "octopodProjectId": 123456,
             "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
             "customer":"ING Direct Australia",
             "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
@@ -167,10 +167,11 @@ You may retrieve an experience to add details.
             "trigram":"JBI"
         }
 
-## Experiences Collection [/people/{trigram}/experiences]
+## Experiences Collection [/people/{trigram}/cv/{name}/experiences]
 
 + Parameters
     + trigram: `JBI` (String, required) - ID of the person
+    + name: `default` (String, required) - name of the CV
 
 ### Add an Experience [POST]
 
@@ -180,7 +181,7 @@ You may add a new experience
 
         {
             "id": "1234568",
-            "projectId": 123456,
+            "octopodProjectId": 123456,
             "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
             "customer":"ING Direct Australia",
             "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
@@ -201,7 +202,7 @@ You may add a new experience
 
             {
                 "id": "1234568",
-                "projectId": 123456,
+                "octopodProjectId": 123456,
                 "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
                 "customer":"ING Direct Australia",
                 "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
@@ -224,7 +225,7 @@ You may add a new experience
         {"octo": [
             {
                 "id": "123456",
-                "projectId": 123456,
+                "octopodProjectId": 123456,
                 "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
                 "customer":"ING Direct Australia",
                 "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
@@ -240,7 +241,7 @@ You may add a new experience
             },
             {
                 "id": "1234567",
-                "projectId": 123456,
+                "octopodProjectId": 123456,
                 "mission": "AUTRE MISSION",
                 "customer":"Australian Post",
                 "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
@@ -273,10 +274,11 @@ You may add a new experience
         ]}
 
 
-## Octopod [/people/{id}/octopod/sync]
+## Octopod [/people/{id}/cv/{name}/octopod/sync]
 
 + Parameters
     + id: `JBI` (String, required) - ID of the person
+    + name: `default` (String, required) - name of the CV
 
 ### Sync [POST]
 
@@ -286,7 +288,7 @@ You may add a new experience
             {
                 "id": "3000003189",
                 "trigram": "JBI",
-                "projectId": 2146900417,
+                "octopodProjectId": 2146900417,
                 "mission": "Refonte Neptune",
                 "customer": "Pacifica",
                 "from":"2013-11-15",
