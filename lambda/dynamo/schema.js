@@ -79,8 +79,7 @@ ExperiencesTable.getExperienceByOctopodActivityIdP = function(octopodActivityId)
                         .usingIndex('octopodActivityId')
                         .exec((err, data) => {
                           if(err) return reject(err)
-                          const exp = data.Count === 0 ? null : data.Items[0].attrs
-                          resolve(exp)
+                          resolve(data.Items.map(i => i.attrs))
                         })
   });
 }

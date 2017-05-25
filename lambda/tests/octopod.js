@@ -3,7 +3,7 @@ const nock = require('nock')
 const fs = require('fs')
 const proxyquire = require('proxyquire')
 const sinon = require('sinon')
-
+const _ = require('lodash')
 const dynamo = { ExperiencesTable: {} , PeopleTable: {} }
 const octopod = proxyquire('../octopod', { './dynamo/schema': dynamo });
 
@@ -180,6 +180,7 @@ describe("Octopod's integration: ", () => {
         octopodProjectId: 2146904557,
         octopodActivityId: 3000024114,
         from: "2016-08-09",
+        cvName: "default",
         to: "2016-08-23",
         trigram: 'TGE',
         isOcto: true,
@@ -213,12 +214,13 @@ describe("Octopod's integration: ", () => {
     describe("there is no experience in the DB", () => {
       it("insert the activity as a experience", () => {
         //given
-
-        dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.withArgs(3000024114).resolves(null)
+        const experienceFromOtherCV = _.cloneDeep(experience)
+        experienceFromOtherCV.cvName = "other"
+        dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.withArgs(3000024114).resolves([experienceFromOtherCV])
         dynamo.ExperiencesTable.createP.resolves({attrs: experience})
 
         //when
-        return octopod.createExperienceIfNotexisting([activity], 'TGE')
+        return octopod.createExperienceIfNotexisting([activity], 'TGE', 'default')
           .then(experiences => {
 
             //then
@@ -236,11 +238,11 @@ describe("Octopod's integration: ", () => {
     describe("there is already the experience in the DB", () => {
       it("does't insert the activity as a experience", () => {
 
-        dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.withArgs(3000024114).resolves(experience)
+        dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.withArgs(3000024114).resolves([experience])
         dynamo.ExperiencesTable.createP.resolves({attrs: experience})
 
         //when
-        return octopod.createExperienceIfNotexisting([activity], 'TGE')
+        return octopod.createExperienceIfNotexisting([activity], 'TGE', 'default')
           .then(experiences => {
 
             //then

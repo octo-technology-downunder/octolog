@@ -48,20 +48,20 @@ describe("Schema: ", () => {
             .then(actual => {
 
               //then
-              expect(actual).to.deep.equal(exp1)
+              expect(actual).to.deep.equal([exp1])
             })
         })
       })
 
       describe("when the experience doesn't existe in DB", () => {
-        it("return null", () => {
+        it("return an empty list", () => {
 
           //when
           return ExperiencesTable.getExperienceByOctopodActivityIdP(123456)
             .then(actual => {
 
               //then
-              expect(actual).to.deep.equal(null)
+              expect(actual).to.deep.equal([])
             })
         })
       })
