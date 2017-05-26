@@ -54,7 +54,7 @@ const ExperiencesTable = promisifySchema(dynamo.define(experiencesTableName, {
     from: Joi.string(),
     to: Joi.string(),
     description: dynamo.types.stringSet(),
-    customerLogo: Joi.string().uri(),
+    customerLogo: Joi.string(),
     octopodCustomerId: Joi.number(),
     isOcto: Joi.boolean().default(false),
     tags: dynamo.types.stringSet()
