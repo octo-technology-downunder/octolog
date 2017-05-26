@@ -1,0 +1,94 @@
+{
+    "batchcomplete": "",
+    "continue": {
+        "sroffset": 10,
+        "continue": "-||"
+    },
+    "query": {
+        "searchinfo": {
+            "totalhits": 9590
+        },
+        "search": [
+            {
+                "ns": 0,
+                "title": "Amp",
+                "size": 2690,
+                "wordcount": 312,
+                "snippet": "<span class=\"searchmatch\">Amp</span> or <span class=\"searchmatch\">AMP</span> may refer to:   Adenosine monophosphate, nucleotide found in RNA <span class=\"searchmatch\">AMP</span> deaminase, human enzyme encoded by the AMPD1 gene Affect misattribution",
+                "timestamp": "2017-05-17T07:23:32Z"
+            },
+            {
+                "ns": 0,
+                "title": "Amp Energy",
+                "size": 11516,
+                "wordcount": 1197,
+                "snippet": "<span class=\"searchmatch\">Amp</span> Energy (or simply <span class=\"searchmatch\">Amp</span>) is an energy drink brand produced and owned by PepsiCo. At the time of its introduction in 2001, <span class=\"searchmatch\">Amp</span> Energy was initially distributed",
+                "timestamp": "2017-04-10T07:11:48Z"
+            },
+            {
+                "ns": 0,
+                "title": "AMP Limited",
+                "size": 8712,
+                "wordcount": 797,
+                "snippet": "<span class=\"searchmatch\">AMP</span> (ASX: <span class=\"searchmatch\">AMP</span> NZX: <span class=\"searchmatch\">AMP</span>) is a financial services company in Australia and New Zealand with superannuation and investment products, insurance, financial",
+                "timestamp": "2017-01-16T02:54:09Z"
+            },
+            {
+                "ns": 0,
+                "title": "AMP Capital",
+                "size": 5877,
+                "wordcount": 430,
+                "snippet": "<span class=\"searchmatch\">AMP</span> Capital is a large global investment manager headquartered in Sydney, Australia. It is part of the <span class=\"searchmatch\">AMP</span> Group, one of Australia's largest retail and",
+                "timestamp": "2017-03-04T21:43:15Z"
+            },
+            {
+                "ns": 0,
+                "title": "C++ AMP",
+                "size": 5514,
+                "wordcount": 533,
+                "snippet": "C++ Accelerated Massive Parallelism (C++ <span class=\"searchmatch\">AMP</span>) is a native programming model that contains elements that span the C++ programming language and its runtime",
+                "timestamp": "2017-01-20T15:14:11Z"
+            },
+            {
+                "ns": 0,
+                "title": "AMP deaminase",
+                "size": 8098,
+                "wordcount": 953,
+                "snippet": "<span class=\"searchmatch\">AMP</span> deaminase 1 is an enzyme that in humans is encoded by the AMPD1 gene. Adenosine monophosphate deaminase is an enzyme that converts adenosine monophosphate",
+                "timestamp": "2016-12-07T21:22:48Z"
+            },
+            {
+                "ns": 0,
+                "title": "The AMP",
+                "size": 2907,
+                "wordcount": 381,
+                "snippet": "The <span class=\"searchmatch\">AMP</span> is a youth center and music venue in Minot, North Dakota, United States. Established in October 2003 by Billy Luetzen, the <span class=\"searchmatch\">AMP</span> provides a place",
+                "timestamp": "2016-09-01T11:18:58Z"
+            },
+            {
+                "ns": 0,
+                "title": "Amp Electric Vehicles",
+                "size": 1646,
+                "wordcount": 155,
+                "snippet": "<span class=\"searchmatch\">Amp</span> Electric Vehicles (<span class=\"searchmatch\">Amp</span> Holding Inc., OTCQB: AMPD) a Cincinnati, Ohio-based early-stage automotive company that converts sport utility vehicles (SUVs)",
+                "timestamp": "2016-11-13T10:17:18Z"
+            },
+            {
+                "ns": 0,
+                "title": "Amp (TV series)",
+                "size": 4653,
+                "wordcount": 454,
+                "snippet": "<span class=\"searchmatch\">Amp</span> was a music video program on MTV that aired from 1996 to 2001. It was aimed at the electronic music and rave crowd and was responsible for exposing",
+                "timestamp": "2016-11-30T14:12:56Z"
+            },
+            {
+                "ns": 0,
+                "title": "Operational amplifier",
+                "size": 82326,
+                "wordcount": 9740,
+                "snippet": "An operational amplifier (often op-<span class=\"searchmatch\">amp</span> or opamp) is a DC-coupled high-gain electronic voltage amplifier with a differential input and, usually, a single-ended",
+                "timestamp": "2017-05-24T04:02:57Z"
+            }
+        ]
+    }
+}

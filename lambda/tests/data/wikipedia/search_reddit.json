@@ -1,0 +1,94 @@
+{
+    "batchcomplete": "",
+    "continue": {
+        "sroffset": 10,
+        "continue": "-||"
+    },
+    "query": {
+        "searchinfo": {
+            "totalhits": 2254
+        },
+        "search": [
+            {
+                "ns": 0,
+                "title": "Reddit",
+                "size": 117582,
+                "wordcount": 11820,
+                "snippet": "<span class=\"searchmatch\">Reddit</span> (stylized as <span class=\"searchmatch\">reddit</span>, /ˈrɛdɪt/) is an American social news aggregation, web content rating, and discussion website. <span class=\"searchmatch\">Reddit</span>'s registered community",
+                "timestamp": "2017-05-25T20:28:38Z"
+            },
+            {
+                "ns": 0,
+                "title": "The Button (Reddit)",
+                "size": 9307,
+                "wordcount": 810,
+                "snippet": "networking website <span class=\"searchmatch\">Reddit</span> beginning on 1 April 2015 (April Fools' Day) and was active until 5 June 2015. The game was started by a <span class=\"searchmatch\">Reddit</span> administrator. The",
+                "timestamp": "2017-05-19T19:16:15Z"
+            },
+            {
+                "ns": 0,
+                "title": "Controversial Reddit communities",
+                "size": 47633,
+                "wordcount": 4791,
+                "snippet": "The social news site <span class=\"searchmatch\">Reddit</span> has occasionally been the topic of controversy due to the presence of communities on the site (known as subreddits) devoted",
+                "timestamp": "2017-05-24T03:47:42Z"
+            },
+            {
+                "ns": 0,
+                "title": "Timeline of Reddit",
+                "size": 35593,
+                "wordcount": 1541,
+                "snippet": "This is a timeline of <span class=\"searchmatch\">Reddit</span>, an entertainment, social networking, and news website where registered community members can submit content, such as text",
+                "timestamp": "2017-04-04T11:29:17Z"
+            },
+            {
+                "ns": 0,
+                "title": "Place (Reddit)",
+                "size": 9909,
+                "wordcount": 916,
+                "snippet": "collaborative project and social experiment hosted on social networking site <span class=\"searchmatch\">Reddit</span> that began on April Fool's Day 2017. The experiment involved an online canvas",
+                "timestamp": "2017-05-20T02:29:17Z"
+            },
+            {
+                "ns": 0,
+                "title": "/r/The Donald",
+                "size": 47377,
+                "wordcount": 4498,
+                "snippet": "/r/The_Donald is an Internet forum hosted on <span class=\"searchmatch\">Reddit</span> (a &quot;subreddit&quot;) created in support of Donald Trump, the current President of the United States. Initially",
+                "timestamp": "2017-05-25T17:41:03Z"
+            },
+            {
+                "ns": 0,
+                "title": "Reddit Enhancement Suite",
+                "size": 3391,
+                "wordcount": 152,
+                "snippet": "<span class=\"searchmatch\">Reddit</span> Enhancement Suite, commonly abbreviated as RES, is a suite of extensions for <span class=\"searchmatch\">Reddit</span>. It is distributed as a browser extension for numerous browsers",
+                "timestamp": "2016-09-22T18:30:08Z"
+            },
+            {
+                "ns": 0,
+                "title": "George Mason University's historical hoaxes",
+                "size": 11001,
+                "wordcount": 1173,
+                "snippet": "past&quot;, have created two popular hoaxes: the &quot;Edward Owens hoax,&quot; and the &quot;<span class=\"searchmatch\">Reddit</span> serial killer hoax.&quot; It is a goal of the course to create a sweeping internet",
+                "timestamp": "2017-03-22T19:40:09Z"
+            },
+            {
+                "ns": 0,
+                "title": "Unidan",
+                "size": 10423,
+                "wordcount": 766,
+                "snippet": "Ben Eisenkop, better known by his <span class=\"searchmatch\">Reddit</span> pseudonym Unidan, is an ecosystem ecologist and doctoral candidate in biology at Binghamton University, who became",
+                "timestamp": "2017-04-08T17:18:21Z"
+            },
+            {
+                "ns": 0,
+                "title": "Alien Blue",
+                "size": 4639,
+                "wordcount": 340,
+                "snippet": "AlienBlue, was an iOS application for browsing <span class=\"searchmatch\">Reddit</span>. It was the official and the most popular <span class=\"searchmatch\">Reddit</span> client on the App Store. The app features a wealth",
+                "timestamp": "2017-04-27T20:10:02Z"
+            }
+        ]
+    }
+}

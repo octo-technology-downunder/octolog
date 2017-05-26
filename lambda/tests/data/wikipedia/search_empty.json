@@ -1,0 +1,13 @@
+{
+    "batchcomplete": "",
+    "continue": {
+        "sroffset": 10,
+        "continue": "-||"
+    },
+    "query": {
+        "searchinfo": {
+            "totalhits": 0
+        },
+        "search": []
+    }
+}
