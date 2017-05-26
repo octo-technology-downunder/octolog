@@ -12,7 +12,7 @@ describe("wikipedia's integration: ", () => {
     it("return the first item with name 'company'", () => {
       //given
       wikiCall.get('/w/api.php?action=query&format=json&errorformat=bc&errorlang=uselang&list=search&utf8=1&srsearch=AMP')
-              .replyWithFile(200, __dirname + '/data/wikipedia/search_AMP.json');
+              .replyWithFile(200, __dirname + '/data/wikipedia/search_amp.json');
 
       //when
       return logo.getLogoUrl('AMP')
