@@ -4,8 +4,6 @@ const fs = require('fs')
 const sinon = require('sinon')
 const _ = require('lodash')
 const logo = require('../logo')
-
-
 const wikiCall = nock('https://en.wikipedia.org')
 
 
@@ -55,6 +53,23 @@ describe("wikipedia's integration: ", () => {
             expect(data).to.equal('')
           })
       })
+    })
+  })
+
+  describe("from the page URL, ", () => {
+    it("extract the image URL", () => {
+      //given
+      wikiCall.get('/wiki/AMP%20Limited')
+              .replyWithFile(200, __dirname + '/data/wikipedia/amp.html');
+
+      //when
+      return logo.getImageUrl('https://en.wikipedia.org/wiki/AMP%20Limited')
+        .then(data => {
+
+          //then
+          expect(data).to.equal('//upload.wikimedia.org/wikipedia/en/thumb/1/1b/AMP_Limited_%28logo%29.svg/250px-AMP_Limited_%28logo%29.svg.png')
+        })
+
     })
   })
 })

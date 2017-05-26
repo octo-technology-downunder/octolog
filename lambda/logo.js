@@ -1,8 +1,8 @@
 const rp = require('request-promise-native')
+const jsdom = require('jsdom')
+const { JSDOM } = jsdom;
 
  function getLogoUrl(compamyName) {
-
-
   const options = {
     method: 'GET',
     uri: 'https://en.wikipedia.org/w/api.php?action=query&format=json&errorformat=bc&errorlang=uselang&list=search&utf8=1&srsearch=' + compamyName,
@@ -26,4 +26,24 @@ function createWikiURL(page) {
   return `https://en.wikipedia.org/wiki/${page}`
 }
 
-module.exports.getLogoUrl = getLogoUrl
+function getImageUrl(uri) {
+  const options = {
+    method: 'GET',
+    uri
+  };
+  return rp(options)
+    .then((body) => {
+      const { document } = (new JSDOM(body)).window;
+      return document.querySelector(".infobox.vcard a img").getAttribute('src')
+    })
+}
+
+
+function main(companyName) {
+  return getLogoUrl(companyName).then(getImageUrl)
+}
+module.exports = {
+  getLogoUrl,
+  getImageUrl,
+  main
+}
