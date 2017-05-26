@@ -1,7 +1,7 @@
 const rp = require('request-promise-native')
 const _ = require('lodash')
 const { ExperiencesTable, PeopleTable } = require('./dynamo/schema')
-
+const logo = require('./logo')
 
 function octopodUrl() {
   return process.env.OCTOPOD_URL || "https://octopod.octo.com"
@@ -45,6 +45,7 @@ function createExperienceIfNotexisting(activities, trigram, cvName) {
             octopodActivityId: act.id,
             trigram,
             octopodProjectId: act.project.id,
+            octopodCustomerId: act.project.customer.id,
             mission: act.project.name,
             from: act.from,
             cvName,
@@ -54,8 +55,10 @@ function createExperienceIfNotexisting(activities, trigram, cvName) {
             role: act.title,
             description: []
           }
-          return ExperiencesTable.createP(exp)
-                    .then(i => i.attrs)
+          return addCompanyLogo(exp)
+            .then(ExperiencesTable.createP)
+            .then(i => i.attrs)
+            .catch(err => {throw err})
         }
         return actInDb
       })
@@ -147,8 +150,16 @@ function getActivitiesFromOctopod(authToken, personId) {
     }
     return acc;
   }
+}
 
-
+function addCompanyLogo(experience) {
+  return logo.main(experience.customer)
+    .then(uri => {
+        const expWithLogoUrl = _.cloneDeep(experience)
+        expWithLogoUrl.customerLogo = uri
+        return expWithLogoUrl
+    })
+    .catch(err => experience);
 }
 
 module.exports = {

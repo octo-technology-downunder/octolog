@@ -5,7 +5,11 @@ const proxyquire = require('proxyquire')
 const sinon = require('sinon')
 const _ = require('lodash')
 const dynamo = { ExperiencesTable: {} , PeopleTable: {} }
-const octopod = proxyquire('../octopod', { './dynamo/schema': dynamo });
+const logo = {}
+const octopod = proxyquire('../octopod', {
+  './dynamo/schema': dynamo,
+  './logo': logo
+});
 
 
 const octopodCall = nock('https://octopod.octo.com')
@@ -168,17 +172,21 @@ describe("Octopod's integration: ", () => {
     beforeEach(() => {
       dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP = sinon.stub()
       dynamo.ExperiencesTable.createP = sinon.stub()
+      logo.main = sinon.stub()
+
     })
 
     afterEach(() => {
       dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.reset();
       dynamo.ExperiencesTable.createP.reset();
+      logo.main.reset();
     })
 
     const experience = {
         id: "345",
         octopodProjectId: 2146904557,
         octopodActivityId: 3000024114,
+        octopodCustomerId: 2001,
         from: "2016-08-09",
         cvName: "default",
         to: "2016-08-23",
@@ -218,6 +226,7 @@ describe("Octopod's integration: ", () => {
         experienceFromOtherCV.cvName = "other"
         dynamo.ExperiencesTable.getExperienceByOctopodActivityIdP.withArgs(3000024114).resolves([experienceFromOtherCV])
         dynamo.ExperiencesTable.createP.resolves({attrs: experience})
+        logo.main.resolves('http://static.octo.com/assets/logo.png')
 
         //when
         return octopod.createExperienceIfNotexisting([activity], 'TGE', 'default')
@@ -228,9 +237,10 @@ describe("Octopod's integration: ", () => {
             const expectedExperience = experience
             expectedExperience.description = []
             expect(actualExperience).to.deep.equal(expectedExperience)
-            delete experience.id
-            expect(dynamo.ExperiencesTable.createP.args[0][0]).to.deep.equal(experience)
-            //expect(dynamo.ExperiencesTable.createP.calledWithExactly(experience)).to.be.true;
+            const expectedExp = _.cloneDeep(experience)
+            delete expectedExp.id
+            expectedExp.customerLogo = 'http://static.octo.com/assets/logo.png'
+            expect(dynamo.ExperiencesTable.createP.args[0][0]).to.deep.equal(expectedExp)
           })
       })
     })
