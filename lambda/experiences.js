@@ -38,7 +38,9 @@ module.exports.getAll = (event, context, callback) => {
     .query(trigram)
     .exec((err, data) => {
       if(err) return callback(err)
-      const filteredExp = data.Items.filter(z => z.cvName === cvName)
+      const filteredExp = data.Items
+                                .map(z => z.attrs)
+                                .filter(z => z.cvName === cvName)
       callback(null, separateOctoAndNoneOctoExp(filteredExp))
     });
 };
