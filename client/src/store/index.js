@@ -6,11 +6,15 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    password: ''
+    password: '',
+    trigram: ''
   },
   mutations: {
     setPassword (state, password) {
       state.password = password
+    },
+    setTrigram (state, trigram) {
+      state.trigram = trigram
     }
   }
 })

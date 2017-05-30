@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
@@ -20,7 +22,9 @@ export default {
   },
   methods: {
     goToCv: function () {
+      axios.defaults.headers.common['Authorization'] = this.password
       this.$store.commit('setPassword', this.password)
+      this.$store.commit('setTrigram', this.trigram)
       this.$router.push({path: 'cv', query: {trigram: this.trigram.toUpperCase()}})
     }
   }
