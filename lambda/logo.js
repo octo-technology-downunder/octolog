@@ -12,7 +12,8 @@ const { JSDOM } = jsdom;
       const results = JSON.parse(body).query.search
       if(results.length === 0) return '';
       companyResult = results.filter(i => {
-        return i.snippet.toLowerCase().includes('company')
+        const snippet = i.snippet.toLowerCase()
+        return snippet.includes('company') || snippet.includes('corporation')
       })
       if(companyResult.length === 0) {
         return createWikiURL(results[0].title)
