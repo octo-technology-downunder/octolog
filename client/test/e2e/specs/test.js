@@ -18,7 +18,6 @@ module.exports = {
       .assert.containsText('.skills h1', 'SKILLS')
       .assert.containsText('.experience h1:nth-of-type(1)', 'MISSIONS - FOR OCTO TECHNOLOGY')
       .assert.containsText('.experience h1:nth-of-type(2)', 'EXPERIENCE - PRIOR TO OCTO TECHNOLOGY')
-      .assert.elementCount('img', 2)
       .end()
   }
 }
