@@ -96,7 +96,7 @@
     "runDynamo": "java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb",
     "dlDynamo": "curl https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.tar.gz | tar -x DynamoDBLocal.jar DynamoDBLocal_lib",
     "preback:dev": "npm run createTable",
-    "back:dev": "DYNAMO_URL=http://localhost:8000 sls offline start",
+    "back:dev": "ASKBOB_API_KEY=toto DYNAMO_URL=http://localhost:8000 sls offline start",
     "back:unit": "./node_modules/.bin/istanbul cover --print details _mocha -- -R spec lambda/tests/**/*.test.js --recursive",
     "preback:integration": "npm run createTable",
     "back:integration": "BASICS_TABLE=octolog-dev-basics EXPERIENCES_TABLE=octolog-dev-experiences DYNAMO_URL=http://localhost:8000 ./node_modules/.bin/istanbul cover --print details _mocha -- -R spec lambda/tests/**/*.integration.js --recursive",

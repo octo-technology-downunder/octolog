@@ -32,7 +32,7 @@ retrieveInfoFromDB(trigram, cvName).then(basicInDb => {
 function getInfo(token, trigram) {
   const options = {
     method: 'GET',
-    uri: askbobUrl() + '/api/v1/people/' + trigram + '?api_key=' + token
+    uri: askbobUrl() + '/api/v1/' + token + '/people/' + trigram
   };
   return rp(options)
     .then(JSON.parse)

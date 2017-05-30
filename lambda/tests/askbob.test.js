@@ -61,7 +61,7 @@ describe("Askbob's integration: ", () => {
     it("we get the JSON result", () => {
       //given
       const resultCall = askbobCall
-                        .get('/api/v1/people/TGE?api_key=toto')
+                        .get('/api/v1/toto/people/TGE')
                         .reply(200, tge);
 
       //when
