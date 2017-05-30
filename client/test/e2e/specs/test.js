@@ -4,9 +4,11 @@ module.exports = {
 
     browser
       .url(devServer)
-      .waitForElementVisible('div', 5000)
-      .assert.containsText('h2', 'Enter your trigram')
+      .assert.title('Octo CVs')
+      .waitForElementVisible('.home', 5000)
+      .assert.containsText('h2', 'Trigram')
       .setValue('input[class=trigram]', 'tri')
+      .setValue('input[class=password]', 'somePassWord')
       .click('button[class="validate"]')
       .waitForElementVisible('div', 5000)
       .assert.urlContains("/cv?trigram=TRI")

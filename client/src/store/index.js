@@ -1,9 +1,10 @@
+require('es6-promise').polyfill()
 import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     password: ''
   },
@@ -13,3 +14,5 @@ export default new Vuex.Store({
     }
   }
 })
+
+export default store
