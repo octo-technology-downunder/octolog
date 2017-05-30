@@ -6,7 +6,7 @@
     <profileModalContainer></profileModalContainer>
     <button v-on:click="syncAskbob" class="hidden-print">Retrieve details from AskBob</button>
     <button v-on:click="editProfile(profile)" class="hidden-print">Edit profile</button>
-    <experience v-bind:trigram="trigram"></experience>
+    <experience></experience>
   </div>
 </template>
 
@@ -23,20 +23,17 @@ export default {
   components: {Profile, Education, Skills, Experience, ProfileModalContainer, ProfileModalHub},
   data () {
     return {
-      trigram: 'TRI',
       profile: {education: {}, skills: {}},
       errors: []
     }
   },
   created () {
-    if (this.$route && 'trigram' in this.$route.query) {
-      this.trigram = this.$route.query.trigram
-    }
     this.fetchProfile()
   },
   methods: {
     fetchProfile: function () {
-      return axios.get(process.env.API_URL + process.env.UPDATE_BASICS_PATH.replace('{trigram}', this.trigram))
+      const trigram = this.$store.state.trigram
+      return axios.get(process.env.API_URL + process.env.UPDATE_BASICS_PATH.replace('{trigram}', trigram))
         .then((response) => {
           this.profile = response.data
         })
@@ -45,12 +42,14 @@ export default {
         })
     },
     editProfile: function (profile) {
+      const trigram = this.$store.state.trigram
       console.log('editing profile ' + profile)
       ProfileModalHub.$emit('open-modal')
-      ProfileModalHub.$emit('set-modal-data', this.profile, this.trigram)
+      ProfileModalHub.$emit('set-modal-data', this.profile, trigram)
     },
     syncAskbob () {
-      return axios.post(process.env.API_URL + process.env.SYNC_ASKBOB_PATH.replace('{trigram}', this.trigram))
+      const trigram = this.$store.state.trigram
+      return axios.post(process.env.API_URL + process.env.SYNC_ASKBOB_PATH.replace('{trigram}', trigram))
         .then((response) => {
           Object.assign(this.profile, response.data)
           console.log(this.profile)

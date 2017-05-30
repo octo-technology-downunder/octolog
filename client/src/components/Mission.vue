@@ -21,11 +21,12 @@
 import MissionModalHub from '@/components/events/MissionModalHub'
 
 export default {
-  props: ['mission', 'trigram'],
+  props: ['mission'],
   methods: {
     editMission: function (mission) {
       MissionModalHub.$emit('open-modal')
-      MissionModalHub.$emit('set-modal-data', this.mission, this.trigram)
+      const trigram = this.$store.state.trigram
+      MissionModalHub.$emit('set-modal-data', this.mission, trigram)
     }
   }
 }

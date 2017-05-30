@@ -25,7 +25,7 @@ export default {
       axios.defaults.headers.common['Authorization'] = this.password
       this.$store.commit('setPassword', this.password)
       this.$store.commit('setTrigram', this.trigram)
-      this.$router.push({path: 'cv', query: {trigram: this.trigram.toUpperCase()}})
+      this.$router.push({path: 'cv'})
     }
   }
 }
