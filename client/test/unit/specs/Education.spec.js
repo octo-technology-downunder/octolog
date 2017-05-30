@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Education from '@/components/Education'
+import store from '../store'
 
 function getRenderedEl (Component, propsData) {
-  const Ctor = Vue.extend(Component)
-  const vm = new Ctor({ propsData }).$mount()
+  const Constructor = Vue.extend(Component)
+  const vm = new Constructor({ store, propsData }).$mount()
   return vm.$el
 }
 

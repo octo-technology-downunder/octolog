@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Experience from '@/components/Experience'
 import moxios from 'moxios'
+import store from '../store'
 
 function getRenderedVm (Component, propsData) {
-  const Ctor = Vue.extend(Component)
-  const vm = new Ctor({ propsData }).$mount()
+  const Constructor = Vue.extend(Component)
+  const vm = new Constructor({ store, propsData }).$mount()
   return vm
 }
 

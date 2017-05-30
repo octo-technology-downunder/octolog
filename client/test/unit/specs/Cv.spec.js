@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Cv from '@/components/Cv'
 import moxios from 'moxios'
+import store from '../store'
 
 describe('Cv.vue', () => {
   beforeEach(function () {
@@ -17,7 +18,7 @@ describe('Cv.vue', () => {
 
   it('should populate the profile data with API response', (done) => {
     const Constructor = Vue.extend(Cv)
-    const vm = new Constructor().$mount()
+    const vm = new Constructor({store: store}).$mount()
     expect(vm.profile).to.be.an('object')
     expect(vm.profile).to.have.all.keys('education', 'skills')
     expect(vm.profile.education).to.be.empty
@@ -30,7 +31,7 @@ describe('Cv.vue', () => {
 
   it('should have empty profile data', () => {
     const Constructor = Vue.extend(Cv)
-    const vm = new Constructor().$mount()
+    const vm = new Constructor({store: store}).$mount()
     expect(vm.profile).to.have.all.keys('education', 'skills')
     expect(vm.profile.education).to.be.empty
     expect(vm.profile.skills).to.be.empty
@@ -38,7 +39,7 @@ describe('Cv.vue', () => {
 
   it('should have empty errors data', () => {
     const Constructor = Vue.extend(Cv)
-    const vm = new Constructor().$mount()
+    const vm = new Constructor({store: store}).$mount()
     expect(vm.errors).to.be.empty
   })
 })

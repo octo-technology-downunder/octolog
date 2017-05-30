@@ -11,7 +11,7 @@ module.exports = {
       .setValue('input[class=password]', 'somePassWord')
       .click('button[class="validate"]')
       .waitForElementVisible('div', 5000)
-      .assert.urlContains("/cv?trigram=TRI")
+      .assert.urlContains("/cv")
       .assert.elementPresent('.person')
       .assert.elementCount('h1', 4)
       .assert.containsText('.education h1', 'EDUCATION')
