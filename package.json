@@ -15,7 +15,8 @@
     "s3-deploy": "^0.7.5",
     "serverless-offline": "3.13.3",
     "uuid": "3.0.1",
-    "vuex": "^2.3.1"
+    "vuex": "^2.3.1",
+    "vuex-persistedstate": "^1.4.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
