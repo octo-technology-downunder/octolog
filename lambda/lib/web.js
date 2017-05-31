@@ -25,10 +25,17 @@ function ok(json, cb) {
 function created(json, cb) {
   prepareHttpRequest(201, json, cb)
 }
+
+function deleted(cb) {
+  cb(null, {
+    statusCode: 204
+  });
+}
 module.exports = {
   prepareHttpRequest,
   prepareErrorHttpRequest,
   notFound,
   ok,
-  created
+  created,
+  deleted
 }

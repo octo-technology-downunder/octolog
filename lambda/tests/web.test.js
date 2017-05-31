@@ -20,6 +20,21 @@ describe("lib/web: ", () => {
     })
   })
 
+  describe("when ask for deleted", () => {
+    it('return an 204 without any body', (done) => {
+      //given
+
+      //when
+      web.deleted((err, res) => {
+        //then
+        expect(err).to.not.exists
+        expect(res.statusCode).to.equal(204)
+        expect(res.body).to.not.exists
+        done()
+      })
+    })
+  })
+
   describe("when ask for created answer", () => {
     it('return an 201 with the body as string', (done) => {
       //given
