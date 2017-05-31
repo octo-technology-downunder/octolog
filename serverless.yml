@@ -3,8 +3,6 @@ service: octolog
 provider:
   name: aws
   runtime: nodejs6.10
-  apiKeys:
-    - myFirstKey
   timeout: 25
   stackTags:
     octolog: ${self:provider.stage} # useful to create AWS group
@@ -34,7 +32,6 @@ functions:
           path: people/{trigram}/cv/{name}
           method: put
           cors: true
-          private: true
           integration: lambda
           request:
             parameters:
@@ -48,7 +45,6 @@ functions:
           path: people/{trigram}/cv/{name}
           method: get
           cors: true
-          private: true
           integration: lambda
           request:
             parameters:
@@ -63,7 +59,6 @@ functions:
           path: people/{trigram}/cv/{name}
           method: delete
           cors: true
-          private: true
           integration: lambda
           request:
             parameters:
@@ -78,7 +73,6 @@ functions:
           path: people/{trigram}/experiences/{id}
           method: get
           cors: true
-          private: true
           integration: lambda
           request:
             parameters:
@@ -93,7 +87,6 @@ functions:
           path: people/{trigram}/experiences/{id}
           method: put
           cors: true
-          private: true
           integration: lambda
           request:
             parameters:
@@ -108,7 +101,6 @@ functions:
           path: people/{trigram}/cv/{name}/experiences
           method: post
           cors: true
-          private: true
           integration: lambda
           request:
             parameters:
@@ -123,7 +115,6 @@ functions:
           path: people/{trigram}/cv/{name}/experiences
           method: get
           cors: true
-          private: true
           integration: lambda
           request:
             parameters:
@@ -138,7 +129,6 @@ functions:
           path: people/{trigram}/experiences/{id}
           method: delete
           cors: true
-          private: true
           integration: lambda
           request:
             parameters:
@@ -156,7 +146,6 @@ functions:
           path: people/{trigram}/cv/{name}/octopod/sync
           method: post
           cors: true
-          private: true
           integration: lambda
           request:
             parameters:
@@ -172,7 +161,6 @@ functions:
           path: people/{trigram}/cv/{name}/askbob/sync
           method: post
           cors: true
-          private: true
           integration: lambda
           request:
             parameters:

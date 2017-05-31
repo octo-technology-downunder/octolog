@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     goToCv: function () {
-      axios.defaults.headers.common['x-api-key'] = this.password
+      axios.defaults.headers.common['Authorization'] = this.password
       this.$store.commit('setPassword', this.password)
       this.$store.commit('setTrigram', this.trigram)
       this.$router.push({path: 'cv'})
