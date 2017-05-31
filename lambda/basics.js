@@ -10,9 +10,15 @@ module.exports.update = (event, context, callback) => {
   const name = event.pathParameters.name
   body.trigram = trigram
   body.name = name
-  PeopleTable.createP(body)
+  PeopleTable.getP(trigram, name, { AttributesToGet : ['trigram'] })
+    .then((person) => {
+      if(person == null) {
+        return PeopleTable.createP(body)
+      }
+      return PeopleTable.updateP(body)
+    })
     .then(data => {
-      web.ok(setupDefault(data.attrs), callback)
+      return web.ok(setupDefault(data.attrs), callback)
     })
     .catch(callback)
 };
@@ -24,7 +30,6 @@ module.exports.get = (event, context, callback) => {
 
   PeopleTable.getP(trigram, name)
     .then(data => {
-
       if(data == null) {
         web.notFound(`The CV ${name} of ${trigram} was not found`, callback)
       }

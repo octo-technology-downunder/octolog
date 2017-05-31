@@ -77,6 +77,87 @@ describe("CV webservice: ", () => {
       })
     })
   })
+
+  describe("when updating the experience in the DB", () => {
+
+    beforeEach(() => {
+      dynamo.PeopleTable.getP = sinon.stub()
+      dynamo.PeopleTable.createP = sinon.stub()
+      dynamo.PeopleTable.updateP = sinon.stub()
+    })
+
+    afterEach(() => {
+      dynamo.PeopleTable.getP.reset();
+      dynamo.PeopleTable.createP.reset();
+      dynamo.PeopleTable.updateP.reset();
+    })
+
+    describe("when there is no CV in the DB", () => {
+      it("create the CV", (done) => {
+        //given
+        const cv = {
+          trigram: 'TGE',
+          name: 'default'
+        }
+        dynamo.PeopleTable.getP.withArgs("TGE", 'default').resolves(null)
+        dynamo.PeopleTable.createP.resolves({ attrs: cv })
+        const input = {
+          pathParameters: {
+            trigram: 'TGE',
+            name: 'default'
+          },
+          body: "{}"
+        }
+
+        //when
+        basics.update(input, {}, (err, httpResponse) => {
+
+          //then
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(json.trigram).to.equal('TGE')
+          expect(json.name).to.equal('default')
+          expect(dynamo.PeopleTable.createP.calledWithExactly(cv)).to.be.true;
+          expect(dynamo.PeopleTable.updateP.called).to.be.false;
+          done()
+        })
+      })
+    })
+
+    describe("when there is a CV in the DB", () => {
+      it("update the CV", (done) => {
+        //given
+        const cv = {
+          trigram: 'TGE',
+          name: 'default'
+        }
+        dynamo.PeopleTable.getP.withArgs("TGE", 'default').resolves({ attrs: cv })
+        dynamo.PeopleTable.updateP.resolves({ attrs: cv })
+        const input = {
+          pathParameters: {
+            trigram: 'TGE',
+            name: 'default'
+          },
+          body: "{}"
+        }
+
+        //when
+        basics.update(input, {}, (err, httpResponse) => {
+
+          //then
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(json.trigram).to.equal('TGE')
+          expect(json.name).to.equal('default')
+          expect(dynamo.PeopleTable.createP.called).to.be.false;
+          expect(dynamo.PeopleTable.updateP.calledWithExactly(cv)).to.be.true;
+
+          done()
+        })
+      })
+    })
+  })
+
   describe("when deleting the experience in the DB", () => {
 
     beforeEach(() => {
