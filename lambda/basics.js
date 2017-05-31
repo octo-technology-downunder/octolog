@@ -39,15 +39,21 @@ module.exports.get = (event, context, callback) => {
 };
 
 module.exports.delete = (event, context, callback) => {
-  const trigram = event.path.trigram
-  const name = event.path.name
+  const trigram = event.pathParameters.trigram
+  const name = event.pathParameters.name
   PeopleTable.getP(trigram, name, { AttributesToGet : ['trigram'] })
     .then((person) => {
-      if(person == null) throw new Error(`The CV ${name} of ${trigram} was not found`)
-      return trigram;
+      if(person != null) {
+        return PeopleTable.destroyP(trigram, name)
+      }
+      return null;
     })
-    .then(tri => PeopleTable.destroyP(trigram, name))
-    .then(data => callback(null, setupDefault(data)))
+    .then(data => {
+      if (data == null) {
+        return web.notFound(`The CV ${name} of ${trigram} was not found`, callback)
+      }
+      web.deleted(callback)
+    })
     .catch(callback)
 
 };

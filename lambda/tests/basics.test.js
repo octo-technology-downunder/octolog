@@ -175,15 +175,15 @@ describe("CV webservice: ", () => {
         //given
         dynamo.PeopleTable.getP.withArgs("TGE", 'default').resolves(null)
         const input = {
-          path: {
+          pathParameters: {
             trigram: 'TGE',
             name: 'default'
           }
         }
         //when
         basics.delete(input, {}, (err, data) => {
-          expect(err.message).to.equal('The CV default of TGE was not found')
-          expect(data).to.not.exist
+          expect(JSON.parse(data.body).message).to.equal('The CV default of TGE was not found')
+          expect(err).to.not.exist
           done()
         })
       })
@@ -196,7 +196,7 @@ describe("CV webservice: ", () => {
         dynamo.PeopleTable.destroyP.withArgs("TGE", 'default').resolves({})
 
         const input = {
-          path: {
+          pathParameters: {
             trigram: 'TGE',
             name: 'default'
           }
@@ -204,6 +204,8 @@ describe("CV webservice: ", () => {
         //when
         basics.delete(input, {}, (err, data) => {
           expect(err).to.not.exist
+          expect(data.statusCode).to.equal(204)
+
           expect(dynamo.PeopleTable.destroyP.calledWithExactly("TGE", 'default')).to.be.true;
           done()
         })
