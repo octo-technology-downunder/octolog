@@ -15,7 +15,7 @@ const store = new Vuex.Store({
       state.password = password
     },
     setTrigram (state, trigram) {
-      state.trigram = trigram
+      state.trigram = trigram.toUpperCase()
     }
   },
   plugins: [createPersistedState()]
