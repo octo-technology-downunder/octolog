@@ -3,6 +3,7 @@
 const { ExperiencesTable, PeopleTable } = require('./dynamo/schema')
 const uuidV4 = require('uuid/v4');
 const async = require("async");
+const _ = require('lodash')
 
 module.exports.update = (event, context, callback) => {
   const id = event.path.id
@@ -17,7 +18,9 @@ module.exports.update = (event, context, callback) => {
 module.exports.get = (event, context, callback) => {
   const id = event.path.id
   const trigram = event.path.trigram
-  ExperiencesTable.get(trigram, id, callback)
+  ExperiencesTable.getP(trigram, id)
+    .then(exp => callback(null, setupDefault(exp)))
+    .catch(callback)
 };
 
 
@@ -41,6 +44,7 @@ module.exports.getAll = (event, context, callback) => {
       const filteredExp = data.Items
                                 .map(z => z.attrs)
                                 .filter(z => z.cvName === cvName)
+                                .map(setupDefault)
       callback(null, separateOctoAndNoneOctoExp(filteredExp))
     });
 };
@@ -73,4 +77,14 @@ function separateOctoAndNoneOctoExp(experiences) {
   }
 }
 
+function setupDefault(exp) {
+  const defaultValue = {
+    customerLogo: '',
+    description: [],
+    tags: []
+  }
+  return _.merge(defaultValue, exp);
+}
+
+module.exports.setupDefault = setupDefault
 module.exports.separateOctoAndNoneOctoExp = separateOctoAndNoneOctoExp

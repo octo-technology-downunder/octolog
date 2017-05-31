@@ -140,3 +140,92 @@ describe('experience web model', () => {
     })
   })
 })
+
+
+describe('experience model', () => {
+  describe('default are setup', () => {
+    describe('when no tags', () => {
+      it('the tags are initialised with an empty list', () => {
+        //given
+        const input = {}
+
+        //when
+        const actual = experiences.setupDefault(input)
+
+        //then
+        expect(actual.tags).to.deep.equal([])
+      })
+    })
+
+    describe('when there is a  tags', () => {
+      it('the tags stay the same', () => {
+        //given
+        const input = {
+          tags: [ 'toto', 'titi' ]
+        }
+
+        //when
+        const actual = experiences.setupDefault(input)
+
+        //then
+        expect(actual.tags).to.deep.equal(input.tags)
+      })
+    })
+
+    describe('when no description', () => {
+      it('the description is initialised with an empty list', () => {
+        //given
+        const input = {}
+
+        //when
+        const actual = experiences.setupDefault(input)
+
+        //then
+        expect(actual.description).to.deep.equal([])
+      })
+    })
+
+    describe('when there is a description', () => {
+      it('the description stay the same', () => {
+        //given
+        const input = {
+          description: [ 'toto', 'titi' ]
+        }
+
+        //when
+        const actual = experiences.setupDefault(input)
+
+        //then
+        expect(actual.description).to.deep.equal(input.description)
+      })
+    })
+
+    describe('when there is no logo url', () => {
+      it('the logo URL is initialised with an empty list', () => {
+        //given
+        const input = {}
+
+        //when
+        const actual = experiences.setupDefault(input)
+
+        //then
+        expect(actual.customerLogo).to.equal('')
+      })
+    })
+
+    describe('when there is a logo', () => {
+      it('the logo stay the same', () => {
+        //given
+        const input = {
+          customerLogo: 'URL_LOGO'
+        }
+
+        //when
+        const actual = experiences.setupDefault(input)
+
+        //then
+        expect(actual.customerLogo).to.deep.equal(input.customerLogo)
+      })
+    })
+  })
+})
