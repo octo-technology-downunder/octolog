@@ -2,6 +2,7 @@
 
 const PeopleTable = require('./dynamo/schema').PeopleTable
 const _ = require('lodash')
+const web = require('./lib/web')
 
 module.exports.update = (event, context, callback) => {
   const body = event.body
@@ -18,13 +19,18 @@ module.exports.update = (event, context, callback) => {
 
 
 module.exports.get = (event, context, callback) => {
-  const trigram = event.path.trigram
-  const name = event.path.name
-  PeopleTable.get(trigram, name, (err, data) => {
-    if(err) return callback(err)
-    if(data == null) return callback(new Error(`The CV ${name} of ${trigram} was not found`))
-    callback(null, setupDefault(data))
-  })
+  const trigram = event.pathParameters.trigram
+  const name = event.pathParameters.name
+
+  PeopleTable.getP(trigram, name)
+    .then(data => {
+
+      if(data == null) {
+        web.notFound(`The CV ${name} of ${trigram} was not found`, callback)
+      }
+      web.ok(setupDefault(data.attrs), callback)
+    })
+    .catch(callback)
 };
 
 module.exports.delete = (event, context, callback) => {

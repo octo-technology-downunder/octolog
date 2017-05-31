@@ -45,12 +45,7 @@ functions:
           path: people/{trigram}/cv/{name}
           method: get
           cors: true
-          integration: lambda
-          request:
-            parameters:
-              paths:
-                trigram: true
-                name: true
+
 
   deleteBasics:
     handler: lambda/basics.delete

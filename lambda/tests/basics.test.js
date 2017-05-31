@@ -18,6 +18,65 @@ const tge = {
 
 describe("CV webservice: ", () => {
 
+  describe("when getting the experience in the DB", () => {
+
+    beforeEach(() => {
+      dynamo.PeopleTable.getP = sinon.stub()
+    })
+
+    afterEach(() => {
+      dynamo.PeopleTable.getP.reset();
+    })
+
+    describe("when there is no CV in the DB", () => {
+      it("return an 404 error", (done) => {
+        //given
+        dynamo.PeopleTable.getP.withArgs("TGE", 'default').resolves(null)
+        const input = {
+          pathParameters: {
+            trigram: 'TGE',
+            name: 'default'
+          }
+        }
+
+        //when
+        basics.get(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(json.message).to.equal('The CV default of TGE was not found')
+          done()
+        })
+      })
+    })
+
+    describe("when there is a CV in the DB", () => {
+      it("return the CV", (done) => {
+        //given
+        const cv = {
+          name: 'default',
+          trigram: 'TGE',
+          education: ['ISEP', 'UW']
+        }
+        dynamo.PeopleTable.getP.withArgs("TGE", 'default').resolves({ attrs: cv})
+        const input = {
+          pathParameters: {
+            trigram: 'TGE',
+            name: 'default'
+          }
+        }
+
+        //when
+        basics.get(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(json.name).to.equal('default')
+          expect(json.trigram).to.equal('TGE')
+          expect(json.skills.technical).to.deep.equal([])
+          done()
+        })
+      })
+    })
+  })
   describe("when deleting the experience in the DB", () => {
 
     beforeEach(() => {
