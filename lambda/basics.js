@@ -5,14 +5,14 @@ const _ = require('lodash')
 const web = require('./lib/web')
 
 module.exports.update = (event, context, callback) => {
-  const body = event.body
-  const trigram = event.path.trigram
-  const name = event.path.name
+  const body = JSON.parse(event.body)
+  const trigram = event.pathParameters.trigram
+  const name = event.pathParameters.name
   body.trigram = trigram
   body.name = name
   PeopleTable.createP(body)
     .then(data => {
-      callback(null, setupDefault(data))
+      web.ok(setupDefault(data.attrs), callback)
     })
     .catch(callback)
 };

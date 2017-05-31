@@ -32,12 +32,7 @@ functions:
           path: people/{trigram}/cv/{name}
           method: put
           cors: true
-          integration: lambda
-          request:
-            parameters:
-              paths:
-                trigram: true
-                name: true
+
   getBasics:
     handler: lambda/basics.get
     events:
