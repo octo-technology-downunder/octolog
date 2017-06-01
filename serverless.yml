@@ -58,12 +58,6 @@ functions:
           path: people/{trigram}/experiences/{id}
           method: get
           cors: true
-          integration: lambda
-          request:
-            parameters:
-              paths:
-                trigram: true
-                id: true
 
   updateExperience:
     handler: lambda/experiences.update

@@ -18,10 +18,19 @@ module.exports.update = (event, context, callback) => {
 
 
 module.exports.get = (event, context, callback) => {
-  const id = event.path.id
-  const trigram = event.path.trigram
+  const trigram = event.pathParameters.trigram
+  const id = event.pathParameters.id
+
+  if(trigram == null) return web.paramError("The path parameter 'trigram' is required", callback)
+  if(id == null) return web.paramError("The path parameter 'id' is required", callback)
+
   ExperiencesTable.getP(trigram, id)
-    .then(exp => callback(null, setupDefault(exp)))
+    .then(exp => {
+      if(exp == null) {
+        return web.notFound(`The experience ${id} of ${trigram} was not found`, callback)
+      }
+      return web.ok(setupDefault(exp.attrs), callback)
+    })
     .catch(callback)
 };
 

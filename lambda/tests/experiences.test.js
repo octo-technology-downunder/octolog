@@ -11,6 +11,104 @@ const exp = {}
 
 describe("experiences webservice: ", () => {
 
+  describe("when getting the experience in the DB", () => {
+
+    beforeEach(() => {
+      dynamo.ExperiencesTable.getP = sinon.stub()
+    })
+
+    afterEach(() => {
+      dynamo.ExperiencesTable.getP.reset();
+    })
+    describe("when the parameters 'trigram' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            id: 'default'
+          }
+        }
+
+        //when
+        experiences.get(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(400)
+          const json = JSON.parse(httpResponse.body)
+          expect(json.message).to.equal("The path parameter 'trigram' is required")
+          done()
+        })
+      })
+    })
+
+    describe("when the parameters 'name' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            trigram: 'TGE'
+          }
+        }
+
+        //when
+        experiences.get(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(httpResponse.statusCode).to.equal(400)
+          expect(json.message).to.equal("The path parameter 'id' is required")
+          done()
+        })
+      })
+    })
+    describe("when there is no experience in the DB", () => {
+      it("return an 404 error", (done) => {
+        //given
+        dynamo.ExperiencesTable.getP.withArgs("TGE", '1234').resolves(null)
+        const input = {
+          pathParameters: {
+            trigram: 'TGE',
+            id: '1234'
+          }
+        }
+
+        //when
+        experiences.get(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(json.message).to.equal('The experience 1234 of TGE was not found')
+          done()
+        })
+      })
+    })
+
+    describe("when there is a CV in the DB", () => {
+      it("return the CV", (done) => {
+        //given
+        const cv = {
+          id: '1234',
+          trigram: 'TGE',
+        }
+        dynamo.ExperiencesTable.getP.withArgs("TGE", '1234').resolves({ attrs: cv})
+        const input = {
+          pathParameters: {
+            trigram: 'TGE',
+            id: '1234'
+          }
+        }
+
+        //when
+        experiences.get(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(200)
+          const json = JSON.parse(httpResponse.body)
+          expect(json.id).to.equal('1234')
+          expect(json.trigram).to.equal('TGE')
+          done()
+        })
+      })
+    })
+  })
+
+
   describe("when deleting the experience in the DB", () => {
 
     beforeEach(() => {

@@ -57,6 +57,7 @@ const ExperiencesTable = promisifySchema(dynamo.define(experiencesTableName, {
     customerLogo: Joi.string(),
     octopodCustomerId: Joi.number(),
     isOcto: Joi.boolean().default(false),
+    isDeleted: Joi.boolean().default(false),
     tags: dynamo.types.stringSet()
   }
 }));
