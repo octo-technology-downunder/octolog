@@ -3,6 +3,7 @@
 
 [![CircleCI](https://circleci.com/gh/octo-technology-downunder/octolog/tree/master.svg?style=svg)](https://circleci.com/gh/octo-technology-downunder/octolog/tree/master)
 [![Coverage Status](https://coveralls.io/repos/github/octo-technology-downunder/octolog/badge.svg?branch=master)](https://coveralls.io/github/octo-technology-downunder/octolog?branch=master)
+[![Dependency Status](https://gemnasium.com/badges/github.com/octo-technology-downunder/octolog.svg)](https://gemnasium.com/github.com/octo-technology-downunder/octolog)
 
 The idea is to generate the Resume of the Octos.
 it should be able to retrieve information from external systems like Askbob, Gmail, Octopod, Gitlab
