@@ -21,7 +21,8 @@ dependencies:
 test:
   pre:
     - docker run -dp 8000:8000 --name dynamo dwmkerr/dynamodb
-
+  post:
+    - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls --verbose
 
 deployment:
   deploy:
