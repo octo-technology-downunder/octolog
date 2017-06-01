@@ -105,6 +105,7 @@
     "back:e2e": "OCTOPOD_URL=http://private-08aab-octopodmock.apiary-mock.com ./node_modules/.bin/dredd -l verbose",
     "back:test": "npm run back:integration; RET=$?; npm run back:unit; RET=$?; npm run back:e2e && exit ${RET}",
     "front:dev": "node client/build/dev-server.js",
+    "front:dev-local": "API_URL=\"'http://localhost:3000'\" npm run front:dev",
     "front:build": "node client/build/build.js",
     "front:unit": "cross-env BABEL_ENV=test karma start client/test/unit/karma.conf.js --single-run",
     "front:e2e": "node client/test/e2e/runner.js --env phantomjs",
