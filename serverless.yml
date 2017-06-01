@@ -4,6 +4,8 @@ provider:
   name: aws
   runtime: nodejs6.10
   timeout: 25
+  apiKeys: # List of API keys to be used by your service API Gateway REST API
+    - ${self:service}-${self:provider.stage}-api-key
   stackTags:
     octolog: ${self:provider.stage} # useful to create AWS group
   stage: dev
@@ -32,6 +34,7 @@ functions:
           path: people/{trigram}/cv/{name}
           method: put
           cors: true
+          private: true
 
   getBasics:
     handler: lambda/basics.get
@@ -40,6 +43,7 @@ functions:
           path: people/{trigram}/cv/{name}
           method: get
           cors: true
+          private: true
 
 
   deleteBasics:
@@ -49,6 +53,7 @@ functions:
           path: people/{trigram}/cv/{name}
           method: delete
           cors: true
+          private: true
 
 
   getExperience:
@@ -58,6 +63,7 @@ functions:
           path: people/{trigram}/experiences/{id}
           method: get
           cors: true
+          private: true
 
   updateExperience:
     handler: lambda/experiences.update
@@ -66,6 +72,7 @@ functions:
           path: people/{trigram}/experiences/{id}
           method: put
           cors: true
+          private: true
 
   createExperience:
     handler: lambda/experiences.create
@@ -74,6 +81,7 @@ functions:
           path: people/{trigram}/cv/{name}/experiences
           method: post
           cors: true
+          private: true
 
   getExperiences:
     handler: lambda/experiences.getAll
@@ -82,6 +90,7 @@ functions:
           path: people/{trigram}/cv/{name}/experiences
           method: get
           cors: true
+          private: true
 
 
   deleteExperience:
@@ -91,6 +100,7 @@ functions:
           path: people/{trigram}/experiences/{id}
           method: delete
           cors: true
+          private: true
 
   syncOctoExperiences:
     handler: lambda/octopod.sync
@@ -102,6 +112,7 @@ functions:
           path: people/{trigram}/cv/{name}/octopod/sync
           method: post
           cors: true
+          private: true
           integration: lambda
           request:
             parameters:
@@ -117,6 +128,7 @@ functions:
           path: people/{trigram}/cv/{name}/askbob/sync
           method: post
           cors: true
+          private: true
           integration: lambda
           request:
             parameters:

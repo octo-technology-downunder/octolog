@@ -13,22 +13,27 @@ OCTOLog is a simple API to easily generate beautiful CV and bio.
     + trigram: `JBI` (String, required) - ID of the person
     + name: `default` (String, required) - name of the CV
 
-+ Request (application/json)
++ Request
+    + Headers
 
-        {
-            "firstName": "Billy",
-            "lastName": "Joe",
-            "pictureUrl": "https://pbs.twimg.com/profile_images/456738286732455936/uJGJyDbl.jpeg",
-            "job": "Architect",
-            "education":["UTC (Technical University of Compiegne)", "City University of Hong Kong"],
-            "skills":{
-                "technical": ["platform/frameworks: node, iOS, Rails, J2EE, Play", "Devops: Ansible, Puppet, Capistrano"],
-                "architectureTechnologies": ["Architecture studies", "Audits", "API Design"],
-                "methodologies": ["Agile", "Lean", "Lean Startup"],
-                "achievements": ["Speaker", "Blog articles"],
-                "others": ["English", "Spanish"]
+            x-api-key: d41d8cd98f00b204e9800998ecf8427e
+
+    + Body
+
+            {
+                "firstName": "Billy",
+                "lastName": "Joe",
+                "pictureUrl": "https://pbs.twimg.com/profile_images/456738286732455936/uJGJyDbl.jpeg",
+                "job": "Architect",
+                "education":["UTC (Technical University of Compiegne)", "City University of Hong Kong"],
+                "skills":{
+                    "technical": ["platform/frameworks: node, iOS, Rails, J2EE, Play", "Devops: Ansible, Puppet, Capistrano"],
+                    "architectureTechnologies": ["Architecture studies", "Audits", "API Design"],
+                    "methodologies": ["Agile", "Lean", "Lean Startup"],
+                    "achievements": ["Speaker", "Blog articles"],
+                    "others": ["English", "Spanish"]
+                }
             }
-        }
 
 + Response 200 (application/json)
 
@@ -55,6 +60,10 @@ OCTOLog is a simple API to easily generate beautiful CV and bio.
 + Parameters
     + trigram: `JBI` (String, required) - ID of the person
     + name: `default` (String, required) - name of the CV
+
++ Request
+    + Headers
+            x-api-key: d41d8cd98f00b204e9800998ecf8427e
 
 + Response 200 (application/json)
 
@@ -90,22 +99,27 @@ You may update an experience to add details.
     + trigram: `JBI` (String, required) - ID of the person
 
 + Request (application/json)
+    + Headers
 
-        {
-            "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
-            "octopodProjectId": 123456,
-            "customer":"Pacifica",
-            "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
-            "role":"Developer 1",
-            "from": "2015-08-05T08:40:51.620Z",
-            "to": "2015-08-05T08:40:51.620Z",
-            "description": [
-                "Frame internal API product",
-                "Design solution and push up technology choices",
-                "Develop solution"
-            ],
-            "tags": ["agile", "javascript"]
-        }
+            x-api-key: d41d8cd98f00b204e9800998ecf8427e
+
+    + Body
+
+            {
+                "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
+                "octopodProjectId": 123456,
+                "customer":"Pacifica",
+                "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
+                "role":"Developer 1",
+                "from": "2015-08-05T08:40:51.620Z",
+                "to": "2015-08-05T08:40:51.620Z",
+                "description": [
+                    "Frame internal API product",
+                    "Design solution and push up technology choices",
+                    "Develop solution"
+                ],
+                "tags": ["agile", "javascript"]
+            }
 
 + Response 200 (application/json)
 
@@ -135,6 +149,11 @@ You may retrieve an experience to add details.
     + id: `3000003189` (Number, required) - ID of the experience
     + trigram: `JBI` (String, required) - ID of the person
 
++ Request (application/json)
+    + Headers
+
+            x-api-key: d41d8cd98f00b204e9800998ecf8427e
+
 + Response 200 (application/json)
 
         {
@@ -160,6 +179,12 @@ You may retrieve an experience to add details.
     + id: `3000003189` (Number, required) - ID of the experience
     + trigram: `JBI` (String, required) - ID of the person
 
+
++ Request (application/json)
+    + Headers
+
+            x-api-key: d41d8cd98f00b204e9800998ecf8427e
+
 + Response 204 (text/html; charset=utf-8)
 
 
@@ -174,23 +199,28 @@ You may retrieve an experience to add details.
 You may add a new experience
 
 + Request (application/json)
+    + Headers
 
-        {
-            "id": "1234568",
-            "octopodProjectId": 123456,
-            "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
-            "customer":"ING Direct Australia",
-            "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
-            "role":"Developer 1",
-            "from": "2015-08-05T08:40:51.620Z",
-            "to": "2015-08-05T08:40:51.620Z",
-            "description": [
-                "Frame internal API product",
-                "Design solution and push up technology choices",
-                "Develop solution"
-            ],
-            "tags": ["agile", "javascript"]
-        }
+            x-api-key: d41d8cd98f00b204e9800998ecf8427e
+
+    + Body
+
+            {
+                "id": "1234568",
+                "octopodProjectId": 123456,
+                "mission": "R2016-877 - ING DIRECT AUSTRALIA - AGILE TEAM",
+                "customer":"ING Direct Australia",
+                "customerLogo":"http://www.welcometothejungle.co/uploads/company/logo/octo-technology.png",
+                "role":"Developer 1",
+                "from": "2015-08-05T08:40:51.620Z",
+                "to": "2015-08-05T08:40:51.620Z",
+                "description": [
+                    "Frame internal API product",
+                    "Design solution and push up technology choices",
+                    "Develop solution"
+                ],
+                "tags": ["agile", "javascript"]
+            }
 
 + Response 201 (application/json)
 
@@ -215,6 +245,12 @@ You may add a new experience
 
 
 ### List All Past Experiences [GET]
+
++ Request
+    + Headers
+
+            x-api-key: d41d8cd98f00b204e9800998ecf8427e
+
 
 + Response 200 (application/json)
 
@@ -278,6 +314,11 @@ You may add a new experience
 
 ### Sync [POST]
 
++ Request
+    + Headers
+
+            x-api-key: d41d8cd98f00b204e9800998ecf8427e
+
 + Response 200 (application/json; charset=utf-8)
 
         [
@@ -303,6 +344,11 @@ You may add a new experience
     + name: `default` (String, required) - name of the CV
 
 ### Sync [POST]
+
++ Request
+    + Headers
+
+            x-api-key: d41d8cd98f00b204e9800998ecf8427e
 
 + Response 200 (application/json; charset=utf-8)
 
