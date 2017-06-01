@@ -66,8 +66,12 @@ module.exports.create = (event, context, callback) => {
 
 
 module.exports.getAll = (event, context, callback) => {
-  const trigram = event.path.trigram
-  const cvName = event.path.name
+  const trigram = event.pathParameters.trigram
+  const cvName = event.pathParameters.name
+
+  if(trigram == null) return web.paramError("The path parameter 'trigram' is required", callback)
+  if(cvName == null) return web.paramError("The path parameter 'name' is required", callback)
+
   ExperiencesTable
     .query(trigram)
     .exec((err, data) => {
@@ -76,7 +80,7 @@ module.exports.getAll = (event, context, callback) => {
                                 .map(z => z.attrs)
                                 .filter(z => z.cvName === cvName)
                                 .map(setupDefault)
-      callback(null, separateOctoAndNoneOctoExp(filteredExp))
+      web.ok(separateOctoAndNoneOctoExp(filteredExp), callback)
     });
 };
 

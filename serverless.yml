@@ -82,12 +82,7 @@ functions:
           path: people/{trigram}/cv/{name}/experiences
           method: get
           cors: true
-          integration: lambda
-          request:
-            parameters:
-              paths:
-                trigram: true
-                name: true
+
 
   deleteExperience:
     handler: lambda/experiences.delete

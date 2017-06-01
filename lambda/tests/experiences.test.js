@@ -3,7 +3,7 @@ const fs = require('fs')
 const proxyquire = require('proxyquire')
 const sinon = require('sinon')
 
-const dynamo = { ExperiencesTable: {} , PeopleTable: {} }
+const dynamo = { ExperiencesTable: {} , PeopleTable: {}, query: {} }
 const experiences = proxyquire('../experiences', { './dynamo/schema': dynamo });
 
 const exp = {}
@@ -408,6 +408,103 @@ describe("experiences webservice: ", () => {
       })
     })
   })
+
+  describe("when getting all the experience of one resume", () => {
+
+    beforeEach(() => {
+      dynamo.ExperiencesTable.query = sinon.stub()
+      dynamo.query.exec = sinon.stub()
+    })
+
+    afterEach(() => {
+      dynamo.ExperiencesTable.query.reset();
+      dynamo.query.exec.reset();
+    })
+
+    describe("when the parameters 'trigram' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            name: 'default'
+          }
+        }
+
+        //when
+        experiences.getAll(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(400)
+          const json = JSON.parse(httpResponse.body)
+          expect(json.message).to.equal("The path parameter 'trigram' is required")
+          done()
+        })
+      })
+    })
+
+    describe("when the parameters 'name' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            trigram: 'TGE'
+          }
+        }
+
+        //when
+        experiences.getAll(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(httpResponse.statusCode).to.equal(400)
+          expect(json.message).to.equal("The path parameter 'name' is required")
+          done()
+        })
+      })
+    })
+
+
+    describe("when there is no issue", () => {
+      it("return the CV with the correct name", (done) => {
+        //given
+        const experiencesData = [{
+          id: '1234',
+          trigram: 'TGE',
+          cvName: 'default',
+          isOcto: true
+        },
+        {
+          id: '12345',
+          trigram: 'TGE',
+          cvName: 'other',
+          isOcto: true
+        }]
+
+        function exec(cb) {
+          cb(null, { Items: experiencesData.map(z => { return {attrs: z} })})
+        }
+
+        dynamo.ExperiencesTable.query.withArgs("TGE").returns({ exec })
+        const input = {
+          pathParameters: {
+            trigram: 'TGE',
+            name: 'default'
+          }
+        }
+
+        //when
+        experiences.getAll(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(200)
+          const json = JSON.parse(httpResponse.body)
+          console.log(json)
+          expect(json.octo.length).to.equal(1)
+          expect(json.octo[0].id).to.equal('1234')
+          expect(json.octo[0].trigram).to.equal('TGE')
+          done()
+        })
+      })
+    })
+  })
+
 })
 
 
