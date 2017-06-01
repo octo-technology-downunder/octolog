@@ -108,6 +108,128 @@ describe("experiences webservice: ", () => {
     })
   })
 
+  describe("when updating the experience in the DB", () => {
+
+    beforeEach(() => {
+      dynamo.ExperiencesTable.getP = sinon.stub()
+      dynamo.ExperiencesTable.createP = sinon.stub()
+      dynamo.ExperiencesTable.updateP = sinon.stub()
+    })
+
+    afterEach(() => {
+      dynamo.ExperiencesTable.getP.reset();
+      dynamo.ExperiencesTable.createP.reset();
+      dynamo.ExperiencesTable.updateP.reset();
+    })
+
+    describe("when the parameters 'trigram' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            id: 'default'
+          },
+          body: "{}"
+        }
+
+        //when
+        experiences.update(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(400)
+          const json = JSON.parse(httpResponse.body)
+          expect(json.message).to.equal("The path parameter 'trigram' is required")
+          done()
+        })
+      })
+    })
+
+    describe("when the parameters 'id' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            trigram: 'TGE'
+          },
+          body: "{}"
+        }
+
+        //when
+        experiences.update(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(httpResponse.statusCode).to.equal(400)
+          expect(json.message).to.equal("The path parameter 'id' is required")
+          done()
+        })
+      })
+    })
+
+    describe("when there is no experience in the DB", () => {
+      it("create the experience", (done) => {
+        //given
+        const exp = {
+          trigram: 'TGE',
+          id: '1234'
+        }
+        dynamo.ExperiencesTable.getP.withArgs("TGE", '1234').resolves(null)
+        dynamo.ExperiencesTable.createP.resolves({ attrs: exp })
+        const input = {
+          pathParameters: {
+            trigram: 'TGE',
+            id: '1234'
+          },
+          body: "{}"
+        }
+
+        //when
+        experiences.update(input, {}, (err, httpResponse) => {
+
+          //then
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(json.trigram).to.equal('TGE')
+          expect(json.id).to.equal('1234')
+          expect(dynamo.ExperiencesTable.createP.calledWithExactly(exp)).to.be.true;
+          expect(dynamo.ExperiencesTable.updateP.called).to.be.false;
+          done()
+        })
+      })
+    })
+
+    describe("when there is a experience in the DB", () => {
+      it("update the experience", (done) => {
+        //given
+        const exp = {
+          trigram: 'TGE',
+          id: '1234'
+        }
+        dynamo.ExperiencesTable.getP.withArgs("TGE", '1234').resolves({ attrs: exp })
+        dynamo.ExperiencesTable.updateP.resolves({ attrs: exp })
+        const input = {
+          pathParameters: {
+            trigram: 'TGE',
+            id: '1234'
+          },
+          body: "{}"
+        }
+
+        //when
+        experiences.update(input, {}, (err, httpResponse) => {
+
+          //then
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(json.trigram).to.equal('TGE')
+          expect(json.id).to.equal('1234')
+          expect(dynamo.ExperiencesTable.createP.called).to.be.false;
+          expect(dynamo.ExperiencesTable.updateP.calledWithExactly(exp)).to.be.true;
+
+          done()
+        })
+      })
+    })
+  })
+
 
   describe("when deleting the experience in the DB", () => {
 

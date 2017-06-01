@@ -66,12 +66,6 @@ functions:
           path: people/{trigram}/experiences/{id}
           method: put
           cors: true
-          integration: lambda
-          request:
-            parameters:
-              paths:
-                trigram: true
-                name: true
 
   createExperience:
     handler: lambda/experiences.create

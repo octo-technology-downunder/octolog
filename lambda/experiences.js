@@ -8,12 +8,26 @@ const web = require('./lib/web')
 
 
 module.exports.update = (event, context, callback) => {
-  const id = event.path.id
-  const trigram = event.path.trigram
-  const body = event.body
+  const body = JSON.parse(event.body)
+  const trigram = event.pathParameters.trigram
+  const id = event.pathParameters.id
+
+  if(trigram == null) return web.paramError("The path parameter 'trigram' is required", callback)
+  if(id == null) return web.paramError("The path parameter 'id' is required", callback)
+
   body.trigram = trigram
   body.id = id
-  ExperiencesTable.create(body, callback)
+  ExperiencesTable.getP(trigram, id, { AttributesToGet : ['trigram'] })
+    .then((person) => {
+      if(person == null) {
+        return ExperiencesTable.createP(body)
+      }
+      return ExperiencesTable.updateP(body)
+    })
+    .then(data => {
+      return web.ok(setupDefault(data.attrs), callback)
+    })
+    .catch(callback)
 };
 
 
