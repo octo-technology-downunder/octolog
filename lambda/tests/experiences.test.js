@@ -230,6 +230,87 @@ describe("experiences webservice: ", () => {
     })
   })
 
+  describe("when creating the experience in the DB", () => {
+
+    beforeEach(() => {
+      dynamo.ExperiencesTable.createP = sinon.stub()
+    })
+
+    afterEach(() => {
+      dynamo.ExperiencesTable.createP.reset();
+    })
+    describe("when the parameters 'trigram' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            name: 'default'
+          },
+          body: "{}"
+        }
+
+        //when
+        experiences.create(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(400)
+          const json = JSON.parse(httpResponse.body)
+          expect(json.message).to.equal("The path parameter 'trigram' is required")
+          done()
+        })
+      })
+    })
+
+    describe("when the parameters 'name' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            trigram: 'TGE'
+          },
+          body: "{}"
+        }
+
+        //when
+        experiences.create(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(httpResponse.statusCode).to.equal(400)
+          expect(json.message).to.equal("The path parameter 'name' is required")
+          done()
+        })
+      })
+    })
+
+
+    describe("when there is no errors", () => {
+      it("return the CV", (done) => {
+        //given
+        const cv = {
+          name: 'default',
+          trigram: 'TGE'
+        }
+
+        dynamo.ExperiencesTable.createP.resolves({ attrs: cv})
+        const input = {
+          pathParameters: {
+            trigram: 'TGE',
+            name: 'default'
+          },
+          body: "{}"
+        }
+
+        //when
+        experiences.create(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(201)
+          const json = JSON.parse(httpResponse.body)
+          expect(json.name).to.equal('default')
+          expect(json.trigram).to.equal('TGE')
+          done()
+        })
+      })
+    })
+  })
 
   describe("when deleting the experience in the DB", () => {
 

@@ -50,12 +50,18 @@ module.exports.get = (event, context, callback) => {
 
 
 module.exports.create = (event, context, callback) => {
-  const trigram = event.path.trigram
-  const cvName = event.path.name
-  const body = event.body
+  const trigram = event.pathParameters.trigram
+  const cvName = event.pathParameters.name
+  const body = JSON.parse(event.body)
+
+  if(trigram == null) return web.paramError("The path parameter 'trigram' is required", callback)
+  if(cvName == null) return web.paramError("The path parameter 'name' is required", callback)
+
   body.cvName = cvName
   body.trigram = trigram
-  ExperiencesTable.create(body, callback)
+  ExperiencesTable.createP(body)
+    .then(exp => web.created(exp.attrs, callback))
+    .catch(callback)
 };
 
 

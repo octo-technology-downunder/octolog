@@ -74,12 +74,6 @@ functions:
           path: people/{trigram}/cv/{name}/experiences
           method: post
           cors: true
-          integration: lambda
-          request:
-            parameters:
-              paths:
-                trigram: true
-                name: true
 
   getExperiences:
     handler: lambda/experiences.getAll
