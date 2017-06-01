@@ -114,12 +114,6 @@ functions:
           path: people/{trigram}/experiences/{id}
           method: delete
           cors: true
-          integration: lambda
-          request:
-            parameters:
-              paths:
-                trigram: true
-                id: true
 
   syncOctoExperiences:
     handler: lambda/octopod.sync

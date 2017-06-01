@@ -4,6 +4,8 @@ const { ExperiencesTable, PeopleTable } = require('./dynamo/schema')
 const uuidV4 = require('uuid/v4');
 const async = require("async");
 const _ = require('lodash')
+const web = require('./lib/web')
+
 
 module.exports.update = (event, context, callback) => {
   const id = event.path.id
@@ -51,15 +53,21 @@ module.exports.getAll = (event, context, callback) => {
 
 
 module.exports.delete = (event, context, callback) => {
-  const trigram = event.path.trigram
-  const id = event.path.id
+  const trigram = event.pathParameters.trigram
+  const id = event.pathParameters.id
+
+  if(trigram == null) return web.paramError("The path parameter 'trigram' is required", callback)
+  if(id == null) return web.paramError("The path parameter 'id' is required", callback)
+
   ExperiencesTable.getP(trigram, id, { AttributesToGet : ['id'] })
     .then((exp) => {
-      if(exp == null) throw new Error(`The experience ${id} was not found`)
-      return [trigram, id];
+      if(exp == null) {
+        return web.notFound(`The experience ${id} was not found`, callback)
+      }
+      return ExperiencesTable.destroyP(trigram, id)
+          .then(data => web.deleted(callback))
+          .catch(callback)
     })
-    .then(trigramAndId => ExperiencesTable.destroyP(...trigramAndId))
-    .then(data => callback(null, { id, trigram }))
     .catch(callback)
 };
 

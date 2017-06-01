@@ -32,7 +32,11 @@ function created(json, cb) {
 
 function deleted(cb) {
   cb(null, {
-    statusCode: 204
+    statusCode: 204,
+    body: 'deleted',
+    headers: {
+      "content-type": "text/html"
+    }
   });
 }
 module.exports = {

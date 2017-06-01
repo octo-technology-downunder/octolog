@@ -23,20 +23,63 @@ describe("experiences webservice: ", () => {
       dynamo.ExperiencesTable.destroyP.reset();
     })
 
+    describe("when the parameters 'trigram' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            id: 'default'
+          }
+        }
+
+        //when
+        experiences.delete(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(400)
+          const json = JSON.parse(httpResponse.body)
+          expect(json.message).to.equal("The path parameter 'trigram' is required")
+          done()
+        })
+      })
+    })
+
+    describe("when the parameters 'id' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            trigram: 'TGE'
+          }
+        }
+
+        //when
+        experiences.delete(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(httpResponse.statusCode).to.equal(400)
+          expect(json.message).to.equal("The path parameter 'id' is required")
+          done()
+        })
+      })
+    })
+
     describe("when there is no CV in the DB", () => {
       it("return an error", (done) => {
         //given
         dynamo.ExperiencesTable.getP.withArgs("TGE", "1234").resolves(null)
         const input = {
-          path: {
+          pathParameters: {
             id: '1234',
             trigram: 'TGE'
           }
         }
         //when
-        experiences.delete(input, {}, (err, data) => {
-          expect(err.message).to.equal('The experience 1234 was not found')
-          expect(data).to.not.exist
+        experiences.delete(input, {}, (err, httpResponse) => {
+          console.log(err)
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(httpResponse.statusCode).to.equal(404)
+          expect(json.message).to.equal('The experience 1234 was not found')
           done()
         })
       })
@@ -49,14 +92,15 @@ describe("experiences webservice: ", () => {
         dynamo.ExperiencesTable.destroyP.withArgs("TGE", "1234").resolves({})
 
         const input = {
-          path: {
+          pathParameters: {
             id: '1234',
             trigram: 'TGE'
           }
         }
         //when
-        experiences.delete(input, {}, (err, data) => {
+        experiences.delete(input, {}, (err, httpResponse) => {
           expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(204)
           expect(dynamo.ExperiencesTable.destroyP.calledWithExactly("TGE", "1234")).to.be.true;
           done()
         })

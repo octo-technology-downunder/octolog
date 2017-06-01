@@ -46,7 +46,7 @@ describe("lib/web: ", () => {
         //then
         expect(err).to.not.exists
         expect(res.statusCode).to.equal(204)
-        expect(res.body).to.not.exists
+        expect(res.body).to.deep.equal('deleted')
         done()
       })
     })
