@@ -5,7 +5,7 @@ provider:
   runtime: nodejs6.10
   timeout: 25
   apiKeys: # List of API keys to be used by your service API Gateway REST API
-    - ${self:service}-${self:provider.stage}-api-key
+    - ${self:service}-${self:provider.stage}-key
   stackTags:
     octolog: ${self:provider.stage} # useful to create AWS group
   stage: dev
