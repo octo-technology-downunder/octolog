@@ -2,6 +2,10 @@
 function prepareHttpRequest(httpCode, json, cb) {
   cb(null, {
     statusCode: httpCode,
+    headers: {
+        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Credentials" : true
+      },
     body: JSON.stringify(json),
   });
 }
@@ -35,7 +39,9 @@ function deleted(cb) {
     statusCode: 204,
     body: 'deleted',
     headers: {
-      "content-type": "text/html"
+      "content-type": "text/html",
+      "Access-Control-Allow-Origin" : "*",
+      "Access-Control-Allow-Credentials" : true
     }
   });
 }

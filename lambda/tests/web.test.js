@@ -3,6 +3,23 @@ const expect = require("chai").expect
 const web = require('../lib/web')
 
 describe("lib/web: ", () => {
+
+  describe("when doing a doing a HTTP request", () => {
+    it('setup the CORS header', (done) => {
+      //given
+
+      //when
+      web.prepareHttpRequest(999, {}, (err, res) => {
+        //then
+        expect(err).to.not.exists
+        expect(res.statusCode).to.equal(999)
+        expect(res.headers['Access-Control-Allow-Origin']).to.equal('*')
+        expect(res.headers['Access-Control-Allow-Credentials']).to.be.true
+        done()
+      })
+    })
+  })
+
   describe("when ask for not found error", () => {
     it('return an 404 formated error', (done) => {
       //given
