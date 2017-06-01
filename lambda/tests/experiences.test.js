@@ -386,7 +386,7 @@ describe("experiences webservice: ", () => {
     })
 
     describe("when there is a CV in the DB", () => {
-      it.only("flagged the CV as removed", (done) => {
+      it("flagged the CV as removed", (done) => {
 
         const expDeleted = Object.assign({isDeleted: true}, exp)
         //given
