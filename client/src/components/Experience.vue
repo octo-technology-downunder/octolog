@@ -5,12 +5,12 @@
     <div class="experience">
       <mission v-for="mission in octoMissions" v-bind:mission="mission" :key="mission.id"></mission>
     </div>
-    <button v-on:click="syncOctopod" class="hidden-print">Retrieve latest missions from Octopod</button>    
+    <button v-on:click="syncOctopod" class="hidden-print">Retrieve latest missions from Octopod</button>
     <h1>experience <span> - prior to OCTO Technology</span></h1>
     <div class="experience">
       <mission v-for="mission in priorExperience" v-bind:mission="mission" :key="mission.id"></mission>
     </div>
-    <button v-on:click="addExperience" class="hidden-print">Add previous experience</button>    
+    <button v-on:click="addExperience" class="hidden-print">Add previous experience</button>
   </div>
 </template>
 

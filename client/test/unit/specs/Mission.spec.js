@@ -11,7 +11,7 @@ function getRenderedEl (Component, propsData) {
 describe('Mission.vue', () => {
   it('should not render without mission', () => {
     const renderedElement = getRenderedEl(Mission, {mission: {tags: []}})
-    expect(renderedElement.textContent).to.equal('  –  Edit experience  for   ')
+    expect(renderedElement.textContent).to.equal('  –  Edit experience Delete experience  for   ')
   })
 
   it('should render mission keywords', () => {
