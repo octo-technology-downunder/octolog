@@ -316,12 +316,12 @@ describe("experiences webservice: ", () => {
 
     beforeEach(() => {
       dynamo.ExperiencesTable.getP = sinon.stub()
-      dynamo.ExperiencesTable.destroyP = sinon.stub()
+      dynamo.ExperiencesTable.updateP = sinon.stub()
     })
 
     afterEach(() => {
       dynamo.ExperiencesTable.getP.reset();
-      dynamo.ExperiencesTable.destroyP.reset();
+      dynamo.ExperiencesTable.updateP.reset();
     })
 
     describe("when the parameters 'trigram' is not present", () => {
@@ -386,10 +386,12 @@ describe("experiences webservice: ", () => {
     })
 
     describe("when there is a CV in the DB", () => {
-      it("remove the CV", (done) => {
+      it.only("flagged the CV as removed", (done) => {
+
+        const expDeleted = Object.assign({isDeleted: true}, exp)
         //given
-        dynamo.ExperiencesTable.getP.withArgs("TGE", "1234").resolves(exp)
-        dynamo.ExperiencesTable.destroyP.withArgs("TGE", "1234").resolves({})
+        dynamo.ExperiencesTable.getP.withArgs("TGE", "1234").resolves({ attrs: exp})
+        dynamo.ExperiencesTable.updateP.withArgs(expDeleted).resolves({})
 
         const input = {
           pathParameters: {
@@ -401,7 +403,7 @@ describe("experiences webservice: ", () => {
         experiences.delete(input, {}, (err, httpResponse) => {
           expect(err).to.not.exist
           expect(httpResponse.statusCode).to.equal(204)
-          expect(dynamo.ExperiencesTable.destroyP.calledWithExactly("TGE", "1234")).to.be.true;
+          expect(dynamo.ExperiencesTable.updateP.calledWithExactly(expDeleted)).to.be.true;
           done()
         })
       })

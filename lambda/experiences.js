@@ -93,12 +93,14 @@ module.exports.delete = (event, context, callback) => {
   if(trigram == null) return web.paramError("The path parameter 'trigram' is required", callback)
   if(id == null) return web.paramError("The path parameter 'id' is required", callback)
 
-  ExperiencesTable.getP(trigram, id, { AttributesToGet : ['id'] })
+  ExperiencesTable.getP(trigram, id)
     .then((exp) => {
       if(exp == null) {
         return web.notFound(`The experience ${id} was not found`, callback)
       }
-      return ExperiencesTable.destroyP(trigram, id)
+      exp = exp.attrs
+      exp.isDeleted = true
+      return ExperiencesTable.updateP(exp)
           .then(data => web.deleted(callback))
           .catch(callback)
     })
