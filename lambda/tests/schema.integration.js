@@ -13,7 +13,8 @@ describe("Schema: ", () => {
       cvName: "toto",
       isOcto: true,
       octopodActivityId: 1234,
-      octopodProjectId: 5678
+      octopodProjectId: 5678,
+      isDeleted: false
     }
 
     const exp2 = {
@@ -21,6 +22,7 @@ describe("Schema: ", () => {
       trigram: "IDD",
       cvName: "tutu",
       isOcto: true,
+      isDeleted: false,
       octopodActivityId: 12341,
       octopodProjectId: 56781
     }
