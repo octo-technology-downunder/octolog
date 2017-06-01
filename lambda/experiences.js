@@ -79,6 +79,7 @@ module.exports.getAll = (event, context, callback) => {
       const filteredExp = data.Items
                                 .map(z => z.attrs)
                                 .filter(z => z.cvName === cvName)
+                                .filter(z => z.isDeleted === false)
                                 .map(setupDefault)
       web.ok(separateOctoAndNoneOctoExp(filteredExp), callback)
     });

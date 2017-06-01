@@ -376,7 +376,6 @@ describe("experiences webservice: ", () => {
         }
         //when
         experiences.delete(input, {}, (err, httpResponse) => {
-          console.log(err)
           expect(err).to.not.exist
           const json = JSON.parse(httpResponse.body)
           expect(httpResponse.statusCode).to.equal(404)
@@ -463,19 +462,22 @@ describe("experiences webservice: ", () => {
 
 
     describe("when there is no issue", () => {
-      it("return the CV with the correct name", (done) => {
+      it("return the experiences with the correct name", (done) => {
         //given
         const experiencesData = [{
           id: '1234',
           trigram: 'TGE',
           cvName: 'default',
-          isOcto: true
+          isOcto: true,
+          isDeleted: false
         },
         {
           id: '12345',
           trigram: 'TGE',
           cvName: 'other',
-          isOcto: true
+          isOcto: true,
+          isDeleted: false
+
         }]
 
         function exec(cb) {
@@ -495,7 +497,49 @@ describe("experiences webservice: ", () => {
           expect(err).to.not.exist
           expect(httpResponse.statusCode).to.equal(200)
           const json = JSON.parse(httpResponse.body)
-          console.log(json)
+          expect(json.octo.length).to.equal(1)
+          expect(json.octo[0].id).to.equal('1234')
+          expect(json.octo[0].trigram).to.equal('TGE')
+          done()
+        })
+      })
+    })
+
+    describe("when there is deleted experiences", () => {
+      it("return the experiences not deleted", (done) => {
+        //given
+        const experiencesData = [{
+          id: '1234',
+          trigram: 'TGE',
+          cvName: 'default',
+          isOcto: true,
+          isDeleted: false
+        },
+        {
+          id: '12345',
+          trigram: 'TGE',
+          cvName: 'default',
+          isOcto: true,
+          isDeleted: true
+        }]
+
+        function exec(cb) {
+          cb(null, { Items: experiencesData.map(z => { return {attrs: z} })})
+        }
+
+        dynamo.ExperiencesTable.query.withArgs("TGE").returns({ exec })
+        const input = {
+          pathParameters: {
+            trigram: 'TGE',
+            name: 'default'
+          }
+        }
+
+        //when
+        experiences.getAll(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(200)
+          const json = JSON.parse(httpResponse.body)
           expect(json.octo.length).to.equal(1)
           expect(json.octo[0].id).to.equal('1234')
           expect(json.octo[0].trigram).to.equal('TGE')
