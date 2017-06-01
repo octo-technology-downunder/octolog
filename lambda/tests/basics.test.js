@@ -18,7 +18,7 @@ const tge = {
 
 describe("CV webservice: ", () => {
 
-  describe("when getting the experience in the DB", () => {
+  describe("when getting the CV in the DB", () => {
 
     beforeEach(() => {
       dynamo.PeopleTable.getP = sinon.stub()
@@ -27,7 +27,45 @@ describe("CV webservice: ", () => {
     afterEach(() => {
       dynamo.PeopleTable.getP.reset();
     })
+    describe("when the parameters 'trigram' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            name: 'default'
+          }
+        }
 
+        //when
+        basics.get(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(400)
+          const json = JSON.parse(httpResponse.body)
+          expect(json.message).to.equal("The path parameter 'trigram' is required")
+          done()
+        })
+      })
+    })
+
+    describe("when the parameters 'name' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            trigram: 'TGE'
+          }
+        }
+
+        //when
+        basics.get(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(httpResponse.statusCode).to.equal(400)
+          expect(json.message).to.equal("The path parameter 'name' is required")
+          done()
+        })
+      })
+    })
     describe("when there is no CV in the DB", () => {
       it("return an 404 error", (done) => {
         //given
@@ -90,6 +128,48 @@ describe("CV webservice: ", () => {
       dynamo.PeopleTable.getP.reset();
       dynamo.PeopleTable.createP.reset();
       dynamo.PeopleTable.updateP.reset();
+    })
+
+    describe("when the parameters 'trigram' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            name: 'default'
+          },
+          body: "{}"
+        }
+
+        //when
+        basics.update(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(400)
+          const json = JSON.parse(httpResponse.body)
+          expect(json.message).to.equal("The path parameter 'trigram' is required")
+          done()
+        })
+      })
+    })
+
+    describe("when the parameters 'name' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            trigram: 'TGE'
+          },
+          body: "{}"
+        }
+
+        //when
+        basics.update(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(httpResponse.statusCode).to.equal(400)
+          expect(json.message).to.equal("The path parameter 'name' is required")
+          done()
+        })
+      })
     })
 
     describe("when there is no CV in the DB", () => {
@@ -168,6 +248,46 @@ describe("CV webservice: ", () => {
     afterEach(() => {
       dynamo.PeopleTable.getP.reset();
       dynamo.PeopleTable.destroyP.reset();
+    })
+
+    describe("when the parameters 'trigram' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            name: 'default'
+          }
+        }
+
+        //when
+        basics.delete(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          expect(httpResponse.statusCode).to.equal(400)
+          const json = JSON.parse(httpResponse.body)
+          expect(json.message).to.equal("The path parameter 'trigram' is required")
+          done()
+        })
+      })
+    })
+
+    describe("when the parameters 'name' is not present", () => {
+      it("return an 400 error", (done) => {
+        //given
+        const input = {
+          pathParameters: {
+            trigram: 'TGE'
+          }
+        }
+
+        //when
+        basics.delete(input, {}, (err, httpResponse) => {
+          expect(err).to.not.exist
+          const json = JSON.parse(httpResponse.body)
+          expect(httpResponse.statusCode).to.equal(400)
+          expect(json.message).to.equal("The path parameter 'name' is required")
+          done()
+        })
+      })
     })
 
     describe("when there is no CV in the DB", () => {

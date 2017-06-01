@@ -8,6 +8,10 @@ module.exports.update = (event, context, callback) => {
   const body = JSON.parse(event.body)
   const trigram = event.pathParameters.trigram
   const name = event.pathParameters.name
+
+  if(trigram == null) return web.paramError("The path parameter 'trigram' is required", callback)
+  if(name == null) return web.paramError("The path parameter 'name' is required", callback)
+
   body.trigram = trigram
   body.name = name
   PeopleTable.getP(trigram, name, { AttributesToGet : ['trigram'] })
@@ -28,6 +32,9 @@ module.exports.get = (event, context, callback) => {
   const trigram = event.pathParameters.trigram
   const name = event.pathParameters.name
 
+  if(trigram == null) return web.paramError("The path parameter 'trigram' is required", callback)
+  if(name == null) return web.paramError("The path parameter 'name' is required", callback)
+
   PeopleTable.getP(trigram, name)
     .then(data => {
       if(data == null) {
@@ -41,6 +48,10 @@ module.exports.get = (event, context, callback) => {
 module.exports.delete = (event, context, callback) => {
   const trigram = event.pathParameters.trigram
   const name = event.pathParameters.name
+
+  if(trigram == null) return web.paramError("The path parameter 'trigram' is required", callback)
+  if(name == null) return web.paramError("The path parameter 'name' is required", callback)
+
   PeopleTable.getP(trigram, name, { AttributesToGet : ['trigram'] })
     .then((person) => {
       if(person != null) {

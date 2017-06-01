@@ -20,6 +20,23 @@ describe("lib/web: ", () => {
     })
   })
 
+  describe("when ask for param error", () => {
+    it('return an 404 formated error', (done) => {
+      //given
+      errMsg = 'the error message'
+
+      //when
+      web.paramError(errMsg, (err, res) => {
+        //then
+        expect(err).to.not.exists
+        expect(res.statusCode).to.equal(400)
+        const json = JSON.parse(res.body)
+        expect(json.message).to.equal(errMsg)
+        done()
+      })
+    })
+  })
+
   describe("when ask for deleted", () => {
     it('return an 204 without any body', (done) => {
       //given

@@ -18,6 +18,10 @@ function notFound(msg, cb) {
   prepareErrorHttpRequest(404, msg, cb)
 }
 
+function paramError(msg, cb) {
+  prepareErrorHttpRequest(400, msg, cb)
+}
+
 function ok(json, cb) {
   prepareHttpRequest(200, json, cb)
 }
@@ -37,5 +41,6 @@ module.exports = {
   notFound,
   ok,
   created,
-  deleted
+  deleted,
+  paramError
 }
