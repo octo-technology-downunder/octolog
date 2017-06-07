@@ -9,7 +9,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: ['profile']
+  computed: {
+    ...mapGetters([
+      'profile'
+    ])
+  }
 }
 </script>

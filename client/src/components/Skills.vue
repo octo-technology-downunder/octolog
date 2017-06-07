@@ -38,7 +38,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: ['skills']
+  computed: {
+    ...mapGetters([
+      'skills'
+    ])
+  }
 }
 </script>

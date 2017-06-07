@@ -8,8 +8,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
-  props: ['education']
+  computed: {
+    ...mapGetters([
+      'education'
+    ])
+  }
 }
 </script>

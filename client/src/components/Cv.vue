@@ -1,7 +1,7 @@
 <template>
   <div class="cv">
-    <profile v-bind:profile="profile"></profile>
-    <education v-bind:education="profile.education"></education>
+    <profile></profile>
+    <education></education>
     <skills v-bind:skills="profile.skills"></skills>
     <profileModalContainer></profileModalContainer>
     <button v-on:click="syncAskbob" class="hidden-print">Retrieve details from AskBob</button>
@@ -23,14 +23,13 @@ import { mapGetters } from 'vuex'
 export default {
   components: {Profile, Education, Skills, Experience, ProfileModalContainer, ProfileModalHub},
   computed: {
-    // mix the getters into computed with object spread operator
     ...mapGetters([
-      'trigram'
+      'trigram',
+      'profile'
     ])
   },
   data () {
     return {
-      profile: {education: {}, skills: {}},
       errors: []
     }
   },
@@ -41,7 +40,7 @@ export default {
     fetchProfile: function () {
       return axios.get(process.env.API_URL + process.env.UPDATE_BASICS_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
-          this.profile = response.data
+          this.$store.commit('setProfile', response.data)
         })
         .catch(e => {
           this.errors.push(e)
@@ -55,8 +54,7 @@ export default {
     syncAskbob () {
       return axios.post(process.env.API_URL + process.env.SYNC_ASKBOB_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
-          Object.assign(this.profile, response.data)
-          console.log(this.profile)
+          this.$store.commit('mergeProfile', response.data)
         })
         .catch(e => {
           this.errors.push(e)

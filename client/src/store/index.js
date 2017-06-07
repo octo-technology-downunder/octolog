@@ -9,7 +9,8 @@ const store = new Vuex.Store({
   state: {
     password: '',
     trigram: '',
-    experiences: {octo: [], priorToOcto: []}
+    experiences: {octo: [], priorToOcto: []},
+    profile: {education: {}, skills: {}}
   },
   getters: {
     trigram: state => {
@@ -41,6 +42,15 @@ const store = new Vuex.Store({
         return 0
       }
       return state.experiences.priorToOcto.sort(latestEndingFirst)
+    },
+    profile: state => {
+      return state.profile
+    },
+    education: state => {
+      return state.profile.education
+    },
+    skills: state => {
+      return state.profile.skills
     }
   },
   mutations: {
@@ -52,6 +62,12 @@ const store = new Vuex.Store({
     },
     setExperiences (state, experiences) {
       state.experiences = experiences
+    },
+    setProfile (state, profile) {
+      state.profile = profile
+    },
+    mergeProfile (state, profile) {
+      Object.assign(this.profile, profile)
     },
     deleteExperience (state, experience) {
       state.experiences.octo = state.experiences.octo.filter(function (element) { return element.id !== experience.id })

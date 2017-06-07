@@ -9,6 +9,10 @@ function getRenderedEl (Component, propsData) {
 }
 
 describe('Mission.vue', () => {
+  beforeEach(function () {
+    store.commit('setTrigram', 'TRI')
+  })
+
   it('should not render without mission', () => {
     const renderedElement = getRenderedEl(Mission, {mission: {tags: []}})
     expect(renderedElement.textContent).to.equal('  –  Edit experience Delete experience  for   ')

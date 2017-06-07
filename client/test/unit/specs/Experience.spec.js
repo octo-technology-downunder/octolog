@@ -13,6 +13,7 @@ const fakeTrigram = 'TRI'
 
 describe('Experience.vue', () => {
   beforeEach(function () {
+    store.commit('setTrigram', 'TRI')
     moxios.install()
     moxios.stubRequest(process.env.API_URL + process.env.LIST_EXPERIENCES_PATH.replace('{trigram}', fakeTrigram), {
       status: 200,

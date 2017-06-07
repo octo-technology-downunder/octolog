@@ -26,7 +26,6 @@ import { mapGetters } from 'vuex'
 export default {
   props: ['mission'],
   computed: {
-    // mix the getters into computed with object spread operator
     ...mapGetters([
       'trigram'
     ])

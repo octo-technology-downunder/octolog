@@ -5,6 +5,8 @@ import store from '../store'
 
 describe('Cv.vue', () => {
   beforeEach(function () {
+    store.commit('setTrigram', 'TRI')
+    store.commit('setProfile', {education: [], skills: {}})
     moxios.install()
     moxios.stubRequest(process.env.API_URL + process.env.LIST_BASICS_PATH.replace('{trigram}', 'TRI'), {
       status: 200,

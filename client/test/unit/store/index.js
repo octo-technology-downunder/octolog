@@ -7,8 +7,9 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     password: '',
-    trigram: 'TRI',
-    experiences: {octo: [], priorToOcto: []}
+    trigram: '',
+    experiences: {octo: [], priorToOcto: []},
+    profile: {education: [], skills: {}}
   },
   getters: {
     trigram: state => {
@@ -18,10 +19,37 @@ const store = new Vuex.Store({
       return state.password
     },
     octoMissions: state => {
+      const latestEndingFirst = function (a, b) {
+        if (a.to < b.to) {
+          return 1
+        }
+        if (a.to > b.to) {
+          return -1
+        }
+        return 0
+      }
       return state.experiences.octo.sort(latestEndingFirst)
     },
     priorExperience: state => {
+      const latestEndingFirst = function (a, b) {
+        if (a.to < b.to) {
+          return 1
+        }
+        if (a.to > b.to) {
+          return -1
+        }
+        return 0
+      }
       return state.experiences.priorToOcto.sort(latestEndingFirst)
+    },
+    profile: state => {
+      return state.profile
+    },
+    education: state => {
+      return state.profile.education
+    },
+    skills: state => {
+      return state.profile.skills
     }
   },
   mutations: {
@@ -33,18 +61,17 @@ const store = new Vuex.Store({
     },
     setExperiences (state, experiences) {
       state.experiences = experiences
+    },
+    setProfile (state, profile) {
+      state.profile = profile
+    },
+    mergeProfile (state, profile) {
+      Object.assign(this.profile, profile)
+    },
+    deleteExperience (state, experience) {
+      state.experiences.octo = state.experiences.octo.filter(function (element) { return element.id !== experience.id })
     }
   }
 })
-
-const latestEndingFirst = function (a, b) {
-  if (a.to < b.to) {
-    return 1
-  }
-  if (a.to > b.to) {
-    return -1
-  }
-  return 0
-}
 
 export default store

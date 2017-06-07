@@ -23,7 +23,6 @@ import { mapGetters } from 'vuex'
 export default {
   components: {Mission, MissionModalContainer},
   computed: {
-    // mix the getters into computed with object spread operator
     ...mapGetters([
       'trigram',
       'octoMissions',
