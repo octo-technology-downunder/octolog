@@ -45,8 +45,15 @@
 <script>
 import ProfileModalHub from '@/components/events/ProfileModalHub'
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters([
+      'trigram'
+    ])
+  },
   data () {
     return {
       active: false,
@@ -56,8 +63,7 @@ export default {
       architectureTechnologySkills: '',
       methodologySkills: '',
       achievementSkills: '',
-      otherSkills: '',
-      trigram: ''
+      otherSkills: ''
     }
   },
   mounted () {
@@ -74,7 +80,7 @@ export default {
     open () {
       this.active = true
     },
-    set (profile, trigram) {
+    set (profile) {
       this.profile = profile
       this.education = this.mapArrayToMultilineList(profile.education)
       this.technicalSkills = this.mapArrayToMultilineList(profile.skills.technical)
@@ -82,7 +88,6 @@ export default {
       this.methodologySkills = this.mapArrayToMultilineList(profile.skills.methodologies)
       this.achievementSkills = this.mapArrayToMultilineList(profile.skills.achievements)
       this.otherSkills = this.mapArrayToMultilineList(profile.skills.others)
-      this.trigram = trigram
     },
     close () {
       this.active = false

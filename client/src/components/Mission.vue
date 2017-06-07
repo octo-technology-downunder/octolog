@@ -21,20 +21,25 @@
 <script>
 import MissionModalHub from '@/components/events/MissionModalHub'
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
   props: ['mission'],
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters([
+      'trigram'
+    ])
+  },
   methods: {
     editMission: function (mission) {
       MissionModalHub.$emit('open-modal')
-      const trigram = this.$store.state.trigram
-      MissionModalHub.$emit('set-modal-data', this.mission, trigram)
+      MissionModalHub.$emit('set-modal-data', this.mission, this.trigram)
     },
     deleteMission: function (mission) {
-      const trigram = this.$store.state.trigram
       const expId = mission.id
 
-      return axios.delete(process.env.API_URL + process.env.DELETE_EXPERIENCE_PATH.replace('{id}', expId).replace('{trigram}', trigram))
+      return axios.delete(process.env.API_URL + process.env.DELETE_EXPERIENCE_PATH.replace('{id}', expId).replace('{trigram}', this.trigram))
         .then((response) => {
           // TODO: send event to parent to remove mission from the list
           this.mission = null

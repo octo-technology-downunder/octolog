@@ -18,9 +18,16 @@
 import Mission from '@/components/Mission'
 import MissionModalContainer from '@/components/MissionModalContainer'
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {Mission, MissionModalContainer},
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters([
+      'trigram'
+    ])
+  },
   data () {
     return {
       octoMissions: [],
@@ -33,7 +40,6 @@ export default {
   },
   methods: {
     fetchExperience () {
-      const trigram = this.$store.state.trigram
       const latestEndingFirst = function (a, b) {
         if (a.to < b.to) {
           return 1
@@ -43,7 +49,7 @@ export default {
         }
         return 0
       }
-      return axios.get(process.env.API_URL + process.env.LIST_EXPERIENCES_PATH.replace('{trigram}', trigram))
+      return axios.get(process.env.API_URL + process.env.LIST_EXPERIENCES_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
           this.octoMissions = response.data.octo
           if (this.octoMissions.length > 1) {
@@ -60,8 +66,7 @@ export default {
         })
     },
     syncOctopod () {
-      const trigram = this.$store.state.trigram
-      return axios.post(process.env.API_URL + process.env.SYNC_OCTOPOD_PATH.replace('{trigram}', trigram))
+      return axios.post(process.env.API_URL + process.env.SYNC_OCTOPOD_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
           this.octoMissions = response.data
         })

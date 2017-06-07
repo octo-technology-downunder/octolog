@@ -18,9 +18,16 @@ import Skills from '@/components/Skills'
 import axios from 'axios'
 import ProfileModalContainer from '@/components/ProfileModalContainer'
 import ProfileModalHub from '@/components/events/ProfileModalHub'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {Profile, Education, Skills, Experience, ProfileModalContainer, ProfileModalHub},
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters([
+      'trigram'
+    ])
+  },
   data () {
     return {
       profile: {education: {}, skills: {}},
@@ -32,8 +39,7 @@ export default {
   },
   methods: {
     fetchProfile: function () {
-      const trigram = this.$store.state.trigram
-      return axios.get(process.env.API_URL + process.env.UPDATE_BASICS_PATH.replace('{trigram}', trigram))
+      return axios.get(process.env.API_URL + process.env.UPDATE_BASICS_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
           this.profile = response.data
         })
@@ -42,14 +48,12 @@ export default {
         })
     },
     editProfile: function (profile) {
-      const trigram = this.$store.state.trigram
       console.log('editing profile ' + profile)
       ProfileModalHub.$emit('open-modal')
-      ProfileModalHub.$emit('set-modal-data', this.profile, trigram)
+      ProfileModalHub.$emit('set-modal-data', this.profile, this.trigram)
     },
     syncAskbob () {
-      const trigram = this.$store.state.trigram
-      return axios.post(process.env.API_URL + process.env.SYNC_ASKBOB_PATH.replace('{trigram}', trigram))
+      return axios.post(process.env.API_URL + process.env.SYNC_ASKBOB_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
           Object.assign(this.profile, response.data)
           console.log(this.profile)

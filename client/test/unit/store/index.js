@@ -16,7 +16,7 @@ const store = new Vuex.Store({
     setTrigram (state, trigram) {
       state.trigram = trigram
     }
-  },
+  }
 })
 
 export default store

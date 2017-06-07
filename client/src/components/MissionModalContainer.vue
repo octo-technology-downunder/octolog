@@ -25,12 +25,18 @@
 <script>
 import MissionModalHub from '@/components/events/MissionModalHub'
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters([
+      'trigram'
+    ])
+  },
   data () {
     return {
       active: false,
-      trigram: '',
       mission: {},
       missionTags: '',
       missionDescription: '-... \n-...'
@@ -50,8 +56,7 @@ export default {
     open () {
       this.active = true
     },
-    set (mission, trigram) {
-      this.trigram = trigram
+    set (mission) {
       this.mission = mission
       if (mission.tags) {
         this.missionTags = mission.tags.join(',')

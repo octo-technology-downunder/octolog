@@ -8,7 +8,19 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     password: '',
-    trigram: ''
+    trigram: '',
+    octoMissions: []
+  },
+  getters: {
+    trigram: state => {
+      return state.trigram
+    },
+    password: state => {
+      return state.password
+    },
+    octoMissions: state => {
+      return state.octoMissions
+    }
   },
   mutations: {
     setPassword (state, password) {
@@ -16,6 +28,9 @@ const store = new Vuex.Store({
     },
     setTrigram (state, trigram) {
       state.trigram = trigram.toUpperCase()
+    },
+    setMissions (state, missions) {
+      state.missions = missions
     }
   },
   plugins: [createPersistedState()]
