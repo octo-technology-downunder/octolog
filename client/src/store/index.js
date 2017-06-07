@@ -9,7 +9,7 @@ const store = new Vuex.Store({
   state: {
     password: '',
     trigram: '',
-    octoMissions: []
+    experiences: []
   },
   getters: {
     trigram: state => {
@@ -19,7 +19,28 @@ const store = new Vuex.Store({
       return state.password
     },
     octoMissions: state => {
-      return state.octoMissions
+      const latestEndingFirst = function (a, b) {
+        if (a.to < b.to) {
+          return 1
+        }
+        if (a.to > b.to) {
+          return -1
+        }
+        return 0
+      }
+      return state.experiences.octo.sort(latestEndingFirst)
+    },
+    priorExperience: state => {
+      const latestEndingFirst = function (a, b) {
+        if (a.to < b.to) {
+          return 1
+        }
+        if (a.to > b.to) {
+          return -1
+        }
+        return 0
+      }
+      return state.experiences.priorToOcto.sort(latestEndingFirst)
     }
   },
   mutations: {
@@ -29,8 +50,8 @@ const store = new Vuex.Store({
     setTrigram (state, trigram) {
       state.trigram = trigram.toUpperCase()
     },
-    setMissions (state, missions) {
-      state.missions = missions
+    setExperiences (state, experiences) {
+      state.experiences = experiences
     }
   },
   plugins: [createPersistedState()]

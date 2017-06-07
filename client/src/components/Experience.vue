@@ -25,13 +25,13 @@ export default {
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters([
-      'trigram'
+      'trigram',
+      'octoMissions',
+      'priorExperience'
     ])
   },
   data () {
     return {
-      octoMissions: [],
-      priorExperience: [],
       errors: []
     }
   },
@@ -40,25 +40,9 @@ export default {
   },
   methods: {
     fetchExperience () {
-      const latestEndingFirst = function (a, b) {
-        if (a.to < b.to) {
-          return 1
-        }
-        if (a.to > b.to) {
-          return -1
-        }
-        return 0
-      }
       return axios.get(process.env.API_URL + process.env.LIST_EXPERIENCES_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
-          this.octoMissions = response.data.octo
-          if (this.octoMissions.length > 1) {
-            this.octoMissions.sort(latestEndingFirst)
-          }
-          this.priorExperience = response.data.priorToOcto
-          if (this.priorExperience.length > 1) {
-            this.priorExperience.sort(latestEndingFirst)
-          }
+          this.$store.commit('setExperiences', response.data)
         })
         .catch(e => {
           console.log(e)
