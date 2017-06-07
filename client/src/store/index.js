@@ -9,7 +9,7 @@ const store = new Vuex.Store({
   state: {
     password: '',
     trigram: '',
-    experiences: []
+    experiences: {octo: [], priorToOcto: []}
   },
   getters: {
     trigram: state => {
@@ -52,6 +52,9 @@ const store = new Vuex.Store({
     },
     setExperiences (state, experiences) {
       state.experiences = experiences
+    },
+    deleteExperience (state, experience) {
+      state.experiences.octo = state.experiences.octo.filter(function (element) { return element.id !== experience.id })
     }
   },
   plugins: [createPersistedState()]

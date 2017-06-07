@@ -37,12 +37,11 @@ export default {
       MissionModalHub.$emit('set-modal-data', this.mission, this.trigram)
     },
     deleteMission: function (mission) {
-      const expId = mission.id
+      const experienceId = mission.id
 
-      return axios.delete(process.env.API_URL + process.env.DELETE_EXPERIENCE_PATH.replace('{id}', expId).replace('{trigram}', this.trigram))
+      return axios.delete(process.env.API_URL + process.env.DELETE_EXPERIENCE_PATH.replace('{id}', experienceId).replace('{trigram}', this.trigram))
         .then((response) => {
-          // TODO: send event to parent to remove mission from the list
-          this.mission = null
+          this.$store.commit('deleteExperience', this.mission)
         })
         .catch(e => {
           console.log(e)

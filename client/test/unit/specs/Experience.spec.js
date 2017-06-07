@@ -40,6 +40,7 @@ describe('Experience.vue', () => {
   })
 
   it('should have empty Octo missions data', () => {
+    store.commit('setExperiences', {octo: [], priorToOcto: []})
     const vm = getRenderedVm(Experience, {trigram: fakeTrigram})
     expect(vm.octoMissions).to.be.empty
   })
@@ -50,9 +51,8 @@ describe('Experience.vue', () => {
   })
 
   it('should display experiences when vm.octoMissions is populated', done => {
+    store.commit('setExperiences', fakeExperiences)
     const vm = getRenderedVm(Experience, {trigram: fakeTrigram})
-    vm.octoMissions = fakeExperiences.octo
-    vm.priorExperience = fakeExperiences.priorToOcto
     Vue.nextTick(() => {
       expect(vm.$el.querySelectorAll('.mission')).to.have.lengthOf(3)
       done()
