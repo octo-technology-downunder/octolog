@@ -16,7 +16,7 @@
           </div>
         </div>
         <button class="modal-default-button" v-on:click="close">Cancel</button>
-        <button class="modal-default-button" v-on:click="updateMission">OK</button>
+        <button class="modal-default-button" v-on:click="saveMission">OK</button>
       </div>
     </div>
   </div>
@@ -29,7 +29,6 @@ import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    // mix the getters into computed with object spread operator
     ...mapGetters([
       'trigram'
     ])
@@ -68,18 +67,28 @@ export default {
     close () {
       this.active = false
     },
-    updateMission () {
+    saveMission () {
       this.mission.tags = this.missionTags.split(',')
       this.mission.description = this.missionDescription.substring(2).split('\n- ')
-      return axios.put(process.env.API_URL + process.env.UPDATE_EXPERIENCE_PATH.replace('{id}', this.mission.id).replace('{trigram}', this.trigram))
-        .then((response) => {
-          this.mission = response.data
-          this.active = false
-        })
-        .catch(e => {
-          console.log(e)
-          this.errors.push(e)
-        })
+      if (this.mission.id) {
+        return axios.put(process.env.API_URL + process.env.UPDATE_EXPERIENCE_PATH.replace('{id}', this.mission.id).replace('{trigram}', this.trigram))
+          .then((response) => {
+            this.mission = response.data
+            this.active = false
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+      } else {
+        return axios.post(process.env.API_URL + process.env.CREATE_EXPERIENCE_PATH.replace('{trigram}', this.trigram))
+          .then((response) => {
+            this.$store.commit('addPriorToOctoExperience', response.data)
+            this.active = false
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+      }
     }
   }
 }

@@ -17,6 +17,7 @@
 <script>
 import Mission from '@/components/Mission'
 import MissionModalContainer from '@/components/MissionModalContainer'
+import MissionModalHub from '@/components/events/MissionModalHub'
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 
@@ -59,6 +60,7 @@ export default {
         })
     },
     addExperience () {
+      MissionModalHub.$emit('open-modal')
     }
   }
 }

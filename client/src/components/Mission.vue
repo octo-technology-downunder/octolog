@@ -33,7 +33,7 @@ export default {
   methods: {
     editMission: function (mission) {
       MissionModalHub.$emit('open-modal')
-      MissionModalHub.$emit('set-modal-data', this.mission, this.trigram)
+      MissionModalHub.$emit('set-modal-data', this.mission)
     },
     deleteMission: function (mission) {
       const experienceId = mission.id

@@ -71,6 +71,9 @@ const store = new Vuex.Store({
     },
     deleteExperience (state, experience) {
       state.experiences.octo = state.experiences.octo.filter(function (element) { return element.id !== experience.id })
+    },
+    addPriorToOctoExperience (state, experience) {
+      state.experiences.priorToOcto.push(experience)
     }
   },
   plugins: [createPersistedState()]
