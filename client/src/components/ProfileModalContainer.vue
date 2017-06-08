@@ -49,15 +49,14 @@ import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    // mix the getters into computed with object spread operator
     ...mapGetters([
-      'trigram'
+      'trigram',
+      'profile'
     ])
   },
   data () {
     return {
       active: false,
-      profile: {skills: {}},
       education: '',
       technicalSkills: '',
       architectureTechnologySkills: '',
@@ -80,14 +79,13 @@ export default {
     open () {
       this.active = true
     },
-    set (profile) {
-      this.profile = profile
-      this.education = this.mapArrayToMultilineList(profile.education)
-      this.technicalSkills = this.mapArrayToMultilineList(profile.skills.technical)
-      this.architectureTechnologySkills = this.mapArrayToMultilineList(profile.skills.architectureTechnologies)
-      this.methodologySkills = this.mapArrayToMultilineList(profile.skills.methodologies)
-      this.achievementSkills = this.mapArrayToMultilineList(profile.skills.achievements)
-      this.otherSkills = this.mapArrayToMultilineList(profile.skills.others)
+    set () {
+      this.education = this.mapArrayToMultilineList(this.profile.education)
+      this.technicalSkills = this.mapArrayToMultilineList(this.profile.skills.technical)
+      this.architectureTechnologySkills = this.mapArrayToMultilineList(this.profile.skills.architectureTechnologies)
+      this.methodologySkills = this.mapArrayToMultilineList(this.profile.skills.methodologies)
+      this.achievementSkills = this.mapArrayToMultilineList(this.profile.skills.achievements)
+      this.otherSkills = this.mapArrayToMultilineList(this.profile.skills.others)
     },
     close () {
       this.active = false
@@ -101,11 +99,11 @@ export default {
       this.profile.skills.others = this.mapMultilineListToArray(this.otherSkills)
       return axios.put(process.env.API_URL + process.env.UPDATE_BASICS_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
-          this.profile = response.data
+          console.log(response.data)
+          this.$store.commit('setProfile', response.data)
           this.active = false
         })
         .catch(e => {
-          console.log(e)
           this.errors.push(e)
         })
     },

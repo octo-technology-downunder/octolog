@@ -1,4 +1,4 @@
-const mutations = {
+export const mutations = {
   setPassword (state, password) {
     state.password = password
   },
@@ -21,5 +21,3 @@ const mutations = {
     state.experiences.priorToOcto.push(experience)
   }
 }
-
-export default mutations

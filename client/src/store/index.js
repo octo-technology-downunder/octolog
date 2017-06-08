@@ -2,8 +2,8 @@ require('es6-promise').polyfill()
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-import * as getters from './getters'
-import mutations from './mutations'
+import { getters } from './getters'
+import { mutations } from './mutations'
 
 Vue.use(Vuex)
 

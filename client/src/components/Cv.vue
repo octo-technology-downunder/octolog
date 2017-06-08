@@ -47,9 +47,8 @@ export default {
         })
     },
     editProfile: function (profile) {
-      console.log('editing profile ' + profile)
       ProfileModalHub.$emit('open-modal')
-      ProfileModalHub.$emit('set-modal-data', this.profile, this.trigram)
+      ProfileModalHub.$emit('set-modal-data')
     },
     syncAskbob () {
       return axios.post(process.env.API_URL + process.env.SYNC_ASKBOB_PATH.replace('{trigram}', this.trigram))
