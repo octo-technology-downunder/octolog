@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Cv from '@/components/Cv'
 import moxios from 'moxios'
-import store from '../store'
+import store from '@/store'
 
 describe('Cv.vue', () => {
   beforeEach(function () {

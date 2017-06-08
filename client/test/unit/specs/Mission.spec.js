@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Mission from '@/components/Mission'
-import store from '../store'
+import store from '@/store'
 
 function getRenderedEl (Component, propsData) {
   const Constructor = Vue.extend(Component)

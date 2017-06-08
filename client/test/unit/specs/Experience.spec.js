@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Experience from '@/components/Experience'
 import moxios from 'moxios'
-import store from '../store'
+import store from '@/store'
 
 function getRenderedVm (Component, propsData) {
   const Constructor = Vue.extend(Component)

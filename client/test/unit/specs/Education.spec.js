@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Education from '@/components/Education'
-import store from '../store'
+import store from '@/store'
 
 function getRenderedEl (Component) {
   const Constructor = Vue.extend(Component)

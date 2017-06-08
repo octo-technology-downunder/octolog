@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Skills from '@/components/Skills'
-import store from '../store'
+import store from '@/store'
 
 function getRenderedEl (Component) {
   const Constructor = Vue.extend(Component)
