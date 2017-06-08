@@ -12,7 +12,7 @@ const store = new Vuex.Store({
     password: '',
     trigram: '',
     experiences: {octo: [], priorToOcto: []},
-    profile: {education: {}, skills: {}}
+    profile: {education: [], skills: {}}
   },
   getters,
   mutations,

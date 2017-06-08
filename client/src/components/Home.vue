@@ -18,8 +18,6 @@ export default {
       password: ''
     }
   },
-  created () {
-  },
   methods: {
     goToCv: function () {
       axios.defaults.headers.common['X-Api-Key'] = this.password
