@@ -52,7 +52,7 @@ export default {
     syncOctopod () {
       return axios.post(process.env.API_URL + process.env.SYNC_OCTOPOD_PATH.replace('{trigram}', this.trigram))
         .then((response) => {
-          this.octoMissions = response.data
+          this.$store.commit('setOctoExperiences', response.data)
         })
         .catch(e => {
           console.log(e)

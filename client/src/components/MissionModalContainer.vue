@@ -73,7 +73,7 @@ export default {
       if (this.mission.id) {
         return axios.put(process.env.API_URL + process.env.UPDATE_EXPERIENCE_PATH.replace('{id}', this.mission.id).replace('{trigram}', this.trigram))
           .then((response) => {
-            this.mission = response.data
+            this.$store.commit('updateOctoExperience', response.data)
             this.active = false
           })
           .catch(e => {

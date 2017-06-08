@@ -40,7 +40,7 @@ export default {
 
       return axios.delete(process.env.API_URL + process.env.DELETE_EXPERIENCE_PATH.replace('{id}', experienceId).replace('{trigram}', this.trigram))
         .then((response) => {
-          this.$store.commit('deleteExperience', this.mission)
+          this.$store.commit('deleteOctoExperience', this.mission)
         })
         .catch(e => {
           console.log(e)
