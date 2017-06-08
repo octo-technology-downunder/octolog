@@ -11,7 +11,17 @@ describe('store getters', () => {
     expect(result[1].to).to.equal('2010-11-20')
     expect(result[2].to).to.equal('2010-11-19')
   })
-}
+
+  it('should order the prior to octo missions by latest first', () => {
+    const state = {
+      experiences: fakeExperiences
+    }
+    const result = getters.priorExperience(state)
+    expect(result).to.have.lengthOf(2)
+    expect(result[0].to).to.equal('2009-11-15')
+    expect(result[1].to).to.equal('2009-11-14')
+  })
+})
 
 const fakeExperiences = {
   'octo': [
@@ -82,6 +92,21 @@ const fakeExperiences = {
         'Develop closest sandwich shop application'
       ],
       'tags': ['coffee', 'printer', 'ink', 'errand']
+    },
+    {
+      'id': '123456789',
+      'customer': 'Atari',
+      'customerLogo': 'https://upload.wikimedia.org/wikipedia/fr/thumb/b/ba/Atari_Inc._2003_Logo.png/280px-Atari_Inc._2003_Logo.png',
+      'role': 'Intern',
+      'from': '2008-09-23',
+      'to': '2009-11-15',
+      'description': [
+        'Improve coffee quality',
+        'Automate printer low ink alert',
+        'Develop closest sandwich shop application'
+      ],
+      'tags': ['coffee', 'printer', 'ink', 'errand']
     }
-  ]}
+  ]
 }
+
