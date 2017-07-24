@@ -122,7 +122,8 @@ functions:
   syncBasics:
     handler: lambda/askbob.sync
     environment:
-      API_KEY: ${env:ASKBOB_API_KEY}
+      CLIENT_ASKBOB_ID: ${env:CLIENT_ASKBOB_ID}
+      CLIENT_ASKBOB_SECRET: ${env:CLIENT_ASKBOB_SECRET}
     events:
       - http:
           path: people/{trigram}/cv/{name}/askbob/sync
